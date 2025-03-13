@@ -1,0 +1,296 @@
+[
+    {
+        "reader_id": "R00001",
+        "book_id": [
+            "B00014",
+            "B00012",
+            "B00026"
+        ],
+        "borrow_date": "2023-02-02",
+        "return_date": "2023-03-03"
+    },
+    {
+        "reader_id": "R00002",
+        "book_id": [
+            "B00004",
+            "B00007"
+        ],
+        "borrow_date": "2023-03-03",
+        "return_date": "2023-04-04"
+    },
+    {
+        "reader_id": "R00003",
+        "book_id": [
+            "B00015",
+            "B00001",
+            "B00010",
+            "B00026"
+        ],
+        "borrow_date": "2023-04-04",
+        "return_date": "2023-05-05"
+    },
+    {
+        "reader_id": "R00004",
+        "book_id": [
+            "B00005",
+            "B00007",
+            "B00002",
+            "B00028"
+        ],
+        "borrow_date": "2023-05-05",
+        "return_date": "2023-06-06"
+    },
+    {
+        "reader_id": "R00005",
+        "book_id": [
+            "B00030",
+            "B00022",
+            "B00024"
+        ],
+        "borrow_date": "2023-06-06",
+        "return_date": "2023-07-07"
+    },
+    {
+        "reader_id": "R00006",
+        "book_id": "B00005",
+        "borrow_date": "2023-07-07",
+        "return_date": "2023-08-08"
+    },
+    {
+        "reader_id": "R00007",
+        "book_id": [
+            "B00026",
+            "B00009"
+        ],
+        "borrow_date": "2023-08-08",
+        "return_date": "2023-09-09"
+    },
+    {
+        "reader_id": "R00008",
+        "book_id": [
+            "B00021",
+            "B00026"
+        ],
+        "borrow_date": "2023-09-09",
+        "return_date": "2023-10-10"
+    },
+    {
+        "reader_id": "R00009",
+        "book_id": [
+            "B00018",
+            "B00027",
+            "B00024"
+        ],
+        "borrow_date": "2023-10-10",
+        "return_date": "2023-11-11"
+    },
+    {
+        "reader_id": "R00010",
+        "book_id": [
+            "B00004",
+            "B00009",
+            "B00026",
+            "B00004",
+            "B00007"
+        ],
+        "borrow_date": "2023-11-11",
+        "return_date": "2023-12-12"
+    },
+    {
+        "reader_id": "R00011",
+        "book_id": [
+            "B00001",
+            "B00015"
+        ],
+        "borrow_date": "2023-12-12",
+        "return_date": "2024-01-12"
+    },
+    {
+        "reader_id": "R00012",
+        "book_id": [
+            "B00008",
+            "B00017",
+            "B00023"
+        ],
+        "borrow_date": "2024-01-13",
+        "return_date": "2024-02-13"
+    },
+    {
+        "reader_id": "R00013",
+        "book_id": [
+            "B00005",
+            "B00012"
+        ],
+        "borrow_date": "2024-02-14",
+        "return_date": "2024-03-14"
+    },
+    {
+        "reader_id": "R00014",
+        "book_id": [
+            "B00019",
+            "B00030",
+            "B00002",
+            "B00025"
+        ],
+        "borrow_date": "2024-03-15",
+        "return_date": "2024-04-15"
+    },
+    {
+        "reader_id": "R00015",
+        "book_id": [
+            "B00011",
+            "B00004"
+        ],
+        "borrow_date": "2024-04-16",
+        "return_date": "2024-05-16"
+    },
+    {
+        "reader_id": "R00016",
+        "book_id": [
+            "B00013",
+            "B00029"
+        ],
+        "borrow_date": "2024-05-17",
+        "return_date": "2024-06-17"
+    },
+    {
+        "reader_id": "R00017",
+        "book_id": [
+            "B00007",
+            "B00010",
+            "B00020"
+        ],
+        "borrow_date": "2024-06-18",
+        "return_date": "2024-07-18"
+    },
+    {
+        "reader_id": "R00018",
+        "book_id": [
+            "B00009",
+            "B00016",
+            "B00028",
+            "B00022"
+        ],
+        "borrow_date": "2024-07-19",
+        "return_date": "2024-08-19"
+    },
+    {
+        "reader_id": "R00019",
+        "book_id": [
+            "B00021",
+            "B00027",
+            "B00006"
+        ],
+        "borrow_date": "2024-08-20",
+        "return_date": "2024-09-20"
+    },
+    {
+        "reader_id": "R00020",
+        "book_id": [
+            "B00003",
+            "B00014",
+            "B00005"
+        ],
+        "borrow_date": "2024-09-21",
+        "return_date": "2024-10-21"
+    },
+    {
+        "reader_id": "R00021",
+        "book_id": [
+            "B00030",
+            "B00001"
+        ],
+        "borrow_date": "2024-10-22",
+        "return_date": "2024-11-22"
+    },
+    {
+        "reader_id": "R00022",
+        "book_id": [
+            "B00012",
+            "B00026",
+            "B00018"
+        ],
+        "borrow_date": "2024-11-23",
+        "return_date": "2024-12-23"
+    },
+    {
+        "reader_id": "R00023",
+        "book_id": [
+            "B00008",
+            "B00020",
+            "B00017"
+        ],
+        "borrow_date": "2024-12-24",
+        "return_date": "2025-01-24"
+    },
+    {
+        "reader_id": "R00024",
+        "book_id": [
+            "B00015",
+            "B00004",
+            "B00011"
+        ],
+        "borrow_date": "2025-01-25",
+        "return_date": "2025-02-25"
+    },
+    {
+        "reader_id": "R00025",
+        "book_id": [
+            "B00006",
+            "B00019",
+            "B00022"
+        ],
+        "borrow_date": "2025-02-26",
+        "return_date": "2025-03-26"
+    },
+    {
+        "reader_id": "R00026",
+        "book_id": [
+            "B00025",
+            "B00027",
+            "B00010"
+        ],
+        "borrow_date": "2025-03-27",
+        "return_date": "2025-04-27"
+    },
+    {
+        "reader_id": "R00027",
+        "book_id": [
+            "B00023",
+            "B00030",
+            "B00007"
+        ],
+        "borrow_date": "2025-04-28",
+        "return_date": "2025-05-28"
+    },
+    {
+        "reader_id": "R00028",
+        "book_id": [
+            "B00002",
+            "B00009",
+            "B00013"
+        ],
+        "borrow_date": "2025-05-29",
+        "return_date": "2025-06-29"
+    },
+    {
+        "reader_id": "R00029",
+        "book_id": [
+            "B00028",
+            "B00024",
+            "B00003"
+        ],
+        "borrow_date": "2025-06-30",
+        "return_date": "2025-07-30"
+    },
+    {
+        "reader_id": "R00030",
+        "book_id": [
+            "B00016",
+            "B00005",
+            "B00021"
+        ],
+        "borrow_date": "2025-07-31",
+        "return_date": "2025-08-31"
+    }
+]
