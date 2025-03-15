@@ -1,242 +1,450 @@
 [
     {
-        "id": "B00001",
-        "title": "Dế Mèn Phiêu Lưu Ký",
-        "author": "Tô Hoài",
-        "year": 1941,
-        "genre": "Thiếu nhi",
-        "quantity": 5
+        "id": "OL12345W",
+        "title": "Lightning War",
+        "author": "Ronald E. Powaski",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00002",
-        "title": "Harry Potter và Hòn Đá Phù Thủy",
-        "author": "J.K. Rowling",
-        "year": 1997,
-        "genre": "Fantasy",
-        "quantity": 12
+        "id": "OL67890W",
+        "title": "Fourth five-year plan, 1966-67 to 1970-71, Maharashtra State",
+        "author": "Maharashtra (India). Finance Dept. Plann...",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "120"
     },
     {
-        "id": "B00003",
-        "title": "Cuộc Chiến Tranh Không Có Gương Mặt Phụ Nữ",
-        "author": "Svetlana Alexievich",
-        "year": 1985,
-        "genre": "Lịch sử",
-        "quantity": 8
+        "id": "OL35649409M",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00004",
-        "title": "Đắc Nhân Tâm",
-        "author": "Dale Carnegie",
-        "year": 1936,
-        "genre": "Kỹ năng sống",
-        "quantity": 15
+        "id": "OL40295210M",
+        "title": "Schöne neue Welt",
+        "author": "Aldous Huxley",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "367"
     },
     {
-        "id": "B00005",
-        "title": "Sapiens: Lược Sử Loài Người",
-        "author": "Yuval Noah Harari",
-        "year": 2011,
-        "genre": "Lịch sử",
-        "quantity": 9
+        "id": "OL7870148M",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00006",
-        "title": "Nhà Giả Kim",
-        "author": "Paulo Coelho",
-        "year": 1988,
-        "genre": "Văn học",
-        "quantity": 10
+        "id": "OL1100007W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00007",
-        "title": "Totto-chan: Cô bé bên cửa sổ",
-        "author": "Tetsuko Kuroyanagi",
-        "year": 1981,
-        "genre": "Thiếu nhi",
-        "quantity": 7
+        "id": "OL33874740M",
+        "title": "The Invisible Man",
+        "author": "H. G. Wells",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00008",
-        "title": "Bố Già",
-        "author": "Mario Puzo",
-        "year": 1969,
-        "genre": "Tiểu thuyết",
-        "quantity": 13
+        "id": "OL6927336M",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00009",
-        "title": "Trăm Năm Cô Đơn",
-        "author": "Gabriel García Márquez",
-        "year": 1967,
-        "genre": "Văn học",
-        "quantity": 11
+        "id": "OL27468204W",
+        "title": "Houghton Mifflin Science California",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00010",
-        "title": "Chiến Tranh Và Hòa Bình",
-        "author": "Lev Tolstoy",
-        "year": 1869,
-        "genre": "Lịch sử",
-        "quantity": 6
+        "id": "OL450063W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00011",
-        "title": "Sherlock Holmes: Tuyển Tập Truyện Ngắn",
-        "author": "Arthur Conan Doyle",
-        "year": 1892,
-        "genre": "Trinh thám",
-        "quantity": 14
+        "id": "OL1548597W",
+        "title": "De la Nature",
+        "author": "Titus Lucretius Carus",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "243"
     },
     {
-        "id": "B00012",
-        "title": "Hoàng Tử Bé",
-        "author": "Antoine de Saint-Exupéry",
-        "year": 1943,
-        "genre": "Thiếu nhi",
-        "quantity": 8
+        "id": "OL1100007W",
+        "title": "Le tour du monde en quatre-vingts jours",
+        "author": "Jules Verne",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "367"
     },
     {
-        "id": "B00013",
-        "title": "Cà Phê Cùng Tony",
-        "author": "Tony Buổi Sáng",
-        "year": 2015,
-        "genre": "Kỹ năng sống",
-        "quantity": 10
+        "id": "OL27468204W",
+        "title": "Houghton Mifflin Science California",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00014",
-        "title": "Người Giàu Có Nhất Thành Babylon",
-        "author": "George S. Clason",
-        "year": 1926,
-        "genre": "Kinh tế",
-        "quantity": 9
+        "id": "OL15678068W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00015",
-        "title": "Những Người Khốn Khổ",
-        "author": "Victor Hugo",
-        "year": 1862,
-        "genre": "Văn học",
-        "quantity": 7
+        "id": "OL381550W",
+        "title": "The Island of Dr. Moreau",
+        "author": "H. G. Wells",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "104"
     },
     {
-        "id": "B00016",
-        "title": "Chúa Tể Những Chiếc Nhẫn",
-        "author": "J.R.R. Tolkien",
-        "year": 1954,
-        "genre": "Fantasy",
-        "quantity": 12
+        "id": "OL27467443W",
+        "title": "Houghton Mifflin Science Leveled Readers",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00017",
-        "title": "Bí Mật Tư Duy Triệu Phú",
-        "author": "T. Harv Eker",
-        "year": 2005,
-        "genre": "Kinh tế",
-        "quantity": 10
+        "id": "OL7574091W",
+        "title": "[Report on American cotton picking machine.]",
+        "author": "United States. Congress. Senate. Committ...",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00018",
-        "title": "Tâm Lý Học Đám Đông",
-        "author": "Gustave Le Bon",
-        "year": 1895,
-        "genre": "Tâm lý học",
-        "quantity": 11
+        "id": "OL3639910W",
+        "title": "Hakluyt's voyages",
+        "author": "Richard Hakluyt",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "640"
     },
     {
-        "id": "B00019",
-        "title": "Thiên Tài Bên Trái, Kẻ Điên Bên Phải",
-        "author": "Ngô Thừa Ân",
-        "year": 2014,
-        "genre": "Tâm lý học",
-        "quantity": 8
+        "id": "OL66059W",
+        "title": "The Book of the Damned",
+        "author": "Charles Fort",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "1136"
     },
     {
-        "id": "B00020",
-        "title": "1984",
-        "author": "George Orwell",
-        "year": 1949,
-        "genre": "Khoa học viễn tưởng",
-        "quantity": 9
-    },
-    {
-        "id": "B00021",
-        "title": "Lược Sử Thời Gian",
+        "id": "OL1892617W",
+        "title": "时间简史",
         "author": "Stephen Hawking",
-        "year": 1988,
-        "genre": "Khoa học",
-        "quantity": 10
+        "year": "Unknown",
+        "genre": [],
+        "pages": "138"
     },
     {
-        "id": "B00022",
-        "title": "Mắt Biếc",
-        "author": "Nguyễn Nhật Ánh",
-        "year": 1990,
-        "genre": "Tiểu thuyết",
-        "quantity": 13
+        "id": "OL24446425W",
+        "title": "International Review of Cytology",
+        "author": "George Bourne",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "396"
     },
     {
-        "id": "B00023",
-        "title": "Tôi Tài Giỏi, Bạn Cũng Thế!",
-        "author": "Adam Khoo",
-        "year": 2004,
-        "genre": "Kỹ năng sống",
-        "quantity": 15
+        "id": "OL1068214W",
+        "title": "A System of Logic, Ratiocinative and Inductive",
+        "author": "John Stuart Mill",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "622"
     },
     {
-        "id": "B00024",
-        "title": "Đi Tìm Lẽ Sống",
-        "author": "Viktor Frankl",
-        "year": 1946,
-        "genre": "Tâm lý học",
-        "quantity": 8
+        "id": "OL15116693W",
+        "title": "Goethe's werke.",
+        "author": "Johann Wolfgang von Goethe",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "40"
     },
     {
-        "id": "B00025",
-        "title": "Ba Người Thầy Vĩ Đại",
-        "author": "Robin Sharma",
-        "year": 2009,
-        "genre": "Kỹ năng sống",
-        "quantity": 10
+        "id": "OL8894965W",
+        "title": "NASA/DOD Aerospace Knowledge Diffusion Research Project.",
+        "author": "Thomas E. Pinelli",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     },
     {
-        "id": "B00026",
-        "title": "Đời Ngắn Đừng Ngủ Dài",
-        "author": "Robin Sharma",
-        "year": 2012,
-        "genre": "Kỹ năng sống",
-        "quantity": 12
+        "id": "OL1214190W",
+        "title": "Relativity",
+        "author": "Albert Einstein",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "168"
     },
     {
-        "id": "B00027",
-        "title": "Bí Mật Của Naoko",
-        "author": "Keigo Higashino",
-        "year": 1998,
-        "genre": "Trinh thám",
-        "quantity": 9
+        "id": "OL21015217W",
+        "title": "International Review of Cell and Molecular Biology",
+        "author": "Kwang W. Jeon",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "340"
     },
     {
-        "id": "B00028",
-        "title": "Hành Trình Về Phương Đông",
-        "author": "Baird T. Spalding",
-        "year": 1924,
-        "genre": "Tâm linh",
-        "quantity": 7
+        "id": "OL14903327W",
+        "title": "4th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "182"
     },
     {
-        "id": "B00029",
-        "title": "Thế Giới Phẳng",
-        "author": "Thomas L. Friedman",
-        "year": 2005,
-        "genre": "Kinh tế",
-        "quantity": 11
+        "id": "OL18407621W",
+        "title": "Introduction to genetic analysis",
+        "author": "Anthony J. F. Griffiths",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "832"
     },
     {
-        "id": "B00030",
-        "title": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
-        "author": "Rosie Nguyễn",
-        "year": 2016,
-        "genre": "Kỹ năng sống",
-        "quantity": 14
+        "id": "OL515051W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL723491W",
+        "title": "Moralia",
+        "author": "Plutarch",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "13"
+    },
+    {
+        "id": "OL69382W",
+        "title": "The  essayes or counsels, civill and morall",
+        "author": "Francis Bacon",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "339"
+    },
+    {
+        "id": "OL1356870W",
+        "title": "Histoire naturelle, générale et particulière",
+        "author": "Georges-Louis Leclerc, comte de Buffon",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "243"
+    },
+    {
+        "id": "OL1151518W",
+        "title": "A discourse on method",
+        "author": "René Descartes",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "240"
+    },
+    {
+        "id": "OL28988W",
+        "title": "Der goldene Kompaß",
+        "author": "Philip Pullman",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "410"
+    },
+    {
+        "id": "OL14903351W",
+        "title": "1st Report [Session 1994-95]",
+        "author": "Rand McNally",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "93"
+    },
+    {
+        "id": "OL76664W",
+        "title": "Chuang zao jin hua lun",
+        "author": "Henri Bergson",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "348"
+    },
+    {
+        "id": "OL695408W",
+        "title": "Leonardo.",
+        "author": "Leonardo da Vinci",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "179"
+    },
+    {
+        "id": "OL17075811W",
+        "title": "Sapiens",
+        "author": "Yuval Noah Harari",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "498"
+    },
+    {
+        "id": "OL16927878W",
+        "title": "Annual reports on NMR spectroscopy",
+        "author": "Graham A. Webb",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL69453W",
+        "title": "New Atlantis",
+        "author": "Francis Bacon",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "64"
+    },
+    {
+        "id": "OL1088582W",
+        "title": "ABC of relativity",
+        "author": "Bertrand Russell",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "155"
+    },
+    {
+        "id": "OL1881226W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL1827302W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL16959776W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL9213099W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL9935589W",
+        "title": "Differentiating Instruction With Menus",
+        "author": "Laurie E. Westphal",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "125"
+    },
+    {
+        "id": "OL2626638W",
+        "title": "A  canticle for Leibowitz",
+        "author": "Walter M. Miller Jr.",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "338"
+    },
+    {
+        "id": "OL3013355W",
+        "title": "On the economy of machinery and manufactures",
+        "author": "Charles Babbage",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL3360211W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL14903313W",
+        "title": "5th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL15403036W",
+        "title": "The  advancement of learning",
+        "author": "Francis Bacon",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "246"
+    },
+    {
+        "id": "OL1984582W",
+        "title": "The Logic Of Scientific Discovery",
+        "author": "Karl Popper",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "545"
+    },
+    {
+        "id": "OL2657790W",
+        "title": "Inquiry into life",
+        "author": "Sylvia S. Mader",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "848"
+    },
+    {
+        "id": "OL1554090W",
+        "title": "Cosmos",
+        "author": "Alexander von Humboldt",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
+    },
+    {
+        "id": "OL16996964W",
+        "title": "Progress in Optics, Volume 51 (Progress in Optics) (Progress in Optics)",
+        "author": "Emil Wolf",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "572"
+    },
+    {
+        "id": "OL515301W",
+        "title": "503 Service Unavailable",
+        "author": "Unknown",
+        "year": "Unknown",
+        "genre": [],
+        "pages": "Unknown"
     }
 ]

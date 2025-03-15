@@ -1,296 +1,212 @@
 [
     {
-        "reader_id": "R00001",
-        "book_id": [
-            "B00014",
-            "B00012",
-            "B00026"
-        ],
-        "borrow_date": "2023-02-02",
-        "return_date": "2023-03-03"
+        "id": "R00001",
+        "name": "Nguyễn Hữu Thắng",
+        "address": "Hồ Chí Minh",
+        "phone": "0849933375",
+        "email": "zerocode@gmail.com"
     },
     {
-        "reader_id": "R00002",
-        "book_id": [
-            "B00004",
-            "B00007"
-        ],
-        "borrow_date": "2023-03-03",
-        "return_date": "2023-04-04"
+        "id": "R00002",
+        "name": "Trần Thị Bích",
+        "address": "Hồ Chí Minh",
+        "phone": "0912345678",
+        "email": "bich.tran@example.com"
     },
     {
-        "reader_id": "R00003",
-        "book_id": [
-            "B00015",
-            "B00001",
-            "B00010",
-            "B00026"
-        ],
-        "borrow_date": "2023-04-04",
-        "return_date": "2023-05-05"
+        "id": "R00003",
+        "name": "Lê Văn Cường",
+        "address": "Đà Nẵng",
+        "phone": "0901234567",
+        "email": "cuong.le@example.com"
     },
     {
-        "reader_id": "R00004",
-        "book_id": [
-            "B00005",
-            "B00007",
-            "B00002",
-            "B00028"
-        ],
-        "borrow_date": "2023-05-05",
-        "return_date": "2023-06-06"
+        "id": "R00004",
+        "name": "Phạm Thị Dung",
+        "address": "Cần Thơ",
+        "phone": "0934567890",
+        "email": "dung.pham@example.com"
     },
     {
-        "reader_id": "R00005",
-        "book_id": [
-            "B00030",
-            "B00022",
-            "B00024"
-        ],
-        "borrow_date": "2023-06-06",
-        "return_date": "2023-07-07"
+        "id": "R00005",
+        "name": "Đỗ Minh Em",
+        "address": "Hải Phòng",
+        "phone": "0923456789",
+        "email": "em.do@example.com"
     },
     {
-        "reader_id": "R00006",
-        "book_id": "B00005",
-        "borrow_date": "2023-07-07",
-        "return_date": "2023-08-08"
+        "id": "R00006",
+        "name": "Hoàng Thị Phương",
+        "address": "Huế",
+        "phone": "0911122334",
+        "email": "phuong.hoang@example.com"
     },
     {
-        "reader_id": "R00007",
-        "book_id": [
-            "B00026",
-            "B00009"
-        ],
-        "borrow_date": "2023-08-08",
-        "return_date": "2023-09-09"
+        "id": "R00007",
+        "name": "Ngô Văn Giang",
+        "address": "Quảng Ninh",
+        "phone": "0909988776",
+        "email": "giang.ngo@example.com"
     },
     {
-        "reader_id": "R00008",
-        "book_id": [
-            "B00021",
-            "B00026"
-        ],
-        "borrow_date": "2023-09-09",
-        "return_date": "2023-10-10"
+        "id": "R00008",
+        "name": "Vũ Thị Hạnh",
+        "address": "Nha Trang",
+        "phone": "0945566778",
+        "email": "hanh.vu@example.com"
     },
     {
-        "reader_id": "R00009",
-        "book_id": [
-            "B00018",
-            "B00027",
-            "B00024"
-        ],
-        "borrow_date": "2023-10-10",
-        "return_date": "2023-11-11"
+        "id": "R00009",
+        "name": "Bùi Văn Hùng",
+        "address": "Bình Dương",
+        "phone": "0966677889",
+        "email": "hung.bui@example.com"
     },
     {
-        "reader_id": "R00010",
-        "book_id": [
-            "B00004",
-            "B00009",
-            "B00026",
-            "B00004",
-            "B00007"
-        ],
-        "borrow_date": "2023-11-11",
-        "return_date": "2023-12-12"
+        "id": "R00010",
+        "name": "Đặng Thị Lan",
+        "address": "Biên Hòa",
+        "phone": "0977788990",
+        "email": "lan.dang@example.com"
     },
     {
-        "reader_id": "R00011",
-        "book_id": [
-            "B00001",
-            "B00015"
-        ],
-        "borrow_date": "2023-12-12",
-        "return_date": "2024-01-12"
+        "id": "R00011",
+        "name": "Nguyễn Văn An",
+        "address": "Hà Nội",
+        "phone": "0981111111",
+        "email": "an.nguyen@example.com"
     },
     {
-        "reader_id": "R00012",
-        "book_id": [
-            "B00008",
-            "B00017",
-            "B00023"
-        ],
-        "borrow_date": "2024-01-13",
-        "return_date": "2024-02-13"
+        "id": "R00012",
+        "name": "Trần Thị Bảo",
+        "address": "Hải Phòng",
+        "phone": "0982222222",
+        "email": "bao.tran@example.com"
     },
     {
-        "reader_id": "R00013",
-        "book_id": [
-            "B00005",
-            "B00012"
-        ],
-        "borrow_date": "2024-02-14",
-        "return_date": "2024-03-14"
+        "id": "R00013",
+        "name": "Lê Văn Cảnh",
+        "address": "Đà Nẵng",
+        "phone": "0983333333",
+        "email": "canh.le@example.com"
     },
     {
-        "reader_id": "R00014",
-        "book_id": [
-            "B00019",
-            "B00030",
-            "B00002",
-            "B00025"
-        ],
-        "borrow_date": "2024-03-15",
-        "return_date": "2024-04-15"
+        "id": "R00014",
+        "name": "Phạm Thị Diệu",
+        "address": "Cần Thơ",
+        "phone": "0984444444",
+        "email": "dieu.pham@example.com"
     },
     {
-        "reader_id": "R00015",
-        "book_id": [
-            "B00011",
-            "B00004"
-        ],
-        "borrow_date": "2024-04-16",
-        "return_date": "2024-05-16"
+        "id": "R00015",
+        "name": "Hoàng Văn Dũng",
+        "address": "Huế",
+        "phone": "0985555555",
+        "email": "dung.hoang@example.com"
     },
     {
-        "reader_id": "R00016",
-        "book_id": [
-            "B00013",
-            "B00029"
-        ],
-        "borrow_date": "2024-05-17",
-        "return_date": "2024-06-17"
+        "id": "R00016",
+        "name": "Vũ Thị Hương",
+        "address": "Nha Trang",
+        "phone": "0986666666",
+        "email": "huong.vu@example.com"
     },
     {
-        "reader_id": "R00017",
-        "book_id": [
-            "B00007",
-            "B00010",
-            "B00020"
-        ],
-        "borrow_date": "2024-06-18",
-        "return_date": "2024-07-18"
+        "id": "R00017",
+        "name": "Ngô Văn Khánh",
+        "address": "Quảng Ninh",
+        "phone": "0987777777",
+        "email": "khanh.ngo@example.com"
     },
     {
-        "reader_id": "R00018",
-        "book_id": [
-            "B00009",
-            "B00016",
-            "B00028",
-            "B00022"
-        ],
-        "borrow_date": "2024-07-19",
-        "return_date": "2024-08-19"
+        "id": "R00018",
+        "name": "Đỗ Thị Lan",
+        "address": "Hải Dương",
+        "phone": "0988888888",
+        "email": "lan.do@example.com"
     },
     {
-        "reader_id": "R00019",
-        "book_id": [
-            "B00021",
-            "B00027",
-            "B00006"
-        ],
-        "borrow_date": "2024-08-20",
-        "return_date": "2024-09-20"
+        "id": "R00019",
+        "name": "Bùi Văn Minh",
+        "address": "Bình Dương",
+        "phone": "0989999999",
+        "email": "minh.bui@example.com"
     },
     {
-        "reader_id": "R00020",
-        "book_id": [
-            "B00003",
-            "B00014",
-            "B00005"
-        ],
-        "borrow_date": "2024-09-21",
-        "return_date": "2024-10-21"
+        "id": "R00020",
+        "name": "Đặng Thị Ngọc",
+        "address": "Biên Hòa",
+        "phone": "0970000000",
+        "email": "ngoc.dang@example.com"
     },
     {
-        "reader_id": "R00021",
-        "book_id": [
-            "B00030",
-            "B00001"
-        ],
-        "borrow_date": "2024-10-22",
-        "return_date": "2024-11-22"
+        "id": "R00021",
+        "name": "Nguyễn Văn Phúc",
+        "address": "Hà Nội",
+        "phone": "0971111111",
+        "email": "phuc.nguyen@example.com"
     },
     {
-        "reader_id": "R00022",
-        "book_id": [
-            "B00012",
-            "B00026",
-            "B00018"
-        ],
-        "borrow_date": "2024-11-23",
-        "return_date": "2024-12-23"
+        "id": "R00022",
+        "name": "Trần Thị Quỳnh",
+        "address": "Hải Phòng",
+        "phone": "0972222222",
+        "email": "quynh.tran@example.com"
     },
     {
-        "reader_id": "R00023",
-        "book_id": [
-            "B00008",
-            "B00020",
-            "B00017"
-        ],
-        "borrow_date": "2024-12-24",
-        "return_date": "2025-01-24"
+        "id": "R00023",
+        "name": "Lê Văn Sơn",
+        "address": "Đà Nẵng",
+        "phone": "0973333333",
+        "email": "son.le@example.com"
     },
     {
-        "reader_id": "R00024",
-        "book_id": [
-            "B00015",
-            "B00004",
-            "B00011"
-        ],
-        "borrow_date": "2025-01-25",
-        "return_date": "2025-02-25"
+        "id": "R00024",
+        "name": "Phạm Thị Thảo",
+        "address": "Cần Thơ",
+        "phone": "0974444444",
+        "email": "thao.pham@example.com"
     },
     {
-        "reader_id": "R00025",
-        "book_id": [
-            "B00006",
-            "B00019",
-            "B00022"
-        ],
-        "borrow_date": "2025-02-26",
-        "return_date": "2025-03-26"
+        "id": "R00025",
+        "name": "Hoàng Văn Tùng",
+        "address": "Huế",
+        "phone": "0975555555",
+        "email": "tung.hoang@example.com"
     },
     {
-        "reader_id": "R00026",
-        "book_id": [
-            "B00025",
-            "B00027",
-            "B00010"
-        ],
-        "borrow_date": "2025-03-27",
-        "return_date": "2025-04-27"
+        "id": "R00026",
+        "name": "Vũ Thị Uyên",
+        "address": "Nha Trang",
+        "phone": "0976666666",
+        "email": "uyen.vu@example.com"
     },
     {
-        "reader_id": "R00027",
-        "book_id": [
-            "B00023",
-            "B00030",
-            "B00007"
-        ],
-        "borrow_date": "2025-04-28",
-        "return_date": "2025-05-28"
+        "id": "R00027",
+        "name": "Ngô Văn Vinh",
+        "address": "Quảng Ninh",
+        "phone": "0977777777",
+        "email": "vinh.ngo@example.com"
     },
     {
-        "reader_id": "R00028",
-        "book_id": [
-            "B00002",
-            "B00009",
-            "B00013"
-        ],
-        "borrow_date": "2025-05-29",
-        "return_date": "2025-06-29"
+        "id": "R00028",
+        "name": "Đỗ Thị Xuân",
+        "address": "Hải Dương",
+        "phone": "0978888888",
+        "email": "xuan.do@example.com"
     },
     {
-        "reader_id": "R00029",
-        "book_id": [
-            "B00028",
-            "B00024",
-            "B00003"
-        ],
-        "borrow_date": "2025-06-30",
-        "return_date": "2025-07-30"
+        "id": "R00029",
+        "name": "Bùi Văn Yên",
+        "address": "Bình Dương",
+        "phone": "0979999999",
+        "email": "yen.bui@example.com"
     },
     {
-        "reader_id": "R00030",
-        "book_id": [
-            "B00016",
-            "B00005",
-            "B00021"
-        ],
-        "borrow_date": "2025-07-31",
-        "return_date": "2025-08-31"
+        "id": "R00030",
+        "name": "Đặng Thị Ánh",
+        "address": "Biên Hòa",
+        "phone": "0960000000",
+        "email": "anh.dang@example.com"
     }
 ]

@@ -1,0 +1,242 @@
+[
+    {
+        "id": "B00001",
+        "title": "Dế Mèn Phiêu Lưu Ký",
+        "author": "Tô Hoài",
+        "year": 1941,
+        "genre": "Thiếu nhi",
+        "quantity": 5
+    },
+    {
+        "id": "B00002",
+        "title": "Harry Potter và Hòn Đá Phù Thủy",
+        "author": "J.K. Rowling",
+        "year": 1997,
+        "genre": "Fantasy",
+        "quantity": 12
+    },
+    {
+        "id": "B00003",
+        "title": "Cuộc Chiến Tranh Không Có Gương Mặt Phụ Nữ",
+        "author": "Svetlana Alexievich",
+        "year": 1985,
+        "genre": "Lịch sử",
+        "quantity": 8
+    },
+    {
+        "id": "B00004",
+        "title": "Đắc Nhân Tâm",
+        "author": "Dale Carnegie",
+        "year": 1936,
+        "genre": "Kỹ năng sống",
+        "quantity": 15
+    },
+    {
+        "id": "B00005",
+        "title": "Sapiens: Lược Sử Loài Người",
+        "author": "Yuval Noah Harari",
+        "year": 2011,
+        "genre": "Lịch sử",
+        "quantity": 9
+    },
+    {
+        "id": "B00006",
+        "title": "Nhà Giả Kim",
+        "author": "Paulo Coelho",
+        "year": 1988,
+        "genre": "Văn học",
+        "quantity": 10
+    },
+    {
+        "id": "B00007",
+        "title": "Totto-chan: Cô bé bên cửa sổ",
+        "author": "Tetsuko Kuroyanagi",
+        "year": 1981,
+        "genre": "Thiếu nhi",
+        "quantity": 7
+    },
+    {
+        "id": "B00008",
+        "title": "Bố Già",
+        "author": "Mario Puzo",
+        "year": 1969,
+        "genre": "Tiểu thuyết",
+        "quantity": 13
+    },
+    {
+        "id": "B00009",
+        "title": "Trăm Năm Cô Đơn",
+        "author": "Gabriel García Márquez",
+        "year": 1967,
+        "genre": "Văn học",
+        "quantity": 11
+    },
+    {
+        "id": "B00010",
+        "title": "Chiến Tranh Và Hòa Bình",
+        "author": "Lev Tolstoy",
+        "year": 1869,
+        "genre": "Lịch sử",
+        "quantity": 6
+    },
+    {
+        "id": "B00011",
+        "title": "Sherlock Holmes: Tuyển Tập Truyện Ngắn",
+        "author": "Arthur Conan Doyle",
+        "year": 1892,
+        "genre": "Trinh thám",
+        "quantity": 14
+    },
+    {
+        "id": "B00012",
+        "title": "Hoàng Tử Bé",
+        "author": "Antoine de Saint-Exupéry",
+        "year": 1943,
+        "genre": "Thiếu nhi",
+        "quantity": 8
+    },
+    {
+        "id": "B00013",
+        "title": "Cà Phê Cùng Tony",
+        "author": "Tony Buổi Sáng",
+        "year": 2015,
+        "genre": "Kỹ năng sống",
+        "quantity": 10
+    },
+    {
+        "id": "B00014",
+        "title": "Người Giàu Có Nhất Thành Babylon",
+        "author": "George S. Clason",
+        "year": 1926,
+        "genre": "Kinh tế",
+        "quantity": 9
+    },
+    {
+        "id": "B00015",
+        "title": "Những Người Khốn Khổ",
+        "author": "Victor Hugo",
+        "year": 1862,
+        "genre": "Văn học",
+        "quantity": 7
+    },
+    {
+        "id": "B00016",
+        "title": "Chúa Tể Những Chiếc Nhẫn",
+        "author": "J.R.R. Tolkien",
+        "year": 1954,
+        "genre": "Fantasy",
+        "quantity": 12
+    },
+    {
+        "id": "B00017",
+        "title": "Bí Mật Tư Duy Triệu Phú",
+        "author": "T. Harv Eker",
+        "year": 2005,
+        "genre": "Kinh tế",
+        "quantity": 10
+    },
+    {
+        "id": "B00018",
+        "title": "Tâm Lý Học Đám Đông",
+        "author": "Gustave Le Bon",
+        "year": 1895,
+        "genre": "Tâm lý học",
+        "quantity": 11
+    },
+    {
+        "id": "B00019",
+        "title": "Thiên Tài Bên Trái, Kẻ Điên Bên Phải",
+        "author": "Ngô Thừa Ân",
+        "year": 2014,
+        "genre": "Tâm lý học",
+        "quantity": 8
+    },
+    {
+        "id": "B00020",
+        "title": "1984",
+        "author": "George Orwell",
+        "year": 1949,
+        "genre": "Khoa học viễn tưởng",
+        "quantity": 9
+    },
+    {
+        "id": "B00021",
+        "title": "Lược Sử Thời Gian",
+        "author": "Stephen Hawking",
+        "year": 1988,
+        "genre": "Khoa học",
+        "quantity": 10
+    },
+    {
+        "id": "B00022",
+        "title": "Mắt Biếc",
+        "author": "Nguyễn Nhật Ánh",
+        "year": 1990,
+        "genre": "Tiểu thuyết",
+        "quantity": 13
+    },
+    {
+        "id": "B00023",
+        "title": "Tôi Tài Giỏi, Bạn Cũng Thế!",
+        "author": "Adam Khoo",
+        "year": 2004,
+        "genre": "Kỹ năng sống",
+        "quantity": 15
+    },
+    {
+        "id": "B00024",
+        "title": "Đi Tìm Lẽ Sống",
+        "author": "Viktor Frankl",
+        "year": 1946,
+        "genre": "Tâm lý học",
+        "quantity": 8
+    },
+    {
+        "id": "B00025",
+        "title": "Ba Người Thầy Vĩ Đại",
+        "author": "Robin Sharma",
+        "year": 2009,
+        "genre": "Kỹ năng sống",
+        "quantity": 10
+    },
+    {
+        "id": "B00026",
+        "title": "Đời Ngắn Đừng Ngủ Dài",
+        "author": "Robin Sharma",
+        "year": 2012,
+        "genre": "Kỹ năng sống",
+        "quantity": 12
+    },
+    {
+        "id": "B00027",
+        "title": "Bí Mật Của Naoko",
+        "author": "Keigo Higashino",
+        "year": 1998,
+        "genre": "Trinh thám",
+        "quantity": 9
+    },
+    {
+        "id": "B00028",
+        "title": "Hành Trình Về Phương Đông",
+        "author": "Baird T. Spalding",
+        "year": 1924,
+        "genre": "Tâm linh",
+        "quantity": 7
+    },
+    {
+        "id": "B00029",
+        "title": "Thế Giới Phẳng",
+        "author": "Thomas L. Friedman",
+        "year": 2005,
+        "genre": "Kinh tế",
+        "quantity": 11
+    },
+    {
+        "id": "B00030",
+        "title": "Tuổi Trẻ Đáng Giá Bao Nhiêu",
+        "author": "Rosie Nguyễn",
+        "year": 2016,
+        "genre": "Kỹ năng sống",
+        "quantity": 14
+    }
+]
