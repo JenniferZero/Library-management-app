@@ -6,6 +6,7 @@ import json
 import os
 import asyncio
 import aiohttp
+import spacy
 from bs4 import BeautifulSoup
 
 # Định nghĩa thư mục chứa dữ liệu JSON
@@ -47,26 +48,50 @@ def read_urls_from_file(file_path):
             return [line.strip() for line in file if line.strip()]
     return []
 
+# Load pre-trained NLP model
+nlp = spacy.load("en_core_web_sm")
+
+# Define a function to predict genre based on text content
+def predict_genre(text):
+    keywords = {
+         "Science Fiction": ["space", "alien", "future", "robot", "AI", "galaxy", "time travel", "cyberpunk", "dystopia", "extraterrestrial"],
+        "Fantasy": ["magic", "dragon", "wizard", "kingdom", "sword", "spell", "elf", "dungeon", "quest", "troll"],
+        "Mystery": ["detective", "murder", "investigation", "clue", "crime", "suspense", "thriller", "whodunit", "conspiracy", "puzzle"],
+        "Romance": ["love", "relationship", "heart", "passion", "kiss", "wedding", "affair", "valentine", "crush", "heartbreak"],
+        "History": ["war", "revolution", "ancient", "biography", "civilization", "medieval", "dynasty", "historical", "empire", "chronicle"],
+        "Horror": ["ghost", "vampire", "werewolf", "haunted", "curse", "nightmare", "zombie", "supernatural", "dark", "fear"],
+        "Adventure": ["explorer", "treasure", "quest", "voyage", "island", "survival", "jungle", "wilderness", "expedition", "map"],
+        "Self-help": ["motivation", "success", "mindset", "habits", "productivity", "leadership", "psychology", "growth", "wellness", "positivity"],
+        "Philosophy": ["existence", "wisdom", "metaphysics", "ethics", "logic", "morality", "truth", "consciousness", "idealism", "realism"]
+    }
+    
+    text = text.lower()
+    genre_scores = {genre: sum(text.count(word) for word in words) for genre, words in keywords.items()}
+    predicted_genre = max(genre_scores, key=genre_scores.get) if max(genre_scores.values()) > 0 else "Unknown"
+    return predicted_genre
+
 # Hàm crawl dữ liệu sách từ Open Library
 async def crawl_data(session, url):
     async with session.get(url) as response:
         html = await response.text()
         soup = BeautifulSoup(html, 'html.parser')
         
-        # Trích xuất thông tin sách
         title = soup.find('h1').text.strip() if soup.find('h1') else "Unknown"
         author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "Unknown"
-        publish_date = soup.find('time', {'itemprop': 'datePublished'})
-        year = publish_date['datetime'][:4] if publish_date and 'datetime' in publish_date.attrs else (publish_date.text.strip() if publish_date else "Unknown")
-        genres = [g.text.strip() for g in soup.find_all('a', {'class': 'tag'})]
-        pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "Unknown"
+        publish_date = soup.find('span', {'itemprop': 'datePublished'})
+        year = publish_date.text.strip() if publish_date else "None"
+        pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "None"
+        
+        # Extract content from the webpage
+        content = " ".join([p.text for p in soup.find_all('p')])
+        genre = predict_genre(content)
         
         return {
             "id": url.split('/')[-1],
             "title": title,
             "author": author,
             "year": year,
-            "genre": genres,
+            "genre": genre.split(),
             "pages": pages
         }
 
@@ -74,54 +99,6 @@ async def crawl_books(book_urls):
     async with aiohttp.ClientSession() as session:
         tasks = [crawl_data(session, url) for url in book_urls]
         return await asyncio.gather(*tasks)
-
-# Hàm khởi tạo dữ liệu sách
-# def initialize_book_data():
-    book_urls = [
-        "https://openlibrary.org/works/OL12345W",  
-        "https://openlibrary.org/works/OL67890W",
-        "https://openlibrary.org/books/OL35649409M",
-        "https://openlibrary.org/books/OL40295210M",
-        "https://openlibrary.org/works/OL40295210M",
-        "https://openlibrary.org/works/OL7870148M",
-        "https://openlibrary.org/works/OL1100007W",
-        "https://openlibrary.org/works/OL33874740M",
-        "https://openlibrary.org/works/OL6927336M",
-        "https://openlibrary.org/works/OL27468204W",
-        "https://openlibrary.org/works/OL450063W",
-        "https://openlibrary.org/works/OL64365W",
-        "https://openlibrary.org/works/OL1548597W",
-        "https://openlibrary.org/works/OL1100007W",
-        "https://openlibrary.org/works/OL52266W",
-        "https://openlibrary.org/works/OL27468204W",
-        "https://openlibrary.org/works/OL15678068W",
-        "https://openlibrary.org/works/OL381550W",
-        "https://openlibrary.org/works/OL27467443W",
-        "https://openlibrary.org/works/OL7574091W",
-        "https://openlibrary.org/works/OL3639910W",
-        "https://openlibrary.org/works/OL66059W",
-        "https://openlibrary.org/works/OL1892617W",
-        "https://openlibrary.org/works/OL24446425W",
-        "https://openlibrary.org/works/OL1068214W",
-        "https://openlibrary.org/works/OL15116693W",
-        "https://openlibrary.org/works/OL8894965W",
-        "https://openlibrary.org/works/OL1214190W",
-        "https://openlibrary.org/works/OL21015217W",
-        "https://openlibrary.org/works/OL14903327W",
-        "https://openlibrary.org/works/OL18407621W",
-        "https://openlibrary.org/works/OL515051W",
-        "https://openlibrary.org/works/OL723491W",
-        "https://openlibrary.org/works/OL69382W",
-        "https://openlibrary.org/works/OL1356870W",
-        "https://openlibrary.org/works/OL1151518W",
-        "https://openlibrary.org/works/OL28988W",
-        "https://openlibrary.org/works/OL14903351W",
-        "https://openlibrary.org/works/OL76664W",
-    ]
-    
-    books_data = asyncio.run(crawl_books(book_urls))
-    write_json(BOOKS_FILE, books_data)
-    print("Dữ liệu sách đã được cập nhật vào books.json")
 
 # Hàm khởi tạo dữ liệu sách
 def initialize_book_data():
@@ -487,7 +464,7 @@ def clear_entries():
     entry_author.delete(0, tk.END)
     entry_year.delete(0, tk.END)
     entry_genre.delete(0, tk.END)
-    entry_year.delete(0, tk.END)
+    entry_pages.delete(0, tk.END)
     entry_name.delete(0, tk.END)
     entry_address.delete(0, tk.END)
     entry_phone.delete(0, tk.END)
@@ -843,9 +820,26 @@ tk.Button(frame_borrow, text="Xóa Mượn Trả", command=delete_borrow).grid(r
 tk.Button(frame_borrow, text="Hiển Thị Mượn Trả", command=show_borrows).grid(row=5, column=0, pady=2, padx=5)
 tk.Button(frame_borrow, text="Chỉnh Sửa Mượn Trả", command=edit_borrow).grid(row=5, column=1, pady=2, padx=5)
 
+
 # Khung hiển thị thông tin
 frame_right = tk.Frame(root)
-frame_right.grid(row=1, column=1, columnspan= 2, rowspan=4, padx=10, pady=7, sticky="nsew")
+frame_right.grid(row=1, column=1, columnspan=2, rowspan=4, padx=10, pady=7, sticky="nsew")
+
+# Tạo thanh cuộn ngang
+h_scrollbar = tk.Scrollbar(frame_right, orient=tk.HORIZONTAL)
+h_scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
+
+# Tạo thanh cuộn dọc
+v_scrollbar = tk.Scrollbar(frame_right, orient=tk.VERTICAL)
+v_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+tree = ttk.Treeview(frame_right, xscrollcommand=h_scrollbar.set, yscrollcommand=v_scrollbar.set)
+tree.pack(expand=True, fill="both")
+
+# Liên kết thanh cuộn với Treeview
+h_scrollbar.config(command=tree.xview)
+v_scrollbar.config(command=tree.yview)
+
 
 # Khung tìm kiếm
 frame_search = tk.Frame(root, padx=100, pady=2)
@@ -868,12 +862,9 @@ profile_button = tk.Button(root, text="Hồ Sơ", command=create_profile_window)
 profile_button.grid(row=0, column=2, padx=5, pady=5, sticky="e")
 
 # Khung hiển thị thông tin hồ sơ
-frame_right = tk.Frame(root)
-frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
+# frame_right = tk.Frame(root)
+# frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
 
-
-tree = ttk.Treeview(frame_right)
-tree.pack(expand=True, fill="both")
 
 # Khởi tạo dữ liệu và hiển thị login
 create_login_window()
