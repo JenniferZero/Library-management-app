@@ -19,6 +19,6 @@ def fetch_filtered_book_ids(url):
     
     return book_ids
 
-url = "https://openlibrary.org/subjects/science.json?limit=20"
+url = "https://openlibrary.org/subjects/science.json?limit=20" # change genre here
 filtered_book_ids = fetch_filtered_book_ids(url)
 print(filtered_book_ids)
