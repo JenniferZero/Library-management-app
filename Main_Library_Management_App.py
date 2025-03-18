@@ -48,10 +48,21 @@ def read_urls_from_file(file_path):
             return [line.strip() for line in file if line.strip()]
     return []
 
-# Load pre-trained NLP model
+# Tải model AI từ thư viện Spacy
 nlp = spacy.load("en_core_web_sm")
 
-# Define a function to predict genre based on text content
+# Đọc từ khóa từ file
+def read_keywords(file_path):
+    keywords = {}
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as file:
+            for line in file:
+                if line.strip():
+                    genre, words = line.split(':')
+                    keywords[genre.strip()] = [word.strip() for word in words.split(',')]
+    return keywords
+
+# Xác định một hàm để dự đoán thể loại dựa trên nội dung văn bản
 def predict_genre(text):
     keywords = {
          "Science Fiction": ["space", "alien", "future", "robot", "AI", "galaxy", "time travel", "cyberpunk", "dystopia", "extraterrestrial"],
@@ -76,11 +87,11 @@ async def crawl_data(session, url):
         html = await response.text()
         soup = BeautifulSoup(html, 'html.parser')
         
-        title = soup.find('h1').text.strip() if soup.find('h1') else "Unknown"
-        author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "Unknown"
+        title = soup.find('h1').text.strip() if soup.find('h1') else "-"
+        author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "-"
         publish_date = soup.find('span', {'itemprop': 'datePublished'})
-        year = publish_date.text.strip() if publish_date else "None"
-        pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "None"
+        year = publish_date.text.strip() if publish_date else "-"
+        pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "-"
         
         # Extract content from the webpage
         content = " ".join([p.text for p in soup.find_all('p')])
@@ -577,10 +588,10 @@ def show_books():
     # Tiêu đề cột
     tree.heading("#0", text="", anchor=tk.W)
     tree.heading("ID", text="ID", anchor=tk.W)
-    tree.heading("Tên Sách", text="Tên Sách", anchor=tk.W)
-    tree.heading("Tác Giả", text="Tác Giả", anchor=tk.W)
+    tree.heading("Tên Sách", text="Tên Sách", anchor=tk.CENTER)
+    tree.heading("Tác Giả", text="Tác Giả", anchor=tk.CENTER)
     tree.heading("Năm", text="Năm", anchor=tk.CENTER)
-    tree.heading("Thể Loại", text="Thể Loại", anchor=tk.W)
+    tree.heading("Thể Loại", text="Thể Loại", anchor=tk.CENTER)
     tree.heading("Số Trang", text="Số Trang", anchor=tk.CENTER)
 
     # Thêm dữ liệu vào bảng
