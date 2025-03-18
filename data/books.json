@@ -1,61 +1,55 @@
 [
     {
         "id": "OL12345W",
-        "title": "503 Service Unavailable",
-        "author": "-",
+        "title": "Lightning War",
+        "author": "Ronald E. Powaski",
         "year": "-",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL67890W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Fourth five-year plan, 1966-67 to 1970-71, Maharashtra State",
+        "author": "Maharashtra (India). Finance Dept. Plann...",
+        "year": "1964",
         "genre": [
             "-"
         ],
-        "pages": "-"
+        "pages": "120"
     },
     {
         "id": "OL35649409M",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "year": "Nov 07, 2016",
         "genre": [
-            "-"
-        ],
-        "pages": "-"
-    },
-    {
-        "id": "OL40295210M",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
-        "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL7870148M",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "On the Nature of Things",
+        "author": "Titus Lucretius Carus",
+        "year": "June 1, 1995",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "312"
     },
     {
         "id": "OL33874740M",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Invisible Man",
+        "author": "H. G. Wells",
+        "year": "1974-09",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
@@ -65,49 +59,52 @@
         "author": "Herodotus",
         "year": "1890",
         "genre": [
-            "-"
+            "History"
         ],
         "pages": "336"
     },
     {
         "id": "OL1548597W",
-        "title": "503 Service Unavailable",
-        "author": "-",
+        "title": "De la Nature",
+        "author": "Titus Lucretius Carus",
         "year": "-",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "243"
     },
     {
         "id": "OL1100007W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Le tour du monde en quatre-vingts jours",
+        "author": "Jules Verne",
+        "year": "2009",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "367"
     },
     {
         "id": "OL27468204W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Houghton Mifflin Science California",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "2006",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL15678068W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Histories",
+        "author": "Herodotus",
+        "year": "2003",
         "genre": [
-            "-"
+            "History"
         ],
-        "pages": "-"
+        "pages": "716"
     },
     {
         "id": "OL381550W",
@@ -115,49 +112,40 @@
         "author": "H. G. Wells",
         "year": "1996",
         "genre": [
-            "-"
+            "Adventure"
         ],
         "pages": "104"
     },
     {
         "id": "OL27467443W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Houghton Mifflin Science Leveled Readers",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "2005",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL7574091W",
-        "title": "[Granting jurisdiction to Court of Claims to hear claim of assignees of Addison C. Fletcher, holder of patent for self-cancelling revenue stamp.]",
+        "title": "[Referring claim of William E. Woodbridge for use of invention relating to projectiles to Court of Claims.]",
         "author": "United States. Congress. Senate. Committ...",
         "year": "1896",
         "genre": [
             "-"
         ],
-        "pages": "14"
-    },
-    {
-        "id": "OL3639910W",
-        "title": "Hakluyt's voyages",
-        "author": "Richard Hakluyt",
-        "year": "1981",
-        "genre": [
-            "-"
-        ],
-        "pages": "640"
+        "pages": "11"
     },
     {
         "id": "OL66059W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Book of the Damned",
+        "author": "Charles Fort",
+        "year": "May 1, 2008",
         "genre": [
-            "-"
+            "Philosophy"
         ],
-        "pages": "-"
+        "pages": "1136"
     },
     {
         "id": "OL1892617W",
@@ -165,7 +153,8 @@
         "author": "Stephen Hawking",
         "year": "2006",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "138"
     },
@@ -175,7 +164,8 @@
         "author": "George Bourne",
         "year": "August 1986",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "396"
     },
@@ -185,29 +175,21 @@
         "author": "John Stuart Mill",
         "year": "1961",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "622"
     },
     {
         "id": "OL15116693W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Goethe's werke.",
+        "author": "Johann Wolfgang von Goethe",
+        "year": "1882",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
-    },
-    {
-        "id": "OL8894965W",
-        "title": "NASA/DOD Aerospace Knowledge Diffusion Research Project.",
-        "author": "Thomas E. Pinelli",
-        "year": "1997",
-        "genre": [
-            "-"
-        ],
-        "pages": "-"
+        "pages": "40"
     },
     {
         "id": "OL1214190W",
@@ -215,7 +197,8 @@
         "author": "Albert Einstein",
         "year": "2001",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "168"
     },
@@ -225,19 +208,21 @@
         "author": "Kwang W. Jeon",
         "year": "2012",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "340"
     },
     {
         "id": "OL1827306W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Principles of anatomy & physiology",
+        "author": "Gerard J. Tortora",
+        "year": "2014",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "1127"
     },
     {
         "id": "OL14903327W",
@@ -255,19 +240,21 @@
         "author": "Anthony J. F. Griffiths",
         "year": "2012",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "832"
     },
     {
         "id": "OL515051W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Harvard Classics: Volume 11 - The Origin of Species",
+        "author": "Charles Darwin",
+        "year": "1937",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "361"
     },
     {
         "id": "OL723491W",
@@ -275,7 +262,8 @@
         "author": "Plutarch",
         "year": "1900",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "13"
     },
@@ -285,79 +273,85 @@
         "author": "Francis Bacon",
         "year": "1985",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "339"
     },
     {
         "id": "OL1356870W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Histoire naturelle, générale et particulière",
+        "author": "Georges-Louis Leclerc, comte de Buffon",
+        "year": "1769",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "243"
     },
     {
         "id": "OL1151518W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "A discourse on method",
+        "author": "René Descartes",
+        "year": "1994",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "240"
     },
     {
         "id": "OL28988W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Der goldene Kompaß",
+        "author": "Philip Pullman",
+        "year": "2005",
         "genre": [
-            "-"
+            "Horror"
         ],
-        "pages": "-"
+        "pages": "410"
     },
     {
         "id": "OL14903351W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "1st Report [Session 1994-95]",
+        "author": "Rand McNally",
+        "year": "December 31, 1994",
         "genre": [
             "-"
         ],
-        "pages": "-"
+        "pages": "93"
     },
     {
         "id": "OL76664W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Chuang zao jin hua lun",
+        "author": "Henri Bergson",
+        "year": "2011",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "348"
     },
     {
         "id": "OL695408W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Leonardo.",
+        "author": "Leonardo da Vinci",
+        "year": "1975",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "179"
     },
     {
         "id": "OL17075811W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Sapiens",
+        "author": "Yuval Noah Harari",
+        "year": "2015-04-30",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "498"
     },
     {
         "id": "OL16927878W",
@@ -365,19 +359,21 @@
         "author": "Graham A. Webb",
         "year": "2007",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL69453W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "New Atlantis",
+        "author": "Francis Bacon",
+        "year": "1925",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "64"
     },
     {
         "id": "OL1088582W",
@@ -385,19 +381,21 @@
         "author": "Bertrand Russell",
         "year": "1985",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "155"
     },
     {
         "id": "OL1881226W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Accounting principles",
+        "author": "Jerry J. Weygandt",
+        "year": "1999",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "1189"
     },
     {
         "id": "OL1827302W",
@@ -405,75 +403,80 @@
         "author": "Gerard J. Tortora",
         "year": "2004",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "898"
     },
     {
         "id": "OL16959776W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Advances in Imaging and Electron Physics, Volume 107 (Advances in Imaging and Electron Physics)",
+        "author": "Peter W. Hawkes",
+        "year": "April 8, 1999",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "416"
     },
     {
         "id": "OL9213099W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Pathways through science",
+        "author": "Nuffield-Chelsea Curriculum Trust",
+        "year": "1994",
         "genre": [
             "-"
         ],
-        "pages": "-"
+        "pages": "40"
     },
     {
         "id": "OL9935589W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Differentiating Instruction With Menus",
+        "author": "Laurie E. Westphal",
+        "year": "May 1, 2007",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "125"
     },
     {
         "id": "OL2626638W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "A  canticle for Leibowitz",
+        "author": "Walter M. Miller Jr.",
+        "year": "1997",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "338"
     },
     {
         "id": "OL3013355W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "On the economy of machinery and manufactures",
+        "author": "Charles Babbage",
+        "year": "2009",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL3360211W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Worst Journey in the World",
+        "author": "Apsley Cherry-Garrard",
+        "year": "2003",
         "genre": [
-            "-"
+            "Adventure"
         ],
-        "pages": "-"
+        "pages": "607"
     },
     {
         "id": "OL14903313W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "5th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "August 15, 1996",
         "genre": [
             "-"
         ],
@@ -481,23 +484,25 @@
     },
     {
         "id": "OL15403036W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The  advancement of learning",
+        "author": "Francis Bacon",
+        "year": "1973",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "246"
     },
     {
         "id": "OL1984582W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Logic Of Scientific Discovery",
+        "author": "Karl Popper",
+        "year": "2002",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "545"
     },
     {
         "id": "OL2657790W",
@@ -505,69 +510,76 @@
         "author": "Sylvia S. Mader",
         "year": "2014",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "848"
     },
     {
         "id": "OL1554090W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Cosmos",
+        "author": "Alexander von Humboldt",
+        "year": "1997",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL16996964W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Progress in Optics, Volume 51 (Progress in Optics) (Progress in Optics)",
+        "author": "Emil Wolf",
+        "year": "February 18, 2008",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "572"
     },
     {
         "id": "OL515301W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The expression of the emotions in man and animals",
+        "author": "Charles Darwin",
+        "year": "1997",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "472"
     },
     {
         "id": "OL17732W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "NIV Outreach Bible",
+        "author": "Bible",
+        "year": "2011",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "896"
     },
     {
         "id": "OL8193497W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "A Christmas carol",
+        "author": "Charles Dickens",
+        "year": "1880",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "144"
     },
     {
         "id": "OL8193416W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "תמונת דוריאן גרי",
+        "author": "Oscar Wilde",
+        "year": "1918",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "237"
     },
     {
         "id": "OL66513W",
@@ -575,27 +587,27 @@
         "author": "Jane Austen",
         "year": "2014",
         "genre": [
-            "-"
+            "Fantasy"
         ],
         "pages": "336"
     },
     {
         "id": "OL18417W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The wonderful world of Oz",
+        "author": "L. Frank Baum",
+        "year": "1998",
         "genre": [
-            "-"
+            "Fantasy"
         ],
-        "pages": "-"
+        "pages": "389"
     },
     {
         "id": "OL66562W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Sense and Sensibility",
+        "author": "Jane Austen",
+        "year": "2015",
         "genre": [
-            "-"
+            "Romance"
         ],
         "pages": "-"
     },
@@ -605,7 +617,7 @@
         "author": "Jonathan Swift",
         "year": "2012",
         "genre": [
-            "-"
+            "Adventure"
         ],
         "pages": "147"
     },
@@ -615,19 +627,20 @@
         "author": "Miguel de Cervantes Saavedra",
         "year": "1937",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "519"
     },
     {
         "id": "OL244537W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Sun Tzu on the art of war",
+        "author": "孙武",
+        "year": "2011",
         "genre": [
-            "-"
+            "History"
         ],
-        "pages": "-"
+        "pages": "226"
     },
     {
         "id": "OL1089297W",
@@ -635,19 +648,21 @@
         "author": "Niccolò Machiavelli",
         "year": "1988",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "152"
     },
     {
         "id": "OL14942956W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "La llamada de lo salvaje",
+        "author": "Jack London",
+        "year": "2004",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "146"
     },
     {
         "id": "OL93082W",
@@ -655,19 +670,21 @@
         "author": "Dante Alighieri",
         "year": "1916",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "443"
     },
     {
         "id": "OL9170454W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Hamlet",
+        "author": "William Shakespeare",
+        "year": "1996",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "127"
     },
     {
         "id": "OL52267W",
@@ -675,19 +692,21 @@
         "author": "H. G. Wells",
         "year": "2015",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "126"
     },
     {
         "id": "OL102749W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Mobi-Dik",
+        "author": "Herman Melville",
+        "year": "2016",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "399"
     },
     {
         "id": "OL36861W",
@@ -695,7 +714,8 @@
         "author": "Alexandre Dumas",
         "year": "2007",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "654"
     },
@@ -705,29 +725,31 @@
         "author": "Όμηρος",
         "year": "2003",
         "genre": [
-            "-"
+            "History"
         ],
         "pages": "254"
     },
     {
         "id": "OL69178W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Narrative of the Life of Frederick Douglass",
+        "author": "Frederick Douglass",
+        "year": "2019",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL8662242W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "David Copperfield",
+        "author": "Charles Dickens",
+        "year": "2004",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "974"
     },
     {
         "id": "OL14869167W",
@@ -735,7 +757,8 @@
         "author": "Charles Dickens",
         "year": "1997",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "638"
     },
@@ -745,29 +768,32 @@
         "author": "Πλάτων",
         "year": "1992",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
     {
         "id": "OL893707W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "包法利夫人",
+        "author": "Gustave Flaubert",
+        "year": "2018-02-05",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "302"
     },
     {
         "id": "OL44927W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Tess",
+        "author": "Thomas Hardy",
+        "year": "2013",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "444"
     },
     {
         "id": "OL1793164W",
@@ -775,19 +801,20 @@
         "author": "Jerome Klapka Jerome",
         "year": "2008",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "373"
     },
     {
         "id": "OL362702W",
-        "title": "Julius Caesar",
-        "author": "William Shakespeare",
-        "year": "2012",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
         "genre": [
             "-"
         ],
-        "pages": "64"
+        "pages": "-"
     },
     {
         "id": "OL86320W",
@@ -795,7 +822,8 @@
         "author": "James Joyce",
         "year": "1993",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "316"
     },
@@ -805,19 +833,21 @@
         "author": "Publius Vergilius Maro",
         "year": "2005",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "366"
     },
     {
         "id": "OL259509W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "茶花女",
+        "author": "Alexandre Dumas fils",
+        "year": "1993",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "9196"
     },
     {
         "id": "OL137872W",
@@ -825,7 +855,8 @@
         "author": "Augustine of Hippo",
         "year": "2005",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "-"
     },
@@ -835,49 +866,54 @@
         "author": "George Eliot",
         "year": "1930",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "286"
     },
     {
         "id": "OL1527356W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The Adventures of Pinocchio",
+        "author": "Carlo Collodi",
+        "year": "1944",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "220"
     },
     {
         "id": "OL78009W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Pathfinder",
+        "author": "James Fenimore Cooper",
+        "year": "1884",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "417"
     },
     {
         "id": "OL176045W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "The woman in white",
+        "author": "Wilkie Collins",
+        "year": "1991",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "569"
     },
     {
         "id": "OL44986W",
-        "title": "503 Service Unavailable",
-        "author": "-",
-        "year": "-",
+        "title": "Jude l'obscur",
+        "author": "Thomas Hardy",
+        "year": "January 1, 1997",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
-        "pages": "-"
+        "pages": "480"
     },
     {
         "id": "OL15448W",
@@ -885,18 +921,949 @@
         "author": "George MacDonald",
         "year": "1988",
         "genre": [
-            "-"
+            "Science",
+            "Fiction"
         ],
         "pages": "221"
     },
     {
         "id": "OL28577W",
-        "title": "The illustrated Souls of Black folk",
-        "author": "W. E. B. Du Bois",
-        "year": "2005",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
         "genre": [
             "-"
         ],
-        "pages": "350"
+        "pages": "-"
+    },
+    {
+        "id": "OL66554W",
+        "title": "Pride and Prejudice",
+        "author": "Jane Austen",
+        "year": "1961",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "334"
+    },
+    {
+        "id": "OL138052W",
+        "title": "Alice's Adventures in Wonderland",
+        "author": "Lewis Carroll",
+        "year": "2011",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "140"
+    },
+    {
+        "id": "OL21177W",
+        "title": "폭풍의 언덕",
+        "author": "Emily Brontë",
+        "year": "2006-02-01",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL53908W",
+        "title": "The Adventures of Huckleberry Finn",
+        "author": "Mark Twain",
+        "year": "1948",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "373"
+    },
+    {
+        "id": "OL450063W",
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "year": "2015",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "150"
+    },
+    {
+        "id": "OL8193465W",
+        "title": "A tale of two Cities",
+        "author": "Charles Dickens",
+        "year": "1993",
+        "genre": [
+            "History"
+        ],
+        "pages": "307"
+    },
+    {
+        "id": "OL24034W",
+        "title": "Treasure Island",
+        "author": "Robert Louis Stevenson",
+        "year": "2016",
+        "genre": [
+            "Adventure"
+        ],
+        "pages": "324"
+    },
+    {
+        "id": "OL29983W",
+        "title": "Les quatre filles du docteur March",
+        "author": "Louisa May Alcott",
+        "year": "2004",
+        "genre": [
+            "History"
+        ],
+        "pages": "344"
+    },
+    {
+        "id": "OL8721462W",
+        "title": "Great Expectations",
+        "author": "Charles Dickens",
+        "year": "1868",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "485"
+    },
+    {
+        "id": "OL262496W",
+        "title": "Estudio en escarlata",
+        "author": "Arthur Conan Doyle",
+        "year": "2009-05",
+        "genre": [
+            "Mystery"
+        ],
+        "pages": "224"
+    },
+    {
+        "id": "OL151406W",
+        "title": "Through the looking glass",
+        "author": "Lewis Carroll",
+        "year": "2009",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "86"
+    },
+    {
+        "id": "OL262454W",
+        "title": "The Adventures of Sherlock Holmes and The Hound of the Baskervilles",
+        "author": "Arthur Conan Doyle",
+        "year": "2007",
+        "genre": [
+            "Mystery"
+        ],
+        "pages": "456"
+    },
+    {
+        "id": "OL77746W",
+        "title": "绿山墙的安妮",
+        "author": "Lucy Maud Montgomery",
+        "year": "2012",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "187"
+    },
+    {
+        "id": "OL6534W",
+        "title": "404 - Page Not Found",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL98501W",
+        "title": "Ethan Frome",
+        "author": "Edith Wharton",
+        "year": "2015",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "142"
+    },
+    {
+        "id": "OL19842W",
+        "title": "Capitaines courageux",
+        "author": "Rudyard Kipling",
+        "year": "1989",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "250"
+    },
+    {
+        "id": "OL99509W",
+        "title": "The Railway Children",
+        "author": "Edith Nesbit",
+        "year": "November 9, 2000",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "74"
+    },
+    {
+        "id": "OL362427W",
+        "title": "Romeo and Juliet",
+        "author": "William Shakespeare",
+        "year": "2015",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "91"
+    },
+    {
+        "id": "OL262438W",
+        "title": "The Sign of the Four",
+        "author": "Arthur Conan Doyle",
+        "year": "1994",
+        "genre": [
+            "Adventure"
+        ],
+        "pages": "137"
+    },
+    {
+        "id": "OL258902W",
+        "title": "Macbeth",
+        "author": "William Shakespeare",
+        "year": "2011",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "127"
+    },
+    {
+        "id": "OL498556W",
+        "title": "The metamorphosis",
+        "author": "Franz Kafka",
+        "year": "2016",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "210"
+    },
+    {
+        "id": "OL99499W",
+        "title": "Wu ge hai zi he sha jing",
+        "author": "Edith Nesbit",
+        "year": "1998",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "58"
+    },
+    {
+        "id": "OL19908W",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL267096W",
+        "title": "Anna Karenina",
+        "author": "Лев Толстой",
+        "year": "2005",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "792"
+    },
+    {
+        "id": "OL262460W",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL18396W",
+        "title": "The Marvellous Land of Oz",
+        "author": "L. Frank Baum",
+        "year": "1978",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "190"
+    },
+    {
+        "id": "OL18415W",
+        "title": "Ozma of Oz",
+        "author": "L. Frank Baum",
+        "year": "1989",
+        "genre": [
+            "History"
+        ],
+        "pages": "272"
+    },
+    {
+        "id": "OL259010W",
+        "title": "William Shakespeare's A midsummer night's dream",
+        "author": "William Shakespeare",
+        "year": "2002",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "58"
+    },
+    {
+        "id": "OL18409W",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL18412W",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL18411W",
+        "title": "503 Service Unavailable",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL407476W",
+        "title": "護身符的故事",
+        "author": "Edith Nesbit",
+        "year": "2010",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "270"
+    },
+    {
+        "id": "OL262358W",
+        "title": "The  life and adventures of Santa Claus",
+        "author": "L. Frank Baum",
+        "year": "2003",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "175"
+    },
+    {
+        "id": "OL151411W",
+        "title": "爱丽丝漫游奇境",
+        "author": "Lewis Carroll",
+        "year": "2012",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "258"
+    },
+    {
+        "id": "OL262390W",
+        "title": "The  Road to Oz",
+        "author": "L. Frank Baum",
+        "year": "1991",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "267"
+    },
+    {
+        "id": "OL262384W",
+        "title": "Sea Fairies",
+        "author": "L. Frank Baum",
+        "year": "September 1988",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "244"
+    },
+    {
+        "id": "OL262341W",
+        "title": "American fairy tales",
+        "author": "L. Frank Baum",
+        "year": "1978",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "209"
+    },
+    {
+        "id": "OL262385W",
+        "title": "Sky Island",
+        "author": "L. Frank Baum",
+        "year": "1996",
+        "genre": [
+            "Fantasy"
+        ],
+        "pages": "170"
+    },
+    {
+        "id": "OL262352W",
+        "title": "The  scarecrow of Oz",
+        "author": "L. Frank Baum",
+        "year": "1999",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "288"
+    },
+    {
+        "id": "OL18405W",
+        "title": "The  patchwork girl of Oz",
+        "author": "L. Frank Baum",
+        "year": "1990",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "340"
+    },
+    {
+        "id": "OL262380W",
+        "title": "The  magic of Oz",
+        "author": "L. Frank Baum",
+        "year": "1998",
+        "genre": [
+            "Fantasy"
+        ],
+        "pages": "265"
+    },
+    {
+        "id": "OL18414W",
+        "title": "Tik-tok of Oz",
+        "author": "L. Frank Baum",
+        "year": "October 31, 2005",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "164"
+    },
+    {
+        "id": "OL262376W",
+        "title": "Rinkitink in Oz",
+        "author": "L. Frank Baum",
+        "year": "1998",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "318"
+    },
+    {
+        "id": "OL9954W",
+        "title": "404 - Page Not Found",
+        "author": "-",
+        "year": "-",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL262388W",
+        "title": "The Enchanted Island of Yew (Dodo Press)",
+        "author": "L. Frank Baum",
+        "year": "June 22, 2007",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "128"
+    },
+    {
+        "id": "OL27479W",
+        "title": "The two towers",
+        "author": "J.R.R. Tolkien",
+        "year": "xxxx",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "381"
+    },
+    {
+        "id": "OL82537W",
+        "title": "Harry Potter a tajemná komnata",
+        "author": "J. K. Rowling",
+        "year": "2002",
+        "genre": [
+            "Fantasy"
+        ],
+        "pages": "286"
+    },
+    {
+        "id": "OL27455W",
+        "title": "The Return of the King",
+        "author": "J.R.R. Tolkien",
+        "year": "2003",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "491"
+    },
+    {
+        "id": "OL1156218W",
+        "title": "The Royal Book Of Oz",
+        "author": "Ruth Plumly Thompson",
+        "year": "June 30, 2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "140"
+    },
+    {
+        "id": "OL82536W",
+        "title": "Harry Potter and the Prisoner of Azkaban",
+        "author": "J. K. Rowling",
+        "year": "2007?",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "435"
+    },
+    {
+        "id": "OL39108W",
+        "title": "The Secret Agent",
+        "author": "Joseph Conrad",
+        "year": "2016",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "386"
+    },
+    {
+        "id": "OL676009W",
+        "title": "Мастер и Маргарита",
+        "author": "Михаил Афанасьевич Булгаков",
+        "year": "2015",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "508"
+    },
+    {
+        "id": "OL1449046W",
+        "title": "The story of Doctor Dolittle",
+        "author": "Hugh Lofting",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "159"
+    },
+    {
+        "id": "OL47733W",
+        "title": "News from nowhere",
+        "author": "William Morris",
+        "year": "1970",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "194"
+    },
+    {
+        "id": "OL1095427W",
+        "title": "Dzhein Ėĭr",
+        "author": "Charlotte Brontë",
+        "year": "2003",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "637"
+    },
+    {
+        "id": "OL36287W",
+        "title": "The Count of Monte Cristo",
+        "author": "Alexandre Dumas",
+        "year": "2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "634"
+    },
+    {
+        "id": "OL152161W",
+        "title": "Tang mu shu shu de xiao wu",
+        "author": "Harriet Beecher Stowe",
+        "year": "2016",
+        "genre": [
+            "History"
+        ],
+        "pages": "281"
+    },
+    {
+        "id": "OL176092W",
+        "title": "The moonstone",
+        "author": "Wilkie Collins",
+        "year": "2011",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "543"
+    },
+    {
+        "id": "OL81294W",
+        "title": "恋爱中的女人",
+        "author": "David Herbert Lawrence",
+        "year": "2010",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL468488W",
+        "title": "This Side of Paradise",
+        "author": "F. Scott Fitzgerald",
+        "year": "2009",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "251"
+    },
+    {
+        "id": "OL1103093W",
+        "title": "Cranford ; and, Cousin Phillis",
+        "author": "Elizabeth Cleghorn Gaskell",
+        "year": "1976",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "362"
+    },
+    {
+        "id": "OL38663W",
+        "title": "Heart of darkness",
+        "author": "Joseph Conrad",
+        "year": "1996",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "315"
+    },
+    {
+        "id": "OL44990W",
+        "title": "The woodlanders",
+        "author": "Thomas Hardy",
+        "year": "1974",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "416"
+    },
+    {
+        "id": "OL77997W",
+        "title": "The pioneers, or, The sources of the Susquehanna",
+        "author": "James Fenimore Cooper",
+        "year": "2007",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "464"
+    },
+    {
+        "id": "OL44973W",
+        "title": "Under the greenwood tree",
+        "author": "Thomas Hardy",
+        "year": "2010",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "258"
+    },
+    {
+        "id": "OL98491W",
+        "title": "Chun zhen nian dai",
+        "author": "Edith Wharton",
+        "year": "2002",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "315"
+    },
+    {
+        "id": "OL109880W",
+        "title": "Framley Parsonage (Everyman's Library (Alfred a. Knopf, Inc.), 171)",
+        "author": "Anthony Trollope",
+        "year": "May 10, 1994",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "587"
+    },
+    {
+        "id": "OL276328W",
+        "title": "Daisy Miller",
+        "author": "Henry James",
+        "year": "1995",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "59"
+    },
+    {
+        "id": "OL239940W",
+        "title": "Kâma Sûtra",
+        "author": "Mallanaga Vātsyāyana",
+        "year": "2014",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "96"
+    },
+    {
+        "id": "OL733640W",
+        "title": "The red and the black",
+        "author": "Stendhal",
+        "year": "1995",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL276470W",
+        "title": "The Ambassadors",
+        "author": "Henry James",
+        "year": "1965",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "275"
+    },
+    {
+        "id": "OL44995W",
+        "title": "Far From the Madding Crowd",
+        "author": "Thomas Hardy",
+        "year": "1991",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL276395W",
+        "title": "Washington Square",
+        "author": "Henry James",
+        "year": "1995",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "331"
+    },
+    {
+        "id": "OL1992198W",
+        "title": "In cold blood",
+        "author": "Truman Capote",
+        "year": "1992",
+        "genre": [
+            "Mystery"
+        ],
+        "pages": "410"
+    },
+    {
+        "id": "OL810989W",
+        "title": "Comus",
+        "author": "John Milton",
+        "year": "1913",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "32"
+    },
+    {
+        "id": "OL1673205W",
+        "title": "教父",
+        "author": "Mario Puzo",
+        "year": "2014",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "491"
+    },
+    {
+        "id": "OL503503W",
+        "title": "Abel Sánchez",
+        "author": "Miguel de Unamuno",
+        "year": "1917",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "233"
+    },
+    {
+        "id": "OL36632W",
+        "title": "Jamaica Inn",
+        "author": "Daphne du Maurier",
+        "year": "1999",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "302"
+    },
+    {
+        "id": "OL471713W",
+        "title": "Poirot joue le jeu",
+        "author": "Agatha Christie",
+        "year": "1995",
+        "genre": [
+            "Mystery"
+        ],
+        "pages": "231"
+    },
+    {
+        "id": "OL16550682W",
+        "title": "Liberado",
+        "author": "E. L. James",
+        "year": "2021",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "720"
+    },
+    {
+        "id": "OL5720027W",
+        "title": "Księżyc w nowiu",
+        "author": "Stephenie Meyer",
+        "year": "2008",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "478"
+    },
+    {
+        "id": "OL109229W",
+        "title": "The Ghost (Nonsuch Classics)",
+        "author": "Arnold Bennett",
+        "year": "May 28, 2008",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "192"
+    },
+    {
+        "id": "OL5720025W",
+        "title": "Yue shi",
+        "author": "Stephenie Meyer",
+        "year": "2008",
+        "genre": [
+            "Horror"
+        ],
+        "pages": "476"
+    },
+    {
+        "id": "OL262421W",
+        "title": "Las aventuras de Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "year": "1998",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "248"
+    },
+    {
+        "id": "OL472715W",
+        "title": "Zagadochnoe proisshestvie v Stailze",
+        "author": "Agatha Christie",
+        "year": "2013",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "286"
+    },
+    {
+        "id": "OL471789W",
+        "title": "El Misterioso Sr. Brown",
+        "author": "Agatha Christie",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "287"
+    },
+    {
+        "id": "OL8763148W",
+        "title": "The mystery of Edwin Drood",
+        "author": "Charles Dickens",
+        "year": "2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "284"
     }
 ]
