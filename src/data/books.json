@@ -1,0 +1,756 @@
+[
+    {
+        "id": "OL12345W",
+        "title": "Lightning War",
+        "author": "Ronald E. Powaski",
+        "year": "-",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL67890W",
+        "title": "Fourth five-year plan, 1966-67 to 1970-71, Maharashtra State",
+        "author": "Maharashtra (India). Finance Dept. Plann...",
+        "year": "1964",
+        "genre": [
+            "-"
+        ],
+        "pages": "120"
+    },
+    {
+        "id": "OL35649409M",
+        "title": "Frankenstein",
+        "author": "Mary Shelley",
+        "year": "Nov 07, 2016",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL40295210M",
+        "title": "Schöne neue Welt",
+        "author": "Aldous Huxley",
+        "year": "1992",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "367"
+    },
+    {
+        "id": "OL7870148M",
+        "title": "On the Nature of Things",
+        "author": "Titus Lucretius Carus",
+        "year": "June 1, 1995",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "312"
+    },
+    {
+        "id": "OL33874740M",
+        "title": "The Invisible Man",
+        "author": "H. G. Wells",
+        "year": "1974-09",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL6927336M",
+        "title": "The History of Herodotus",
+        "author": "Herodotus",
+        "year": "1890",
+        "genre": [
+            "History"
+        ],
+        "pages": "336"
+    },
+    {
+        "id": "OL1548597W",
+        "title": "De la Nature",
+        "author": "Titus Lucretius Carus",
+        "year": "-",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "243"
+    },
+    {
+        "id": "OL27468204W",
+        "title": "Houghton Mifflin Science California",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "2006",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL381550W",
+        "title": "The Island of Dr. Moreau",
+        "author": "H. G. Wells",
+        "year": "1996",
+        "genre": [
+            "Adventure"
+        ],
+        "pages": "104"
+    },
+    {
+        "id": "OL27467443W",
+        "title": "Houghton Mifflin Science Leveled Readers",
+        "author": "Houghton Mifflin Company Staff",
+        "year": "2005",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL7574091W",
+        "title": "[Granting jurisdiction to Court of Claims to hear claim of assignees of Addison C. Fletcher, holder of patent for self-cancelling revenue stamp.]",
+        "author": "United States. Congress. Senate. Committ...",
+        "year": "1896",
+        "genre": [
+            "-"
+        ],
+        "pages": "14"
+    },
+    {
+        "id": "OL1892617W",
+        "title": "时间简史",
+        "author": "Stephen Hawking",
+        "year": "2006",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "138"
+    },
+    {
+        "id": "OL24446425W",
+        "title": "International Review of Cytology",
+        "author": "George Bourne",
+        "year": "August 1986",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "396"
+    },
+    {
+        "id": "OL1068214W",
+        "title": "A System of Logic, Ratiocinative and Inductive",
+        "author": "John Stuart Mill",
+        "year": "1961",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "622"
+    },
+    {
+        "id": "OL15116693W",
+        "title": "Goethe's werke.",
+        "author": "Johann Wolfgang von Goethe",
+        "year": "1882",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "40"
+    },
+    {
+        "id": "OL21015217W",
+        "title": "International Review of Cell and Molecular Biology",
+        "author": "Kwang W. Jeon",
+        "year": "2012",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "340"
+    },
+    {
+        "id": "OL1827306W",
+        "title": "Principles of anatomy & physiology",
+        "author": "Gerard J. Tortora",
+        "year": "2014",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "1127"
+    },
+    {
+        "id": "OL14903327W",
+        "title": "4th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "August 15, 1996",
+        "genre": [
+            "-"
+        ],
+        "pages": "182"
+    },
+    {
+        "id": "OL18407621W",
+        "title": "Introduction to genetic analysis",
+        "author": "Anthony J. F. Griffiths",
+        "year": "2012",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "832"
+    },
+    {
+        "id": "OL515051W",
+        "title": "The Harvard Classics: Volume 11 - The Origin of Species",
+        "author": "Charles Darwin",
+        "year": "1937",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "361"
+    },
+    {
+        "id": "OL723491W",
+        "title": "Moralia",
+        "author": "Plutarch",
+        "year": "1900",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "13"
+    },
+    {
+        "id": "OL69382W",
+        "title": "The  essayes or counsels, civill and morall",
+        "author": "Francis Bacon",
+        "year": "1985",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "339"
+    },
+    {
+        "id": "OL1356870W",
+        "title": "Histoire naturelle, générale et particulière",
+        "author": "Georges-Louis Leclerc, comte de Buffon",
+        "year": "1769",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "243"
+    },
+    {
+        "id": "OL1151518W",
+        "title": "A discourse on method",
+        "author": "René Descartes",
+        "year": "1994",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "240"
+    },
+    {
+        "id": "OL28988W",
+        "title": "Der goldene Kompaß",
+        "author": "Philip Pullman",
+        "year": "2005",
+        "genre": [
+            "Horror"
+        ],
+        "pages": "410"
+    },
+    {
+        "id": "OL14903351W",
+        "title": "1st Report [Session 1994-95]",
+        "author": "Rand McNally",
+        "year": "December 31, 1994",
+        "genre": [
+            "-"
+        ],
+        "pages": "93"
+    },
+    {
+        "id": "OL76664W",
+        "title": "Chuang zao jin hua lun",
+        "author": "Henri Bergson",
+        "year": "2011",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "348"
+    },
+    {
+        "id": "OL695408W",
+        "title": "Leonardo.",
+        "author": "Leonardo da Vinci",
+        "year": "1975",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "179"
+    },
+    {
+        "id": "OL17075811W",
+        "title": "Sapiens",
+        "author": "Yuval Noah Harari",
+        "year": "2015-04-30",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "498"
+    },
+    {
+        "id": "OL16927878W",
+        "title": "Annual reports on NMR spectroscopy",
+        "author": "Graham A. Webb",
+        "year": "2007",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL69453W",
+        "title": "New Atlantis",
+        "author": "Francis Bacon",
+        "year": "1925",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "64"
+    },
+    {
+        "id": "OL1088582W",
+        "title": "ABC of relativity",
+        "author": "Bertrand Russell",
+        "year": "1985",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "155"
+    },
+    {
+        "id": "OL1881226W",
+        "title": "Accounting principles",
+        "author": "Jerry J. Weygandt",
+        "year": "1999",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "1189"
+    },
+    {
+        "id": "OL1827302W",
+        "title": "Microbiology",
+        "author": "Gerard J. Tortora",
+        "year": "2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "898"
+    },
+    {
+        "id": "OL16959776W",
+        "title": "Advances in Imaging and Electron Physics, Volume 107 (Advances in Imaging and Electron Physics)",
+        "author": "Peter W. Hawkes",
+        "year": "April 8, 1999",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "416"
+    },
+    {
+        "id": "OL9213099W",
+        "title": "Pathways through science",
+        "author": "Nuffield-Chelsea Curriculum Trust",
+        "year": "1994",
+        "genre": [
+            "-"
+        ],
+        "pages": "40"
+    },
+    {
+        "id": "OL9935589W",
+        "title": "Differentiating Instruction With Menus",
+        "author": "Laurie E. Westphal",
+        "year": "May 1, 2007",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "125"
+    },
+    {
+        "id": "OL2626638W",
+        "title": "A  canticle for Leibowitz",
+        "author": "Walter M. Miller Jr.",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "338"
+    },
+    {
+        "id": "OL3013355W",
+        "title": "On the economy of machinery and manufactures",
+        "author": "Charles Babbage",
+        "year": "2009",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL3360211W",
+        "title": "The Worst Journey in the World",
+        "author": "Apsley Cherry-Garrard",
+        "year": "2003",
+        "genre": [
+            "Adventure"
+        ],
+        "pages": "607"
+    },
+    {
+        "id": "OL14903313W",
+        "title": "5th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "August 15, 1996",
+        "genre": [
+            "-"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL15403036W",
+        "title": "The  advancement of learning",
+        "author": "Francis Bacon",
+        "year": "1973",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "246"
+    },
+    {
+        "id": "OL1984582W",
+        "title": "The Logic Of Scientific Discovery",
+        "author": "Karl Popper",
+        "year": "2002",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "545"
+    },
+    {
+        "id": "OL2657790W",
+        "title": "Inquiry into life",
+        "author": "Sylvia S. Mader",
+        "year": "2014",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "848"
+    },
+    {
+        "id": "OL1554090W",
+        "title": "Cosmos",
+        "author": "Alexander von Humboldt",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL16996964W",
+        "title": "Progress in Optics, Volume 51 (Progress in Optics) (Progress in Optics)",
+        "author": "Emil Wolf",
+        "year": "February 18, 2008",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "572"
+    },
+    {
+        "id": "OL515301W",
+        "title": "The expression of the emotions in man and animals",
+        "author": "Charles Darwin",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "472"
+    },
+    {
+        "id": "OL17732W",
+        "title": "NIV Outreach Bible",
+        "author": "Bible",
+        "year": "2011",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "896"
+    },
+    {
+        "id": "OL8193497W",
+        "title": "A Christmas carol",
+        "author": "Charles Dickens",
+        "year": "1880",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "144"
+    },
+    {
+        "id": "OL8193416W",
+        "title": "תמונת דוריאן גרי",
+        "author": "Oscar Wilde",
+        "year": "1918",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "237"
+    },
+    {
+        "id": "OL66513W",
+        "title": "Emma",
+        "author": "Jane Austen",
+        "year": "2014",
+        "genre": [
+            "Fantasy"
+        ],
+        "pages": "336"
+    },
+    {
+        "id": "OL18417W",
+        "title": "The wonderful world of Oz",
+        "author": "L. Frank Baum",
+        "year": "1998",
+        "genre": [
+            "Fantasy"
+        ],
+        "pages": "389"
+    },
+    {
+        "id": "OL66562W",
+        "title": "Sense and Sensibility",
+        "author": "Jane Austen",
+        "year": "2015",
+        "genre": [
+            "Romance"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL20600W",
+        "title": "Gulliver's Travels",
+        "author": "Jonathan Swift",
+        "year": "2012",
+        "genre": [
+            "Adventure"
+        ],
+        "pages": "147"
+    },
+    {
+        "id": "OL503666W",
+        "title": "The first part of the delightful history of the most ingenious knight Don Quixote of the Mancha",
+        "author": "Miguel de Cervantes Saavedra",
+        "year": "1937",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "519"
+    },
+    {
+        "id": "OL244537W",
+        "title": "Sun Tzu on the art of war",
+        "author": "孙武",
+        "year": "2011",
+        "genre": [
+            "History"
+        ],
+        "pages": "226"
+    },
+    {
+        "id": "OL1089297W",
+        "title": "The Prince",
+        "author": "Niccolò Machiavelli",
+        "year": "1988",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "152"
+    },
+    {
+        "id": "OL14942956W",
+        "title": "La llamada de lo salvaje",
+        "author": "Jack London",
+        "year": "2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "146"
+    },
+    {
+        "id": "OL93082W",
+        "title": "La comedia di Dante Alighieri",
+        "author": "Dante Alighieri",
+        "year": "1916",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "443"
+    },
+    {
+        "id": "OL9170454W",
+        "title": "Hamlet",
+        "author": "William Shakespeare",
+        "year": "1996",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "127"
+    },
+    {
+        "id": "OL52267W",
+        "title": "La máquina del tiempo",
+        "author": "H. G. Wells",
+        "year": "2015",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "126"
+    },
+    {
+        "id": "OL102749W",
+        "title": "Mobi-Dik",
+        "author": "Herman Melville",
+        "year": "2016",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "399"
+    },
+    {
+        "id": "OL36861W",
+        "title": "San ge huo qiang shou",
+        "author": "Alexandre Dumas",
+        "year": "2007",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "654"
+    },
+    {
+        "id": "OL61982W",
+        "title": "The Odyssey",
+        "author": "Όμηρος",
+        "year": "2003",
+        "genre": [
+            "History"
+        ],
+        "pages": "254"
+    },
+    {
+        "id": "OL69178W",
+        "title": "Narrative of the Life of Frederick Douglass",
+        "author": "Frederick Douglass",
+        "year": "2019",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL8662242W",
+        "title": "David Copperfield",
+        "author": "Charles Dickens",
+        "year": "2004",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "974"
+    },
+    {
+        "id": "OL14869167W",
+        "title": "The Old Curiosity Shop",
+        "author": "Charles Dickens",
+        "year": "1997",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "638"
+    },
+    {
+        "id": "OL51831W",
+        "title": "Politeia",
+        "author": "Πλάτων",
+        "year": "1992",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "-"
+    },
+    {
+        "id": "OL893707W",
+        "title": "包法利夫人",
+        "author": "Gustave Flaubert",
+        "year": "2018-02-05",
+        "genre": [
+            "Science",
+            "Fiction"
+        ],
+        "pages": "302"
+    }
+]
