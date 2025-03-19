@@ -300,7 +300,7 @@ def logout():
     current_user = None
     profile_window.destroy()
     root.withdraw()
-    create_login_window()
+
 
 # Hàm kiểm tra định dạng ngày
 def validate_date(date_text):
@@ -910,9 +910,6 @@ profile_button.grid(row=0, column=9, padx=30, pady=10, sticky="e")
 # frame_right = tk.Frame(root)
 # frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
 
-# Khởi tạo dữ liệu và hiển thị login
-create_login_window()
-
 # Vô hiệu hóa tất cả nút khi chưa đăng nhập
 add_book = tk.Button(frame_books, text="Thêm Sách", command=add_book)
 add_book.grid(row=6, column=0, pady=2, padx=5)
@@ -948,4 +945,7 @@ edit_borrow.config(state=tk.DISABLED)
 
 crawl_button.config(state=tk.DISABLED)
 
-root.mainloop()
+
+def __main__():
+    create_login_window()
+    root.mainloop()
