@@ -126,32 +126,47 @@ async def crawl_data(session, url, predict_genre=predict_genre):
     except Exception as e:
         messagebox.showerror(f"Error crawling {url}: {e}")
         return None
-    
-# Hàm crawl dữ liệu sách
-# async def crawl_books(book_urls):
-#     async with aiohttp.ClientSession() as session:
-#         tasks = [crawl_data(session, url) for url in book_urls]
-#         return await asyncio.gather(*tasks)
 
 # Hàm crawl dữ liệu sách với set requests 
-async def crawl_books(book_urls, max_concurrent_requests=10):
+# async def crawl_books(book_urls, max_concurrent_requests=10):
+#     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
+#     async with aiohttp.ClientSession(connector=connector) as session:
+#         tasks = [crawl_data(session, url) for url in book_urls]
+#         results = await asyncio.gather(*tasks)
+#         return [result for result in results if result is not None]
+
+# Hàm khởi tạo dữ liệu sách
+# def initialize_book_data():
+#     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
+#     book_urls = read_urls_from_file(book_urls_file)
+    
+#     books_data = asyncio.run(crawl_books(book_urls))
+#     write_json(BOOKS_FILE, books_data)
+#     print("Dữ liệu sách đã được cập nhật vào books.json")
+
+# initialize_book_data()
+
+async def crawl_books(book_urls, max_concurrent_requests=10, limit=None):
+    if limit:
+        book_urls = book_urls[:limit]
+    semaphore = asyncio.Semaphore(max_concurrent_requests)
     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
     async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [crawl_data(session, url) for url in book_urls]
+        tasks = [crawl_data(session, url, semaphore) for url in book_urls]
         results = await asyncio.gather(*tasks)
         return [result for result in results if result is not None]
 
-# Hàm khởi tạo dữ liệu sách
-def initialize_book_data():
+# Function to initialize book data
+def initialize_book_data(limit=None):
     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
     book_urls = read_urls_from_file(book_urls_file)
     
-    books_data = asyncio.run(crawl_books(book_urls))
+    books_data = asyncio.run(crawl_books(book_urls, limit=limit))
     write_json(BOOKS_FILE, books_data)
     print("Dữ liệu sách đã được cập nhật vào books.json")
 
-
-initialize_book_data()
+# Example usage: Initialize book data with a limit of 50 books and a concurrency limit of 10
+initialize_book_data(limit=20)
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
