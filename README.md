@@ -7,7 +7,7 @@ A library management application with user authentication, book management, and 
 ### Step 1: Clone the repository
 
 ```sh
-git clone https://github.com/yourusername/library-management-app.git
+git clone https://github.com/JenniferZero/Library-management-app.git
 cd library-management-app
 ```
 
@@ -45,10 +45,11 @@ pip install .
 
 ## Running the Application
 
-After installing the application, you can run it using the console script defined in `setup.py`:
+After installing the application, you can run it using the following command:
 
 ```sh
-library-manager
+cd src
+python library_manager.py
 ```
 
 ## Data Files
