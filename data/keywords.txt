@@ -1,9 +1,0 @@
-Science Fiction: space, alien, future, robot, AI, galaxy, time travel, cyberpunk, dystopia, extraterrestrial
-Fantasy: magic, dragon, wizard, kingdom, sword, spell, elf, dungeon, quest, troll
-Mystery: detective, murder, investigation, clue, crime, suspense, thriller, whodunit, conspiracy, puzzle
-Romance: love, relationship, heart, passion, kiss, wedding, affair, valentine, crush, heartbreak
-History: war, revolution, ancient, biography, civilization, medieval, dynasty, historical, empire, chronicle
-Horror: ghost, vampire, werewolf, haunted, curse, nightmare, zombie, supernatural, dark, fear
-Adventure: explorer, treasure, quest, voyage, island, survival, jungle, wilderness, expedition, map
-Self-help: motivation, success, mindset, habits, productivity, leadership, psychology, growth, wellness, positivity
-Philosophy: existence, wisdom, metaphysics, ethics, logic, morality, truth, consciousness, idealism, realism
