@@ -158,7 +158,7 @@ async def crawl_books(book_urls, max_concurrent_requests=10, limit=None):
         results = await asyncio.gather(*tasks)
         return [result for result in results if result is not None]
 
-# Function to initialize book data
+# Hàm khởi tạo dữ liệu sách
 def initialize_book_data(limit=None):
     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
     book_urls = read_urls_from_file(book_urls_file)
@@ -167,7 +167,6 @@ def initialize_book_data(limit=None):
     write_json(BOOKS_FILE, books_data)
     print("Dữ liệu sách đã được cập nhật vào books.json")
 
-# Example usage: Initialize book data with a limit of 50 books and a concurrency limit of 10
 initialize_book_data(limit=10)
 
 # Hàm tạo cửa sổ đăng nhập
@@ -317,10 +316,6 @@ def logout():
     current_user = None
     profile_window.destroy()
     root.withdraw()
-<<<<<<< HEAD:src/library_manager.py
-=======
-
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
 
 # Hàm kiểm tra định dạng ngày
 def validate_date(date_text):
@@ -930,10 +925,6 @@ profile_button.grid(row=0, column=9, padx=30, pady=10, sticky="e")
 # frame_right = tk.Frame(root)
 # frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
 
-<<<<<<< HEAD:src/library_manager.py
-
-=======
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
 # Vô hiệu hóa tất cả nút khi chưa đăng nhập
 add_book = tk.Button(frame_books, text="Thêm Sách", command=add_book)
 add_book.grid(row=6, column=0, pady=2, padx=5)
@@ -969,16 +960,6 @@ edit_borrow.config(state=tk.DISABLED)
 
 crawl_button.config(state=tk.DISABLED)
 
-<<<<<<< HEAD:src/library_manager.py
-def main():
-    create_login_window()
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
-=======
-
 def __main__():
     create_login_window()
     root.mainloop()
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
