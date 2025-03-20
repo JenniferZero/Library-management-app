@@ -50,9 +50,7 @@ def read_urls_from_file(file_path):
     return []
 
 # Tải mô hình NLP đã được huấn luyện
-base_dir = os.path.dirname(os.path.abspath(__file__))  
-model_path = os.path.join(base_dir, "src/en_core_web_sm-3.5.0")
-nlp = spacy.load(model_path)
+nlp = spacy.load("en_core_web_sm")
 
 # Hàm dự đoán thể loại sách dựa trên nội dung văn bản
 # def predict_genre(text):
@@ -128,47 +126,32 @@ async def crawl_data(session, url, predict_genre=predict_genre):
     except Exception as e:
         messagebox.showerror(f"Error crawling {url}: {e}")
         return None
+    
+# Hàm crawl dữ liệu sách
+# async def crawl_books(book_urls):
+#     async with aiohttp.ClientSession() as session:
+#         tasks = [crawl_data(session, url) for url in book_urls]
+#         return await asyncio.gather(*tasks)
 
 # Hàm crawl dữ liệu sách với set requests 
-# async def crawl_books(book_urls, max_concurrent_requests=10):
-#     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
-#     async with aiohttp.ClientSession(connector=connector) as session:
-#         tasks = [crawl_data(session, url) for url in book_urls]
-#         results = await asyncio.gather(*tasks)
-#         return [result for result in results if result is not None]
-
-# Hàm khởi tạo dữ liệu sách
-# def initialize_book_data():
-#     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
-#     book_urls = read_urls_from_file(book_urls_file)
-    
-#     books_data = asyncio.run(crawl_books(book_urls))
-#     write_json(BOOKS_FILE, books_data)
-#     print("Dữ liệu sách đã được cập nhật vào books.json")
-
-# initialize_book_data()
-
-async def crawl_books(book_urls, max_concurrent_requests=10, limit=None):
-    if limit:
-        book_urls = book_urls[:limit]
-    semaphore = asyncio.Semaphore(max_concurrent_requests)
+async def crawl_books(book_urls, max_concurrent_requests=10):
     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
     async with aiohttp.ClientSession(connector=connector) as session:
-        tasks = [crawl_data(session, url, semaphore) for url in book_urls]
+        tasks = [crawl_data(session, url) for url in book_urls]
         results = await asyncio.gather(*tasks)
         return [result for result in results if result is not None]
 
-# Function to initialize book data
-def initialize_book_data(limit=None):
+# Hàm khởi tạo dữ liệu sách
+def initialize_book_data():
     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
     book_urls = read_urls_from_file(book_urls_file)
     
-    books_data = asyncio.run(crawl_books(book_urls, limit=limit))
+    books_data = asyncio.run(crawl_books(book_urls))
     write_json(BOOKS_FILE, books_data)
     print("Dữ liệu sách đã được cập nhật vào books.json")
 
-# Example usage: Initialize book data with a limit of 50 books and a concurrency limit of 10
-initialize_book_data(limit=10)
+
+initialize_book_data()
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
@@ -317,10 +300,7 @@ def logout():
     current_user = None
     profile_window.destroy()
     root.withdraw()
-<<<<<<< HEAD:src/library_manager.py
-=======
 
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
 
 # Hàm kiểm tra định dạng ngày
 def validate_date(date_text):
@@ -930,10 +910,6 @@ profile_button.grid(row=0, column=9, padx=30, pady=10, sticky="e")
 # frame_right = tk.Frame(root)
 # frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
 
-<<<<<<< HEAD:src/library_manager.py
-
-=======
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
 # Vô hiệu hóa tất cả nút khi chưa đăng nhập
 add_book = tk.Button(frame_books, text="Thêm Sách", command=add_book)
 add_book.grid(row=6, column=0, pady=2, padx=5)
@@ -969,16 +945,7 @@ edit_borrow.config(state=tk.DISABLED)
 
 crawl_button.config(state=tk.DISABLED)
 
-<<<<<<< HEAD:src/library_manager.py
-def main():
-    create_login_window()
-    root.mainloop()
-
-if __name__ == "__main__":
-    main()
-=======
 
 def __main__():
     create_login_window()
     root.mainloop()
->>>>>>> 22e24b41e2542201d8bd813ad7da77c9fbff1683:Library_Manager.py
