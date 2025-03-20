@@ -77,3 +77,10 @@ The application provides the following features:
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Packed App
+To package files into an app use the command:
+
+```sh
+pyinstaller --name library_manager --onefile --noconsole --hidden-import spacy.lang.en --add-data "src/data;data" --add-data "src/en_core_web_sm-3.5.0;en_core_web_sm-3.5.0" src/library_manager.py
+```

@@ -50,7 +50,9 @@ def read_urls_from_file(file_path):
     return []
 
 # Tải mô hình NLP đã được huấn luyện
-nlp = spacy.load("en_core_web_sm")
+base_dir = os.path.dirname(os.path.abspath(__file__))  
+model_path = os.path.join(base_dir, "src/en_core_web_sm-3.5.0")
+nlp = spacy.load(model_path)
 
 # Hàm dự đoán thể loại sách dựa trên nội dung văn bản
 # def predict_genre(text):
@@ -166,7 +168,7 @@ def initialize_book_data(limit=None):
     print("Dữ liệu sách đã được cập nhật vào books.json")
 
 # Example usage: Initialize book data with a limit of 50 books and a concurrency limit of 10
-initialize_book_data(limit=20)
+initialize_book_data(limit=10)
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
