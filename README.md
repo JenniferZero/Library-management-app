@@ -19,7 +19,16 @@ Make sure you have Python 3.6 or higher installed. Then, install the required de
 pip install -r requirements.txt
 ```
 
-### Step 3: Download the NLP model
+### Step 3: Install `thinc` and `spacy`
+
+You may need to install `thinc` and `spacy` separately if they are not included in your `requirements.txt`:
+
+```sh
+pip install thinc 
+pip install spacy==3.5.0
+```
+
+### Step 4: Download the NLP model
 
 The application uses the `en_core_web_sm` model from spaCy. Download the model using the following command:
 
@@ -27,7 +36,23 @@ The application uses the `en_core_web_sm` model from spaCy. Download the model u
 python -m spacy download en_core_web_sm
 ```
 
-### Step 4: Package the application
+### Step 5: Install C++ Build Tools
+
+For Windows users, you need to install the following components:
+
+1. **C++ Build Tools**:
+    - Download and install the [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+
+2. **Windows 10 SDK** (or Windows 11 SDK if you are using Windows 11):
+    - During the installation of the C++ Build Tools, make sure to select the "Windows 10 SDK" or "Windows 11 SDK" component.
+
+3. **MSVC v142 - VS 2019 C++ x64/x86 build tools**:
+    - Ensure that the "MSVC v142 - VS 2019 C++ x64/x86 build tools" component is selected during the installation.
+
+4. **C++ CMake tools for Windows**:
+    - Also, select the "C++ CMake tools for Windows" component.
+
+### Step 6: Package the application
 
 Create a source distribution of the application:
 
@@ -35,7 +60,7 @@ Create a source distribution of the application:
 python setup.py sdist
 ```
 
-### Step 5: Install the application
+### Step 7: Install the application
 
 Install the application locally:
 
@@ -79,8 +104,9 @@ The application provides the following features:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Packed App
+
 To package files into an app use the command:
 
 ```sh
-pyinstaller --name library_manager --onefile --noconsole --hidden-import spacy.lang.en --add-data "src/data;data" --add-data "src/en_core_web_sm-3.5.0;en_core_web_sm-3.5.0" src/library_manager.py
+pyinstaller --name library_manager --onefile --noconsole --hidden-import spacy.lang.en --add-data "src/data;data" src/library_manager.py
 ```
