@@ -3,8 +3,8 @@ from setuptools import setup, find_packages
 setup(
     name="LibraryManagementApp",
     version="1.0.0",
-    author="Your Name",
-    author_email="your.email@example.com",
+    author="JenniferZero",
+    author_email="nhthang312@gmail.com",
     description="A library management application with user authentication, book management, and data crawling features.",
     packages=find_packages(where='src'),
     package_dir={'': 'src'},

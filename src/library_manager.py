@@ -51,27 +51,9 @@ def read_urls_from_file(file_path):
 
 # Tải mô hình NLP đã được huấn luyện
 base_dir = os.path.dirname(os.path.abspath(__file__))  
-model_path = os.path.join(base_dir, "src/en_core_web_sm-3.5.0")
+model_path = os.path.join(base_dir, "en_core_web_sm-3.5.0")
 nlp = spacy.load(model_path)
 
-# Hàm dự đoán thể loại sách dựa trên nội dung văn bản
-# def predict_genre(text):
-    # keywords = {
-    #      "Science Fiction": ["space", "alien", "future", "robot", "AI", "galaxy", "time travel", "cyberpunk", "dystopia", "extraterrestrial"],
-    #     "Fantasy": ["magic", "dragon", "wizard", "kingdom", "sword", "spell", "elf", "dungeon", "quest", "troll"],
-    #     "Mystery": ["detective", "murder", "investigation", "clue", "crime", "suspense", "thriller", "whodunit", "conspiracy", "puzzle"],
-    #     "Romance": ["love", "relationship", "heart", "passion", "kiss", "wedding", "affair", "valentine", "crush", "heartbreak"],
-    #     "History": ["war", "revolution", "ancient", "biography", "civilization", "medieval", "dynasty", "historical", "empire", "chronicle"],
-    #     "Horror": ["ghost", "vampire", "werewolf", "haunted", "curse", "nightmare", "zombie", "supernatural", "dark", "fear"],
-    #     "Adventure": ["explorer", "treasure", "quest", "voyage", "island", "survival", "jungle", "wilderness", "expedition", "map"],
-    #     "Self-help": ["motivation", "success", "mindset", "habits", "productivity", "leadership", "psychology", "growth", "wellness", "positivity"],
-    #     "Philosophy": ["existence", "wisdom", "metaphysics", "ethics", "logic", "morality", "truth", "consciousness", "idealism", "realism"]
-    # }
-    
-    # text = text.lower()
-    # genre_scores = {genre: sum(text.count(word) for word in words) for genre, words in keywords.items()}
-    # predicted_genre = max(genre_scores, key=genre_scores.get) if max(genre_scores.values()) > 0 else "-"
-    # return predicted_genre
 
 def load_keywords(file_path=KEYWORDS_FILE):
     keywords_dict = {}
@@ -882,6 +864,7 @@ tk.Button(frame_borrow, text="Xóa Mượn Trả", command=delete_borrow).grid(r
 tk.Button(frame_borrow, text="Hiển Thị Mượn Trả", command=show_borrows).grid(row=5, column=0, pady=2, padx=5)
 tk.Button(frame_borrow, text="Chỉnh Sửa Mượn Trả", command=edit_borrow).grid(row=5, column=1, pady=2, padx=5)
 
+# create_login_window()
 
 # Khung hiển thị thông tin
 frame_right = tk.Frame(root)

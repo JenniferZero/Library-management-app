@@ -1,8 +1,0 @@
-README.md
-setup.py
-src/LibraryManagementApp.egg-info/PKG-INFO
-src/LibraryManagementApp.egg-info/SOURCES.txt
-src/LibraryManagementApp.egg-info/dependency_links.txt
-src/LibraryManagementApp.egg-info/entry_points.txt
-src/LibraryManagementApp.egg-info/requires.txt
-src/LibraryManagementApp.egg-info/top_level.txt

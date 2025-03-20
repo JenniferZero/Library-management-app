@@ -1,4 +1,0 @@
-aiohttp
-spacy
-beautifulsoup4
-jsonschema
