@@ -13,7 +13,7 @@ cd library-management-app
 
 ### Step 2: Install dependencies
 
-Make sure you have Python 3.6 or higher installed. Then, install the required dependencies:
+Make sure you have Python 3.10.0 installed. Then, install the required dependencies:
 
 ```sh
 pip install -r requirements.txt
@@ -108,5 +108,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 To package files into an app use the command:
 
 ```sh
-pyinstaller --name library_manager --onefile --noconsole --hidden-import spacy.lang.en --add-data "src/data;data" src/library_manager.py
+pyinstaller --name LibraryManager --onefile --noconsole --add-data "data;data" --add-data "en_core_web_sm-3.5.0;en_core_web_sm-3.5.0" library_manager.py
+
 ```
