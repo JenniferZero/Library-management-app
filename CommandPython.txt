@@ -1,0 +1,27 @@
+python --version: check phiên bản( yêu cầu phiên bản python 3.10)
+
+cd src: trỏ tới file src
+rm -rf .venv: xóa môi trường ảo
+python -m venv .venv: tạo môi trường ảo (.venv là tên file môi trường)
+1	py -3.10 -m venv .venv: tạo môi trường ảo với phiên bản python
+2	.venv\Scripts\activate : kích hoạt môi trường ảo
+Ctrl + Shift + P : mở command palette
+Gõ: Python: Select Interpreter
+chọn môi trường python 3.10(chú ý địa chỉ file)
+
+deactivate : thoát môi trường ảo
+python -m spacy download en_core_web_sm : tải model 
+
+py -0: kiểm tra phiên bản hiện có
+py -3.10: chọn phiên bản chính 
+3	python -m pip install --upgrade pip: nâng cấp pip
+pip install <tên thư viện>
+4	pip install requirements.txt
+pip show <tên thư viện>: thông tin thư viện
+
+
+python -m pip install --upgrade pip setuptools wheel
+5	python -m pip uninstall numpy
+python -m pip install numpy==1.23.5
+
+pip list : liệt kê các thư viện đã cài tương ứng
