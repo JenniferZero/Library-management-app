@@ -73,10 +73,9 @@ def read_urls_from_file(file_path):
     return []
 
 # Tải mô hình NLP đã được huấn luyện
-base_dir = os.path.dirname(os.path.abspath(__file__))
-data_dir = os.path.join(base_dir, "data")
-model_dir = os.path.join(base_dir, "data\en_core_web_sm-3.5.0")
-nlp=spacy.load(model_dir)
+base_dir = os.path.dirname(os.path.abspath(__file__))  
+model_path = os.path.join(base_dir, "en_core_web_sm-3.5.0")
+nlp = spacy.load(model_path)
 
 # nlp = spacy.load("en_core_web_sm")# chỉ thực hiện load được khi install spacy và download model en_core_web_sm
 
