@@ -1,13 +1,21 @@
-from tkinter import ttk
-from datetime import datetime
+
 import tkinter as tk
-from tkinter import messagebox
+import threading
 import json
 import os
 import asyncio
 import aiohttp
 import spacy
+
+from tkinter import ttk
+from datetime import datetime
+from tkinter import messagebox
 from bs4 import BeautifulSoup
+
+
+
+if __name__ == "__main__" and hasattr(asyncio, "WindowsSelectorEventLoopPolicy"):
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 # Định nghĩa thư mục chứa dữ liệu JSON
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -32,15 +40,30 @@ KEYWORDS_FILE = os.path.join(DATA_DIR, 'keywords.txt')
 
 # Hàm đọc dữ liệu từ file JSON
 def read_json(file_path):
-    if os.path.exists(file_path):
-        with open(file_path, 'r', encoding='utf-8') as file:
-            return json.load(file)
-    return []
+    if not os.path.exists(file_path):  
+        print(f"File {file_path} không tồn tại.")
+        return []  
+    
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            content = file.read()
+            if not content.strip(): 
+                print(f"File {file_path} rỗng.")
+                return []
+            return json.loads(content) 
+    except json.JSONDecodeError as e:
+        print(f"Lỗi khi đọc JSON: {e}")
+        return []  
 
-# Hàm ghi dữ liệu vào file JSON
+
 def write_json(file_path, data):
-    with open(file_path, 'w', encoding='utf-8') as file:
-        json.dump(data, file, ensure_ascii=False, indent=4)
+    if not data:  # Nếu dữ liệu rỗng, không ghi vào file
+        print("Cảnh báo: Không ghi dữ liệu rỗng vào file JSON!")
+        return
+
+    with open(file_path, "w", encoding="utf-8") as file:
+        json.dump(data, file, indent=4, ensure_ascii=False)
+
 
 # Hàm đọc danh sách URL từ file
 def read_urls_from_file(file_path):
@@ -50,10 +73,12 @@ def read_urls_from_file(file_path):
     return []
 
 # Tải mô hình NLP đã được huấn luyện
-base_dir = os.path.dirname(os.path.abspath(__file__))  
-model_path = os.path.join(base_dir, "en_core_web_sm-3.5.0")
-nlp = spacy.load(model_path)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+data_dir = os.path.join(base_dir, "data")
+model_dir = os.path.join(base_dir, "data\en_core_web_sm-3.5.0")
+nlp=spacy.load(model_dir)
 
+# nlp = spacy.load("en_core_web_sm")# chỉ thực hiện load được khi install spacy và download model en_core_web_sm
 
 def load_keywords(file_path=KEYWORDS_FILE):
     keywords_dict = {}
@@ -92,7 +117,10 @@ async def crawl_data(session, url, predict_genre=predict_genre):
             author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "-"
             publish_date = soup.find('span', {'itemprop': 'datePublished'})
             year = publish_date.text.strip() if publish_date else "-"
-            pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "-"
+            # pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "-"
+            
+            pages_element = soup.find('span', {'itemprop': 'numberOfPages'})
+            pages = pages_element.text.strip() if pages_element else "0"  # Mặc định là "0" nếu không tìm thấy
             
             # Trích xuất nội dung văn bản từ thẻ <p> trong HTML
             content = " ".join([p.text for p in soup.find_all('p')])
@@ -104,50 +132,45 @@ async def crawl_data(session, url, predict_genre=predict_genre):
                 "author": author,
                 "year": year,
                 "genre": genre.split(),
+                "pages": int(pages) if pages.isdigit() else 0 
             }
     except Exception as e:
         print(f"Error crawling {url}: {e}")
         return None
 
 # Hàm crawl dữ liệu sách với set requests 
-async def crawl_books(book_urls, max_concurrent_requests=10):
+async def crawl_books(book_urls, max_concurrent_requests=3):
     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
     async with aiohttp.ClientSession(connector=connector) as session:
         tasks = [crawl_data(session, url) for url in book_urls]
         results = await asyncio.gather(*tasks, return_exceptions=True)
         return [result for result in results if result is not None and not isinstance(result, Exception)]
 
-# Hàm khởi tạo dữ liệu sách
-def initialize_book_data():
-    book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
-    book_urls = read_urls_from_file(book_urls_file)
-
-    books_data = asyncio.run(crawl_books(book_urls))
-    write_json(BOOKS_FILE, books_data)
-    print("Dữ liệu sách đã được cập nhật vào books.json")
-
-initialize_book_data()
-
-# async def crawl_books(book_urls, max_concurrent_requests=10, limit=None):
-#     if limit:
-#         book_urls = book_urls[:limit]
-#     semaphore = asyncio.Semaphore(max_concurrent_requests)
-#     connector = aiohttp.TCPConnector(limit_per_host=max_concurrent_requests)
-#     async with aiohttp.ClientSession(connector=connector) as session:
-#         tasks = [crawl_data(session, url, semaphore) for url in book_urls]
-#         results = await asyncio.gather(*tasks)
-#         return [result for result in results if result is not None]
-
 # # Hàm khởi tạo dữ liệu sách
-# def initialize_book_data(limit=None):
+# def initialize_book_data():
 #     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
 #     book_urls = read_urls_from_file(book_urls_file)
-    
-#     books_data = asyncio.run(crawl_books(book_urls, limit=limit))
+
+#     books_data = asyncio.run(crawl_books(book_urls))
 #     write_json(BOOKS_FILE, books_data)
 #     print("Dữ liệu sách đã được cập nhật vào books.json")
 
-# initialize_book_data(limit=10)
+# initialize_book_data()
+
+
+# Hàm crawl data bất đồng bộ được chạy trong một thread riêng
+def async_crawl_books():
+    book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
+    book_urls = read_urls_from_file(book_urls_file)
+    # Chạy vòng lặp asyncio riêng trong thread này
+    books_data = asyncio.run(crawl_books(book_urls))
+    write_json(BOOKS_FILE, books_data)
+    messagebox.showinfo("Thành công", "Dữ liệu sách đã được cập nhật vào books.json")
+
+# Hàm khởi chạy crawl data trong thread riêng
+def threaded_crawl_data():
+    t = threading.Thread(target=async_crawl_books)
+    t.start()
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
@@ -211,7 +234,7 @@ def register():
     for user in users:
         if user["username"] == new_username:
             messagebox.showerror("Lỗi", "Tài khoản đã tồn tại.")
-            return
+            return 
     
     new_user = {"username": new_username, "password": new_password, "role": "user"}
     users.append(new_user)
@@ -895,8 +918,12 @@ search_entry.grid(row=0, column=3, padx=5, pady=5)
 tk.Button(frame_search, text="Tìm Kiếm", command=search_info).grid(row=0, column=4, padx=5, pady=5)
 
 # Nút Crawl Dữ Liệu
-crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=initialize_book_data)
+# crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=initialize_book_data)
+# crawl_button.grid(row=0, column=5, pady=5, padx=250, sticky="e")
+
+crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=threaded_crawl_data)
 crawl_button.grid(row=0, column=5, pady=5, padx=250, sticky="e")
+crawl_button.config(state=tk.DISABLED)
 
 # Nút Hồ Sơ
 profile_button = tk.Button(root, text="Hồ Sơ", command=create_profile_window)
@@ -942,6 +969,7 @@ edit_borrow.config(state=tk.DISABLED)
 crawl_button.config(state=tk.DISABLED)
 
 def __main__():
+    
     create_login_window()
     root.mainloop()
     
