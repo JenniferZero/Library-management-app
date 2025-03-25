@@ -108,5 +108,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 To package files into an app use the command:
 
 ```sh
-pyinstaller --name LibraryManager --onefile --noconsole --hidden-import=aiohttp --add-data "data;data" --add-data "en_core_web_sm-3.5.0;en_core_web_sm-3.5.0" library_manager.py
+pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm --hidden-import=aiohttp --hidden-import=bs4 --hidden-import=tkinter --add-data "data;data" --add-data "en_core_web_sm-3.5.0;en_core_web_sm-3.5.0"  --log-level DEBUG library_manager.py
 ```
