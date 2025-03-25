@@ -12,7 +12,7 @@ setup(
         "aiohttp",
         "spacy",
         "beautifulsoup4",
-        "jsonschema"  # Add any other dependencies as needed
+        "jsonschema" 
     ],
     entry_points={
         'console_scripts': [
