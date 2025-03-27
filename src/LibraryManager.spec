@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['library_manager.py'],
+    ['library_manager-with_no_model.py'],
     pathex=[],
     binaries=[],
-    datas=[('data', 'data'), ('en_core_web_sm-3.5.0', 'en_core_web_sm-3.5.0')],
+    datas=[('data', 'data')],
     hiddenimports=['aiohttp', 'bs4', 'tkinter'],
     hookspath=[],
     hooksconfig={},

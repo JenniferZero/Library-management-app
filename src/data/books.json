@@ -4,10 +4,6 @@
         "title": "Lightning War",
         "author": "Ronald E. Powaski",
         "year": "-",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 0
     },
     {
@@ -15,10 +11,6 @@
         "title": "The Invisible Man",
         "author": "H. G. Wells",
         "year": "1974-09",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 0
     },
     {
@@ -26,31 +18,20 @@
         "title": "Houghton Mifflin Science Leveled Readers",
         "author": "Houghton Mifflin Company Staff",
         "year": "2005",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 0
     },
     {
         "id": "OL7574091W",
-        "title": "[Referring claim of William E. Woodbridge for use of invention relating to projectiles to Court of Claims.]",
+        "title": "[Granting jurisdiction to Court of Claims to hear claim of assignees of Addison C. Fletcher, holder of patent for self-cancelling revenue stamp.]",
         "author": "United States. Congress. Senate. Committ...",
         "year": "1896",
-        "genre": [
-            "-"
-        ],
-        "pages": 11
+        "pages": 14
     },
     {
         "id": "OL1892617W",
         "title": "时间简史",
         "author": "Stephen Hawking",
         "year": "2006",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 138
     },
     {
@@ -58,10 +39,6 @@
         "title": "International Review of Cytology",
         "author": "George Bourne",
         "year": "August 1986",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 396
     },
     {
@@ -69,10 +46,6 @@
         "title": "A System of Logic, Ratiocinative and Inductive",
         "author": "John Stuart Mill",
         "year": "1961",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 622
     },
     {
@@ -80,10 +53,6 @@
         "title": "Goethe's werke.",
         "author": "Johann Wolfgang von Goethe",
         "year": "1882",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 40
     },
     {
@@ -91,10 +60,6 @@
         "title": "International Review of Cell and Molecular Biology",
         "author": "Kwang W. Jeon",
         "year": "2012",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 340
     },
     {
@@ -102,10 +67,6 @@
         "title": "Principles of anatomy & physiology",
         "author": "Gerard J. Tortora",
         "year": "2014",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 1127
     },
     {
@@ -113,9 +74,6 @@
         "title": "4th Report [Session 1995-96]",
         "author": "Rand McNally",
         "year": "August 15, 1996",
-        "genre": [
-            "-"
-        ],
         "pages": 182
     },
     {
@@ -123,10 +81,6 @@
         "title": "Introduction to genetic analysis",
         "author": "Anthony J. F. Griffiths",
         "year": "2012",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 832
     },
     {
@@ -134,10 +88,6 @@
         "title": "The Harvard Classics: Volume 11 - The Origin of Species",
         "author": "Charles Darwin",
         "year": "1937",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 361
     },
     {
@@ -145,10 +95,6 @@
         "title": "Moralia",
         "author": "Plutarch",
         "year": "1900",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 13
     },
     {
@@ -156,10 +102,6 @@
         "title": "The  essayes or counsels, civill and morall",
         "author": "Francis Bacon",
         "year": "1985",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 339
     },
     {
@@ -167,10 +109,6 @@
         "title": "Histoire naturelle, générale et particulière",
         "author": "Georges-Louis Leclerc, comte de Buffon",
         "year": "1769",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 243
     },
     {
@@ -178,10 +116,6 @@
         "title": "A discourse on method",
         "author": "René Descartes",
         "year": "1994",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 240
     },
     {
@@ -189,9 +123,6 @@
         "title": "Der goldene Kompaß",
         "author": "Philip Pullman",
         "year": "2005",
-        "genre": [
-            "Horror"
-        ],
         "pages": 410
     },
     {
@@ -199,9 +130,6 @@
         "title": "1st Report [Session 1994-95]",
         "author": "Rand McNally",
         "year": "December 31, 1994",
-        "genre": [
-            "-"
-        ],
         "pages": 93
     },
     {
@@ -209,10 +137,6 @@
         "title": "Chuang zao jin hua lun",
         "author": "Henri Bergson",
         "year": "2011",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 348
     },
     {
@@ -220,10 +144,6 @@
         "title": "Leonardo.",
         "author": "Leonardo da Vinci",
         "year": "1975",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 179
     },
     {
@@ -231,10 +151,6 @@
         "title": "Sapiens",
         "author": "Yuval Noah Harari",
         "year": "2015-04-30",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 498
     },
     {
@@ -242,10 +158,6 @@
         "title": "时间简史",
         "author": "Stephen Hawking",
         "year": "2006",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 138
     },
     {
@@ -253,10 +165,6 @@
         "title": "International Review of Cytology",
         "author": "George Bourne",
         "year": "August 1986",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 396
     },
     {
@@ -264,10 +172,6 @@
         "title": "A System of Logic, Ratiocinative and Inductive",
         "author": "John Stuart Mill",
         "year": "1961",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 622
     },
     {
@@ -275,10 +179,6 @@
         "title": "Goethe's werke.",
         "author": "Johann Wolfgang von Goethe",
         "year": "1882",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 40
     },
     {
@@ -286,10 +186,6 @@
         "title": "International Review of Cell and Molecular Biology",
         "author": "Kwang W. Jeon",
         "year": "2012",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 340
     },
     {
@@ -297,10 +193,6 @@
         "title": "Principles of anatomy & physiology",
         "author": "Gerard J. Tortora",
         "year": "2014",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 1127
     },
     {
@@ -308,9 +200,6 @@
         "title": "4th Report [Session 1995-96]",
         "author": "Rand McNally",
         "year": "August 15, 1996",
-        "genre": [
-            "-"
-        ],
         "pages": 182
     },
     {
@@ -318,10 +207,6 @@
         "title": "Introduction to genetic analysis",
         "author": "Anthony J. F. Griffiths",
         "year": "2012",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 832
     },
     {
@@ -329,10 +214,6 @@
         "title": "The Harvard Classics: Volume 11 - The Origin of Species",
         "author": "Charles Darwin",
         "year": "1937",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 361
     },
     {
@@ -340,10 +221,6 @@
         "title": "Moralia",
         "author": "Plutarch",
         "year": "1900",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 13
     },
     {
@@ -351,10 +228,6 @@
         "title": "The  essayes or counsels, civill and morall",
         "author": "Francis Bacon",
         "year": "1985",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 339
     },
     {
@@ -362,10 +235,6 @@
         "title": "Histoire naturelle, générale et particulière",
         "author": "Georges-Louis Leclerc, comte de Buffon",
         "year": "1769",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 243
     },
     {
@@ -373,10 +242,6 @@
         "title": "A discourse on method",
         "author": "René Descartes",
         "year": "1994",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 240
     },
     {
@@ -384,9 +249,6 @@
         "title": "Der goldene Kompaß",
         "author": "Philip Pullman",
         "year": "2005",
-        "genre": [
-            "Horror"
-        ],
         "pages": 410
     },
     {
@@ -394,9 +256,6 @@
         "title": "1st Report [Session 1994-95]",
         "author": "Rand McNally",
         "year": "December 31, 1994",
-        "genre": [
-            "-"
-        ],
         "pages": 93
     },
     {
@@ -404,10 +263,6 @@
         "title": "Chuang zao jin hua lun",
         "author": "Henri Bergson",
         "year": "2011",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 348
     },
     {
@@ -415,10 +270,6 @@
         "title": "Leonardo.",
         "author": "Leonardo da Vinci",
         "year": "1975",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 179
     },
     {
@@ -426,10 +277,6 @@
         "title": "Sapiens",
         "author": "Yuval Noah Harari",
         "year": "2015-04-30",
-        "genre": [
-            "Science",
-            "Fiction"
-        ],
         "pages": 498
     }
 ]
