@@ -555,6 +555,8 @@ def edit_borrow():
 # Hàm hiển thị thông tin sách
 def show_books():
     books = read_json(BOOKS_FILE)
+    clear_entries()
+    clear_display()
     
     tree["columns"] = ("STT", "ID", "Tên Sách", "Tác Giả", "Năm", "Số Trang")
     tree.column("#0", width=0, stretch=tk.NO)
@@ -719,8 +721,13 @@ def search_info():
 
 # Hàm xóa thông tin hiển thị
 def clear_display():
+    # Xóa tất cả các mục trong Treeview
     for item in tree.get_children():
         tree.delete(item)
+    
+    # Xóa cấu trúc cột hiện tại
+    tree["columns"] = ()
+    tree.delete(*tree.get_children())
         
 # Tạo giao diện người dùng
 root = tk.Tk()

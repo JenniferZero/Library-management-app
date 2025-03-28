@@ -1,6 +1,6 @@
-python --version: check phiên bản( yêu cầu phiên bản python 3.10)
+python --version: check phiên bản
 
-cd src: trỏ tới file src
+cd src: trỏ tới địa chỉ file src
 rm -rf .venv: xóa môi trường ảo
 python -m venv .venv: tạo môi trường ảo (.venv là tên file môi trường)
 1\ py -3.10 -m venv .venv: tạo môi trường ảo với phiên bản python

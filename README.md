@@ -2,80 +2,72 @@
 
 A library management application with user authentication, book management, and data crawling features.
 
+---
+
 ## Installation
 
 ### Step 1: Clone the repository
 
+Clone the project repository to your local machine:
+
 ```sh
 git clone https://github.com/JenniferZero/Library-management-app.git
-cd library-management-app
+cd Library-management-app
 ```
 
-### Step 2: Install dependencies
+---
 
-Make sure you have Python 3.10.0 installed. Then, install the required dependencies:
+### Step 2: Set up a virtual environment (optional but recommended)
+
+Create and activate a virtual environment to isolate dependencies:
+
+#### On Windows:
+```sh
+python -m venv venv
+venv\Scripts\activate
+```
+
+#### On macOS/Linux:
+```sh
+python3 -m venv venv
+source venv/bin/activate
+```
+
+---
+
+### Step 3: Install dependencies
+
+Install all required dependencies from the `requirements.txt` file:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-### Step 3: Install `thinc` and `spacy`
-
-You may need to install `thinc` and `spacy` separately if they are not included in your `requirements.txt`:
+If some dependencies are missing, install them manually:
 
 ```sh
-pip install thinc 
-pip install spacy==3.5.0
+pip install aiohttp beautifulsoup4
 ```
 
-### Step 4: Download the NLP model
-
-The application uses the `en_core_web_sm` model from spaCy. Download the model using the following command:
-
-```sh
-python -m spacy download en_core_web_sm
-```
-
-### Step 5: Install C++ Build Tools
-
-For Windows users, you need to install the following components:
-
-1. **C++ Build Tools**:
-    - Download and install the [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
-
-2. **Windows 10 SDK** (or Windows 11 SDK if you are using Windows 11):
-    - During the installation of the C++ Build Tools, make sure to select the "Windows 10 SDK" or "Windows 11 SDK" component.
-
-3. **MSVC v142 - VS 2019 C++ x64/x86 build tools**:
-    - Ensure that the "MSVC v142 - VS 2019 C++ x64/x86 build tools" component is selected during the installation.
-
-4. **C++ CMake tools for Windows**:
-    - Also, select the "C++ CMake tools for Windows" component.
-
-### Step 6: Package the application
-
-Create a source distribution of the application:
-
-```sh
-python setup.py sdist
-```
-
-### Step 7: Install the application
-
-Install the application locally:
-
-```sh
-pip install .
-```
+---
 
 ## Running the Application
 
-After installing the application, you can run it using the following command:
+### Step 1: Navigate to the source directory
 
 ```sh
 cd src
-python library_manager.py
 ```
+
+### Step 2: Run the application
+
+Run the application using Python:
+
+```sh
+python library_manager-with_no_model.py
+```
+
+---
 
 ## Data Files
 
@@ -85,30 +77,45 @@ The application uses several JSON files to store data. These files are located i
 - `books.json`: Stores book information.
 - `readers.json`: Stores reader information.
 - `borrow.json`: Stores borrowing records.
-- `keywords.txt`: Stores keywords for genre prediction.
 
-Make sure these files are present in the `src/data` directory before running the application.
+Make sure these files are present in the `src/data` directory before running the application. If they are missing, create empty JSON files with the same names.
 
-## Usage
+---
 
-The application provides the following features:
+## Packaging the Application
 
-- User authentication
-- Book management (add, delete, edit books)
-- Reader management (add, delete, edit readers)
-- Borrowing management (add, delete, edit borrowing records)
-- Data crawling for book information
+To package the application into a standalone executable file, follow these steps:
 
-## License
+### Step 1: Install PyInstaller
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Install PyInstaller using pip:
 
-## Packed App
+```sh
+pip install pyinstaller
+```
 
-To package files into an app use the command:
+### Step 2: Package the application
+
+Run the following command to package the application:
 
 ```sh
 pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm `
 --hidden-import=aiohttp --hidden-import=bs4 --hidden-import=tkinter `
---add-data "data;data" --distpath "D:\Output" --log-level DEBUG library_manager-with_no_model.py
+--add-data "data;data"  --log-level DEBUG library_manager-with_no_model.py
 ```
+
+### Step 3: Locate the executable
+
+After the packaging process is complete, the executable file (`LibraryManager.exe`) will be located in the `dist` directory
+---
+
+## Notes
+
+- Ensure that all required data files are included in the `data` directory when running or packaging the application.
+- If you encounter any issues during packaging, refer to the PyInstaller documentation or check the terminal logs for detailed error messages.
+
+---
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
