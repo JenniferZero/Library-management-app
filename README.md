@@ -64,7 +64,7 @@ cd src
 Run the application using Python:
 
 ```sh
-python library_manager-with_no_model.py
+python library_manager.py
 ```
 
 ---
