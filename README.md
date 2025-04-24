@@ -101,8 +101,10 @@ Run the following command to package the application:
 ```sh
 pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm `
 --hidden-import=aiohttp --hidden-import=bs4 --hidden-import=tkinter `
---add-data "data;data"  --log-level DEBUG library_manager-with_no_model.py
+--add-data "data;data" --add-data "assets;assets" --icon "assets/open-book.ico" `
+--distpath "dist" --log-level DEBUG library_manager.py
 ```
+To repackage the app, delete the `build` folder and the old `.exe` file.
 
 ### Step 3: Locate the executable
 
