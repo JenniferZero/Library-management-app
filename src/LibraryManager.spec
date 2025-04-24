@@ -2,10 +2,10 @@
 
 
 a = Analysis(
-    ['library_manager-with_no_model.py'],
+    ['library_manager.py'],
     pathex=[],
     binaries=[],
-    datas=[('data', 'data')],
+    datas=[('data', 'data'), ('assets', 'assets')],
     hiddenimports=['aiohttp', 'bs4', 'tkinter'],
     hookspath=[],
     hooksconfig={},
@@ -35,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=['assets\\open-book.ico'],
 )

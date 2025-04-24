@@ -22,261 +22,485 @@
     },
     {
         "id": "OL7574091W",
-        "title": "[Report on American cotton picking machine.]",
+        "title": "[Referring claim of William E. Woodbridge for use of invention relating to projectiles to Court of Claims.]",
         "author": "United States. Congress. Senate. Committ...",
         "year": "1896",
+        "pages": 11
+    },
+    {
+        "id": "OL1892617W",
+        "title": "时间简史",
+        "author": "Stephen Hawking",
+        "year": "2006",
+        "pages": 138
+    },
+    {
+        "id": "OL24446425W",
+        "title": "International Review of Cytology",
+        "author": "George Bourne",
+        "year": "August 1986",
+        "pages": 396
+    },
+    {
+        "id": "OL1068214W",
+        "title": "A System of Logic, Ratiocinative and Inductive",
+        "author": "John Stuart Mill",
+        "year": "1961",
+        "pages": 622
+    },
+    {
+        "id": "OL15116693W",
+        "title": "Goethe's werke.",
+        "author": "Johann Wolfgang von Goethe",
+        "year": "1882",
+        "pages": 40
+    },
+    {
+        "id": "OL21015217W",
+        "title": "International Review of Cell and Molecular Biology",
+        "author": "Kwang W. Jeon",
+        "year": "2012",
+        "pages": 340
+    },
+    {
+        "id": "OL1827306W",
+        "title": "Principles of anatomy and physiology",
+        "author": "Gerard J. Tortora",
+        "year": "2000",
+        "pages": 160
+    },
+    {
+        "id": "OL14903327W",
+        "title": "4th Report [Session 1995-96]",
+        "author": "Rand McNally",
+        "year": "August 15, 1996",
+        "pages": 182
+    },
+    {
+        "id": "OL18407621W",
+        "title": "Introduction to genetic analysis",
+        "author": "Anthony J. F. Griffiths",
+        "year": "2012",
+        "pages": 832
+    },
+    {
+        "id": "OL515051W",
+        "title": "The Harvard Classics: Volume 11 - The Origin of Species",
+        "author": "Charles Darwin",
+        "year": "1937",
+        "pages": 361
+    },
+    {
+        "id": "OL723491W",
+        "title": "Moralia",
+        "author": "Plutarch",
+        "year": "1900",
+        "pages": 13
+    },
+    {
+        "id": "OL69382W",
+        "title": "The  essayes or counsels, civill and morall",
+        "author": "Francis Bacon",
+        "year": "1985",
+        "pages": 339
+    },
+    {
+        "id": "OL1356870W",
+        "title": "Histoire naturelle, générale et particulière",
+        "author": "Georges-Louis Leclerc, comte de Buffon",
+        "year": "1769",
+        "pages": 243
+    },
+    {
+        "id": "OL1151518W",
+        "title": "Discourse on method",
+        "author": "René Descartes",
+        "year": "1988",
+        "pages": 50
+    },
+    {
+        "id": "OL28988W",
+        "title": "Der goldene Kompaß",
+        "author": "Philip Pullman",
+        "year": "2005",
+        "pages": 410
+    },
+    {
+        "id": "OL14903351W",
+        "title": "1st Report [Session 1994-95]",
+        "author": "Rand McNally",
+        "year": "December 31, 1994",
+        "pages": 93
+    },
+    {
+        "id": "OL76664W",
+        "title": "Chuang zao jin hua lun",
+        "author": "Henri Bergson",
+        "year": "2011",
+        "pages": 348
+    },
+    {
+        "id": "OL695408W",
+        "title": "Leonardo.",
+        "author": "Leonardo da Vinci",
+        "year": "1975",
+        "pages": 179
+    },
+    {
+        "id": "OL17075811W",
+        "title": "Sapiens",
+        "author": "Yuval Noah Harari",
+        "year": "2015-04-30",
+        "pages": 498
+    },
+    {
+        "id": "OL262454W",
+        "title": "The Adventures of Sherlock Holmes and The Hound of the Baskervilles",
+        "author": "Arthur Conan Doyle",
+        "year": "2007",
+        "pages": 456
+    },
+    {
+        "id": "OL262421W",
+        "title": "Las aventuras de Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "year": "1998",
+        "pages": 248
+    },
+    {
+        "id": "OL472715W",
+        "title": "Zagadochnoe proisshestvie v Stailze",
+        "author": "Agatha Christie",
+        "year": "2013",
+        "pages": 286
+    },
+    {
+        "id": "OL471789W",
+        "title": "El Misterioso Sr. Brown",
+        "author": "Agatha Christie",
+        "year": "1997",
+        "pages": 287
+    },
+    {
+        "id": "OL8763148W",
+        "title": "The mystery of Edwin Drood",
+        "author": "Charles Dickens",
+        "year": "2004",
+        "pages": 284
+    },
+    {
+        "id": "OL262452W",
+        "title": "El último saludo de Sherlock Holmes",
+        "author": "Arthur Conan Doyle",
+        "year": "2004",
+        "pages": 284
+    },
+    {
+        "id": "OL23797W",
+        "title": "The riddle of the sands",
+        "author": "Erskine Childers",
+        "year": "2011",
+        "pages": 299
+    },
+    {
+        "id": "OL76487W",
+        "title": "The man who was Thursday",
+        "author": "Gilbert Keith Chesterton",
+        "year": "1986",
+        "pages": 120
+    },
+    {
+        "id": "OL38663W",
+        "title": "Heart of darkness",
+        "author": "Joseph Conrad",
+        "year": "1996",
+        "pages": 315
+    },
+    {
+        "id": "OL166894W",
+        "title": "Enkle ma kai timo ria",
+        "author": "Фёдор Михайлович Достоевский",
+        "year": "1994",
+        "pages": 384
+    },
+    {
+        "id": "OL76501W",
+        "title": "Greenmantle",
+        "author": "John Buchan",
+        "year": "2008",
+        "pages": 344
+    },
+    {
+        "id": "OL1315930W",
+        "title": "Trent's last case",
+        "author": "E. C. Bentley",
+        "year": "1997",
+        "pages": 163
+    },
+    {
+        "id": "OL82563W",
+        "title": "Harry Potter és a bölcsek köve",
+        "author": "J. K. Rowling",
+        "year": "2002",
+        "pages": 285
+    },
+    {
+        "id": "OL76595W",
+        "title": "Prester John",
+        "author": "John Buchan",
+        "year": "January 2001",
+        "pages": 230
+    },
+    {
+        "id": "OL2234917W",
+        "title": "Whose Body?",
+        "author": "Dorothy L. Sayers",
+        "year": "1987",
+        "pages": 171
+    },
+    {
+        "id": "OL176086W",
+        "title": "Basil",
+        "author": "Wilkie Collins",
+        "year": "1989",
+        "pages": 356
+    },
+    {
+        "id": "OL176068W",
+        "title": "The black robe",
+        "author": "Wilkie Collins",
+        "year": "1881",
+        "pages": 169
+    },
+    {
+        "id": "OL472073W",
+        "title": "The murder on the links",
+        "author": "Agatha Christie",
+        "year": "2015",
+        "pages": 273
+    },
+    {
+        "id": "OL6438811W",
+        "title": "Fifty Candles",
+        "author": "Earl Derr Biggers",
+        "year": "August 11, 2004",
+        "pages": 104
+    },
+    {
+        "id": "OL250352W",
+        "title": "Raffles",
+        "author": "E. W. Hornung",
+        "year": "2008",
+        "pages": 165
+    },
+    {
+        "id": "OL471576W",
+        "title": "オリエント急行の殺人",
+        "author": "Agatha Christie",
+        "year": "2011",
+        "pages": 413
+    },
+    {
+        "id": "OL471932W",
+        "title": "罗杰疑案",
+        "author": "Agatha Christie",
+        "year": "2013",
+        "pages": 246
+    },
+    {
+        "id": "OL471940W",
+        "title": "Les Enquêtes d'Hercule Poirot",
+        "author": "Agatha Christie",
+        "year": "2006",
+        "pages": 221
+    },
+    {
+        "id": "OL137397W",
+        "title": "The After House",
+        "author": "Mary Roberts Rinehart",
+        "year": "2014",
+        "pages": 129
+    },
+    {
+        "id": "OL1518053W",
+        "title": "Angel Of Terror",
+        "author": "Edgar Wallace",
+        "year": "July 1, 2001",
+        "pages": 210
+    },
+    {
+        "id": "OL76837W",
+        "title": "다빈치 코드",
+        "author": "Dan Brown",
+        "year": "2004",
+        "pages": 623
+    },
+    {
+        "id": "OL472549W",
+        "title": "L'homme au complet marron",
+        "author": "Agatha Christie",
+        "year": "2008",
+        "pages": 251
+    },
+    {
+        "id": "OL137396W",
+        "title": "The circular staircase",
+        "author": "Mary Roberts Rinehart",
+        "year": "1997",
+        "pages": 178
+    },
+    {
+        "id": "OL262586W",
+        "title": "Tales of terror and mystery",
+        "author": "Arthur Conan Doyle",
+        "year": "1999",
+        "pages": 337
+    },
+    {
+        "id": "OL176081W",
+        "title": "The Law and the Lady",
+        "author": "Wilkie Collins",
+        "year": "1998",
+        "pages": 393
+    },
+    {
+        "id": "OL471724W",
+        "title": "Poirot sul Nilo",
+        "author": "Agatha Christie",
+        "year": "1997",
+        "pages": 235
+    },
+    {
+        "id": "OL1172118W",
+        "title": "The lodger",
+        "author": "Marie Belloc Lowndes",
+        "year": "1996",
+        "pages": 203
+    },
+    {
+        "id": "OL1868679W",
+        "title": "R. Holmes & Co.",
+        "author": "John Kendrick Bangs",
+        "year": "1994",
+        "pages": 230
+    },
+    {
+        "id": "OL1546094W",
+        "title": "The Widow Lerouge",
+        "author": "Émile Gaboriau",
+        "year": "1976",
+        "pages": 156
+    },
+    {
+        "id": "OL1517945W",
+        "title": "Le Mystère des jonquilles",
+        "author": "Edgar Wallace",
+        "year": "1987",
+        "pages": 214
+    },
+    {
+        "id": "OL471509W",
+        "title": "A B C Murders",
+        "author": "Agatha Christie",
+        "year": "1975?",
         "pages": 0
     },
     {
-        "id": "OL1892617W",
-        "title": "时间简史",
-        "author": "Stephen Hawking",
-        "year": "2006",
-        "pages": 138
-    },
-    {
-        "id": "OL24446425W",
-        "title": "International Review of Cytology",
-        "author": "George Bourne",
-        "year": "August 1986",
-        "pages": 396
-    },
-    {
-        "id": "OL1068214W",
-        "title": "A System of Logic, Ratiocinative and Inductive",
-        "author": "John Stuart Mill",
-        "year": "1961",
-        "pages": 622
-    },
-    {
-        "id": "OL15116693W",
-        "title": "Goethe's werke.",
-        "author": "Johann Wolfgang von Goethe",
-        "year": "1882",
-        "pages": 40
-    },
-    {
-        "id": "OL21015217W",
-        "title": "International Review of Cell and Molecular Biology",
-        "author": "Kwang W. Jeon",
-        "year": "2012",
-        "pages": 340
-    },
-    {
-        "id": "OL1827306W",
-        "title": "Principles of anatomy & physiology",
-        "author": "Gerard J. Tortora",
+        "id": "OL471500W",
+        "title": "4:50 phṛāoma Paidiṇgatana",
+        "author": "Agatha Christie",
         "year": "2014",
-        "pages": 1127
+        "pages": 292
     },
     {
-        "id": "OL14903327W",
-        "title": "4th Report [Session 1995-96]",
-        "author": "Rand McNally",
-        "year": "August 15, 1996",
-        "pages": 182
+        "id": "OL30040W",
+        "title": "The Mysterious Key And What It Opened",
+        "author": "Louisa May Alcott",
+        "year": "January 31, 2006",
+        "pages": 112
     },
     {
-        "id": "OL18407621W",
-        "title": "Introduction to genetic analysis",
-        "author": "Anthony J. F. Griffiths",
-        "year": "2012",
-        "pages": 832
+        "id": "OL250350W",
+        "title": "Dead men tell no tales",
+        "author": "E. W. Hornung",
+        "year": "1899",
+        "pages": 276
     },
     {
-        "id": "OL515051W",
-        "title": "The Harvard Classics: Volume 11 - The Origin of Species",
-        "author": "Charles Darwin",
-        "year": "1937",
-        "pages": 361
+        "id": "OL176087W",
+        "title": "El secreto",
+        "author": "Wilkie Collins",
+        "year": "2001",
+        "pages": 381
     },
     {
-        "id": "OL723491W",
-        "title": "Moralia",
-        "author": "Plutarch",
-        "year": "1900",
-        "pages": 13
+        "id": "OL82586W",
+        "title": "Harry Potter and the Deathly Hallows",
+        "author": "J. K. Rowling",
+        "year": "2007",
+        "pages": 607
     },
     {
-        "id": "OL69382W",
-        "title": "The  essayes or counsels, civill and morall",
-        "author": "Francis Bacon",
-        "year": "1985",
-        "pages": 339
+        "id": "OL471771W",
+        "title": "A murder is announced",
+        "author": "Agatha Christie",
+        "year": "2006?",
+        "pages": 0
     },
     {
-        "id": "OL1356870W",
-        "title": "Histoire naturelle, générale et particulière",
-        "author": "Georges-Louis Leclerc, comte de Buffon",
-        "year": "1769",
-        "pages": 243
+        "id": "OL2895540W",
+        "title": "The house by the churchyard",
+        "author": "Joseph Sheridan Le Fanu",
+        "year": "1992",
+        "pages": 422
     },
     {
-        "id": "OL1151518W",
-        "title": "A discourse on method",
-        "author": "René Descartes",
-        "year": "1994",
-        "pages": 240
+        "id": "OL471895W",
+        "title": "The murder at the vicarage",
+        "author": "Agatha Christie",
+        "year": "1983",
+        "pages": 231
     },
     {
-        "id": "OL28988W",
-        "title": "Der goldene Kompaß",
-        "author": "Philip Pullman",
-        "year": "2005",
-        "pages": 410
+        "id": "OL471603W",
+        "title": "The mystery of the Blue Train",
+        "author": "Agatha Christie",
+        "year": "2010",
+        "pages": 372
     },
     {
-        "id": "OL14903351W",
-        "title": "1st Report [Session 1994-95]",
-        "author": "Rand McNally",
-        "year": "December 31, 1994",
-        "pages": 93
-    },
-    {
-        "id": "OL76664W",
-        "title": "Chuang zao jin hua lun",
-        "author": "Henri Bergson",
-        "year": "2011",
-        "pages": 348
-    },
-    {
-        "id": "OL695408W",
-        "title": "Leonardo.",
-        "author": "Leonardo da Vinci",
-        "year": "1975",
-        "pages": 179
-    },
-    {
-        "id": "OL17075811W",
-        "title": "Sapiens",
-        "author": "Yuval Noah Harari",
-        "year": "2015-04-30",
-        "pages": 498
-    },
-    {
-        "id": "OL1892617W",
-        "title": "时间简史",
-        "author": "Stephen Hawking",
+        "id": "OL472049W",
+        "title": "Evil Under the Sun",
+        "author": "Agatha Christie",
         "year": "2006",
-        "pages": 138
+        "pages": 224
     },
     {
-        "id": "OL24446425W",
-        "title": "International Review of Cytology",
-        "author": "George Bourne",
-        "year": "August 1986",
-        "pages": 396
+        "id": "OL1992198W",
+        "title": "In cold blood",
+        "author": "Truman Capote",
+        "year": "2002",
+        "pages": 343
     },
     {
-        "id": "OL1068214W",
-        "title": "A System of Logic, Ratiocinative and Inductive",
-        "author": "John Stuart Mill",
-        "year": "1961",
-        "pages": 622
+        "id": "OL472542W",
+        "title": "The Secret of Chimneys",
+        "author": "Agatha Christie",
+        "year": "1987",
+        "pages": 232
     },
     {
-        "id": "OL15116693W",
-        "title": "Goethe's werke.",
-        "author": "Johann Wolfgang von Goethe",
-        "year": "1882",
-        "pages": 40
+        "id": "OL471990W",
+        "title": "El Espejo roto",
+        "author": "Agatha Christie",
+        "year": "1993",
+        "pages": 220
     },
     {
-        "id": "OL21015217W",
-        "title": "International Review of Cell and Molecular Biology",
-        "author": "Kwang W. Jeon",
-        "year": "2012",
-        "pages": 340
-    },
-    {
-        "id": "OL1827306W",
-        "title": "Principles of anatomy & physiology",
-        "author": "Gerard J. Tortora",
-        "year": "2014",
-        "pages": 1127
-    },
-    {
-        "id": "OL14903327W",
-        "title": "4th Report [Session 1995-96]",
-        "author": "Rand McNally",
-        "year": "August 15, 1996",
-        "pages": 182
-    },
-    {
-        "id": "OL18407621W",
-        "title": "Introduction to genetic analysis",
-        "author": "Anthony J. F. Griffiths",
-        "year": "2012",
-        "pages": 832
-    },
-    {
-        "id": "OL515051W",
-        "title": "The Harvard Classics: Volume 11 - The Origin of Species",
-        "author": "Charles Darwin",
-        "year": "1937",
-        "pages": 361
-    },
-    {
-        "id": "OL723491W",
-        "title": "Moralia",
-        "author": "Plutarch",
-        "year": "1900",
-        "pages": 13
-    },
-    {
-        "id": "OL69382W",
-        "title": "The  essayes or counsels, civill and morall",
-        "author": "Francis Bacon",
-        "year": "1985",
-        "pages": 339
-    },
-    {
-        "id": "OL1356870W",
-        "title": "Histoire naturelle, générale et particulière",
-        "author": "Georges-Louis Leclerc, comte de Buffon",
-        "year": "1769",
-        "pages": 243
-    },
-    {
-        "id": "OL1151518W",
-        "title": "A discourse on method",
-        "author": "René Descartes",
-        "year": "1994",
-        "pages": 240
-    },
-    {
-        "id": "OL28988W",
-        "title": "Der goldene Kompaß",
-        "author": "Philip Pullman",
-        "year": "2005",
-        "pages": 410
-    },
-    {
-        "id": "OL14903351W",
-        "title": "1st Report [Session 1994-95]",
-        "author": "Rand McNally",
-        "year": "December 31, 1994",
-        "pages": 93
-    },
-    {
-        "id": "OL76664W",
-        "title": "Chuang zao jin hua lun",
-        "author": "Henri Bergson",
-        "year": "2011",
-        "pages": 348
-    },
-    {
-        "id": "OL695408W",
-        "title": "Leonardo.",
-        "author": "Leonardo da Vinci",
-        "year": "1975",
-        "pages": 179
-    },
-    {
-        "id": "OL17075811W",
-        "title": "Sapiens",
-        "author": "Yuval Noah Harari",
-        "year": "2015-04-30",
-        "pages": 498
+        "id": "OL471610W",
+        "title": "C'è un cadavere in biblioteca",
+        "author": "Agatha Christie",
+        "year": "2008",
+        "pages": 202
     }
 ]

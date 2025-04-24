@@ -1,17 +1,15 @@
-
 import tkinter as tk
 import threading
 import json
 import os
 import asyncio
 import aiohttp
-import spacy
 
+from PIL import Image, ImageTk
 from tkinter import ttk
 from datetime import datetime
 from tkinter import messagebox
 from bs4 import BeautifulSoup
-
 
 
 if __name__ == "__main__" and hasattr(asyncio, "WindowsSelectorEventLoopPolicy"):
@@ -21,13 +19,11 @@ if __name__ == "__main__" and hasattr(asyncio, "WindowsSelectorEventLoopPolicy")
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-
 # Đường dẫn tới các file JSON
 USERS_FILE = os.path.join(DATA_DIR, 'users.json')
 BOOKS_FILE = os.path.join(DATA_DIR, 'books.json')
 READERS_FILE = os.path.join(DATA_DIR, 'readers.json')
 BORROW_FILE = os.path.join(DATA_DIR, 'borrow.json')
-KEYWORDS_FILE = os.path.join(DATA_DIR, 'keywords.txt')
 
 # # Khởi tạo dữ liệu mặc định 
 # def initialize_default_data():
@@ -72,41 +68,9 @@ def read_urls_from_file(file_path):
             return [line.strip() for line in file if line.strip()]
     return []
 
-# Tải mô hình NLP đã được huấn luyện
-base_dir = os.path.dirname(os.path.abspath(__file__))  
-model_path = os.path.join(base_dir, "en_core_web_sm-3.5.0")
-nlp = spacy.load(model_path)
-
-# nlp = spacy.load("en_core_web_sm")# chỉ thực hiện load được khi install spacy và download model en_core_web_sm
-
-def load_keywords(file_path=KEYWORDS_FILE):
-    keywords_dict = {}
-    if os.path.exists(file_path):
-        with open(file_path, 'r', encoding='utf-8') as file:
-            for line in file:
-                line = line.strip()
-                if not line or ':' not in line:
-                    continue
-                genre, keywords_str = line.split(':', 1)
-                genre = genre.strip()
-                keywords_list = [kw.strip() for kw in keywords_str.split(',') if kw.strip()]
-                keywords_dict[genre] = keywords_list
-    return keywords_dict
-
-def get_keywords_for_genre(genre):
-    keywords = load_keywords()
-    return keywords.get(genre, [])
-
-def predict_genre(text):
-    keywords = load_keywords()
-    text = text.lower()
-    genre_scores = {genre: sum(text.count(word.lower()) for word in words) for genre, words in keywords.items()}
-    
-    best_genre = max(genre_scores, key=genre_scores.get) if genre_scores else "-"
-    return best_genre if genre_scores.get(best_genre, 0) > 0 else "-"
 
 # Hàm crawl dữ liệu sách từ Open Library
-async def crawl_data(session, url, predict_genre=predict_genre):
+async def crawl_data(session, url):
     try:
         async with session.get(url) as response:
             html = await response.text()
@@ -116,21 +80,15 @@ async def crawl_data(session, url, predict_genre=predict_genre):
             author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "-"
             publish_date = soup.find('span', {'itemprop': 'datePublished'})
             year = publish_date.text.strip() if publish_date else "-"
-            # pages = soup.find('span', {'itemprop': 'numberOfPages'}).text.strip() if soup.find('span', {'itemprop': 'numberOfPages'}) else "-"
             
             pages_element = soup.find('span', {'itemprop': 'numberOfPages'})
-            pages = pages_element.text.strip() if pages_element else "0"  # Mặc định là "0" nếu không tìm thấy
-            
-            # Trích xuất nội dung văn bản từ thẻ <p> trong HTML
-            content = " ".join([p.text for p in soup.find_all('p')])
-            genre = predict_genre(content)
+            pages = pages_element.text.strip() if pages_element else "0"
             
             return {
                 "id": url.split('/')[-1],
                 "title": title,
                 "author": author,
                 "year": year,
-                "genre": genre.split(),
                 "pages": int(pages) if pages.isdigit() else 0 
             }
     except Exception as e:
@@ -145,30 +103,50 @@ async def crawl_books(book_urls, max_concurrent_requests=3):
         results = await asyncio.gather(*tasks, return_exceptions=True)
         return [result for result in results if result is not None and not isinstance(result, Exception)]
 
-# # Hàm khởi tạo dữ liệu sách
-# def initialize_book_data():
-#     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
-#     book_urls = read_urls_from_file(book_urls_file)
-
-#     books_data = asyncio.run(crawl_books(book_urls))
-#     write_json(BOOKS_FILE, books_data)
-#     print("Dữ liệu sách đã được cập nhật vào books.json")
-
-# initialize_book_data()
-
-
 # Hàm crawl data bất đồng bộ được chạy trong một thread riêng
-def async_crawl_books():
+def async_crawl_books_with_progress():
     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
     book_urls = read_urls_from_file(book_urls_file)
-    # Chạy vòng lặp asyncio riêng trong thread này
-    books_data = asyncio.run(crawl_books(book_urls))
-    write_json(BOOKS_FILE, books_data)
-    messagebox.showinfo("Thành công", "Dữ liệu sách đã được cập nhật vào books.json")
+    
+    # Hiển thị thanh tiến trình
+    progress_window = tk.Toplevel()
+    progress_window.title("Đang Crawl Dữ Liệu")
+    progress_window.geometry("400x100")
+    
+    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+    progress_window.iconbitmap(logo_path)
+    
+    tk.Label(progress_window, text="Đang crawl dữ liệu, vui lòng chờ...").pack(pady=10)
+    progress_bar = ttk.Progressbar(progress_window, orient=tk.HORIZONTAL, length=300, mode='determinate')
+    progress_bar.pack(pady=10)
+    
+    def crawl_with_progress():
+        total_urls = len(book_urls)
+        progress_bar["maximum"] = total_urls
+        
+        async def crawl_and_update():
+            connector = aiohttp.TCPConnector(limit_per_host=3)
+            async with aiohttp.ClientSession(connector=connector) as session:
+                for i, url in enumerate(book_urls, start=1):
+                    result = await crawl_data(session, url)
+                    if result:
+                        books_data.append(result)
+                    
+                    # Cập nhật progress_bar trong luồng chính
+                    progress_window.after(0, progress_bar.config, {"value": i})
+                    progress_window.update_idletasks()
+        
+        books_data = []
+        asyncio.run(crawl_and_update())
+        write_json(BOOKS_FILE, books_data)
+        progress_window.destroy()
+        messagebox.showinfo("Thành công", "Dữ liệu sách đã được cập nhật vào books.json")
+    
+    threading.Thread(target=crawl_with_progress).start()
 
-# Hàm khởi chạy crawl data trong thread riêng
+# Cập nhật hàm khởi chạy crawl data trong thread riêng
 def threaded_crawl_data():
-    t = threading.Thread(target=async_crawl_books)
+    t = threading.Thread(target=async_crawl_books_with_progress)
     t.start()
 
 # Hàm tạo cửa sổ đăng nhập
@@ -180,6 +158,18 @@ def create_login_window():
     login_window.title("Đăng Nhập")
     login_window.geometry("2000x1200")
     login_window.configure(bg='#91DBF3')
+    
+    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+    login_window.iconbitmap(logo_path)
+    
+    # Thêm hình ảnh vào trang đăng nhập
+    image_path = os.path.join(os.path.dirname(__file__), "assets", "library.png")
+    img = Image.open(image_path)
+    img = img.resize((2000, 1200), Image.Resampling.LANCZOS) 
+    photo = ImageTk.PhotoImage(img)
+    image_label = tk.Label(login_window, image=photo, bg='#91DBF3')
+    image_label.image = photo 
+    image_label.pack(pady=0)
     
     frame = tk.Frame(login_window, bg='#EEEEEE', padx=100, pady=20, relief=tk.RIDGE, bd=5)
     frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
@@ -204,6 +194,9 @@ def create_register_window():
     register_window.title("Đăng Ký")
     register_window.geometry("330x400")
     register_window.configure(bg='#91DBF3')
+    
+    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+    register_window.iconbitmap(logo_path)
     
     frame = tk.Frame(register_window, bg='#EEEEEE', padx=20, pady=20, relief=tk.RIDGE, bd=5)
     frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
@@ -261,6 +254,36 @@ def login():
             return
     
     messagebox.showerror("Lỗi", "Tên đăng nhập hoặc mật khẩu không đúng.")
+    
+# Hàm tạo cửa sổ thông báo với logo tùy chỉnh 
+def custom_messagebox(title, message, icon="info"):
+    msg_window = tk.Toplevel()
+    msg_window.title(title)
+    msg_window.geometry("350x150")
+    msg_window.resizable(False, False)
+    
+    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+    msg_window.iconbitmap(logo_path)
+    
+    tk.Label(msg_window, text=message, font=("Arial", 24), wraplength=300).pack(pady=20)
+    
+    # Thêm biểu tượng tùy thuộc vào loại thông báo
+    if icon == "info":
+        icon_label = tk.Label(msg_window, text="ℹ️", font=("Arial", 24))
+    elif icon == "warning":
+        icon_label = tk.Label(msg_window, text="⚠️", font=("Arial", 24))
+    elif icon == "error":
+        icon_label = tk.Label(msg_window, text="❌", font=("Arial", 24))
+    else:
+        icon_label = tk.Label(msg_window, text="", font=("Arial", 24))
+    icon_label.pack(pady=5)
+    
+    tk.Button(msg_window, text="OK", command=msg_window.destroy).pack(pady=10)
+    
+    # Đặt cửa sổ ở giữa màn hình
+    msg_window.transient(root)
+    msg_window.grab_set()
+    root.wait_window(msg_window)
 
 # Hàm kích hoạt các tính năng của admin
 def enable_admin_features():
@@ -302,6 +325,9 @@ def create_profile_window():
     profile_window.geometry("350x380")
     profile_window.configure(bg='#e0f7fa')
     
+    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+    profile_window.iconbitmap(logo_path)
+    
     frame = tk.Frame(profile_window, bg='#ffffff', padx=20, pady=20, relief=tk.RIDGE, bd=5)
     frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
     
@@ -318,6 +344,7 @@ def logout():
     current_user = None
     profile_window.destroy()
     root.withdraw()
+    create_login_window()
 
 # Hàm kiểm tra định dạng ngày
 def validate_date(date_text):
@@ -341,10 +368,9 @@ def add_book():
     title = entry_title.get()
     author = entry_author.get()
     year = entry_year.get()
-    genre = entry_genre.get()
     pages = entry_pages.get()
 
-    if not title or not author or not year or not genre or not pages:
+    if not title or not author or not year or not pages:
         messagebox.showerror("Lỗi", "Vui lòng nhập đầy đủ thông tin sách.")
         return
 
@@ -362,7 +388,6 @@ def add_book():
         "title": title,
         "author": author,
         "year": int(year),
-        "genre": genre.split(),
         "pages": int(pages)
     }
     books.append(new_book)
@@ -515,7 +540,6 @@ def clear_entries():
     entry_title.delete(0, tk.END)
     entry_author.delete(0, tk.END)
     entry_year.delete(0, tk.END)
-    entry_genre.delete(0, tk.END)
     entry_pages.delete(0, tk.END)
     entry_name.delete(0, tk.END)
     entry_address.delete(0, tk.END)
@@ -533,10 +557,9 @@ def edit_book():
     title = entry_title.get()
     author = entry_author.get()
     year = entry_year.get()
-    genre = entry_genre.get()
     pages = entry_pages.get()
 
-    if not book_id or not title or not author or not year or not genre or not pages:
+    if not book_id or not title or not author or not year or not pages:
         messagebox.showerror("Lỗi", "Vui lòng nhập đầy đủ thông tin sách.")
         return
 
@@ -546,7 +569,6 @@ def edit_book():
             book["title"] = title
             book["author"] = author
             book["year"] = int(year)
-            book["genre"] = genre.split()
             book["pages"] = int(pages)
             break
     else:
@@ -615,32 +637,27 @@ def show_books():
     books = read_json(BOOKS_FILE)
     clear_entries()
     clear_display()
-
-    # Định dạng cột
-    tree["columns"] = ("STT", "ID", "Tên Sách", "Tác Giả", "Năm", "Thể Loại", "Số Trang")
-    tree.column("#0", width=0, stretch=tk.NO)  # Cột ẩn
+    
+    tree["columns"] = ("STT", "ID", "Tên Sách", "Tác Giả", "Năm", "Số Trang")
+    tree.column("#0", width=0, stretch=tk.NO)
     tree.column("STT", anchor=tk.CENTER, width=40)
     tree.column("ID", anchor=tk.W, width=80)
     tree.column("Tên Sách", anchor=tk.W, width=300)
     tree.column("Tác Giả", anchor=tk.W, width=200)
     tree.column("Năm", anchor=tk.CENTER, width=60)
-    tree.column("Thể Loại", anchor=tk.W, width=100)
     tree.column("Số Trang", anchor=tk.CENTER, width=60)
 
-    # Tiêu đề cột
     tree.heading("#0", text="", anchor=tk.W)
     tree.heading("STT", text="STT", anchor=tk.CENTER)
     tree.heading("ID", text="ID", anchor=tk.W)
     tree.heading("Tên Sách", text="Tên Sách", anchor=tk.W)
     tree.heading("Tác Giả", text="Tác Giả", anchor=tk.W)
     tree.heading("Năm", text="Năm", anchor=tk.CENTER)
-    tree.heading("Thể Loại", text="Thể Loại", anchor=tk.W)
     tree.heading("Số Trang", text="Số Trang", anchor=tk.CENTER)
 
-    # Thêm dữ liệu vào bảng
     for idx, book in enumerate(books, start=1):
-        tree.insert("", tk.END, values=(idx, book["id"], book["title"], book["author"], 
-                                         book["year"], ', '.join(book["genre"]), book["pages"]))
+        tree.insert("", tk.END, values=(idx, book["id"], book["title"], book["author"], book["year"], book["pages"]))
+
 
 # Hàm hiển thị thông tin độc giả
 def show_readers():
@@ -703,37 +720,35 @@ def search_info():
         messagebox.showerror("Lỗi", "Vui lòng nhập từ khóa tìm kiếm.")
         return
 
+    # Lấy dữ liệu từ file JSON tương ứng
     if search_type == "Sách":
         items = read_json(BOOKS_FILE)
-        results = []
-        for item in items:
-            if (keyword in item["title"].lower() or
-                keyword in item["author"].lower() or
-                keyword in item["year"].lower() or
-                any(keyword in genre.lower() for genre in item["genre"]) or
-                keyword == str(item["id"]).lower() or
-                keyword == str(item["pages"]).lower()):
-                results.append(item)
     elif search_type == "Độc Giả":
         items = read_json(READERS_FILE)
-        results = [item for item in items if keyword in item["name"].lower() or keyword in item["address"].lower() or keyword in item["phone"].lower() or keyword in item["email"].lower() or keyword == str(item["id"]).lower()]
     elif search_type == "Mượn Trả":
         items = read_json(BORROW_FILE)
-        results = [item for item in items if keyword == str(item["reader_id"]).lower() or keyword == str(item["book_id"]).lower() or keyword == item["borrow_date"].lower() or keyword == item["return_date"].lower()]
     else:
         messagebox.showerror("Lỗi", "Vui lòng chọn loại thông tin cần tìm kiếm.")
         return
 
+    # Tìm kiếm từ khóa trong tất cả các trường của từng mục
+    results = []
+    for item in items:
+        for value in item.values():
+            if keyword in str(value).lower():
+                results.append(item)
+                break
+
+    # Hiển thị kết quả tìm kiếm
     clear_display()
     if search_type == "Sách":
-        tree["columns"] = ("ID", "Tên Sách", "Tác Giả", "Năm", "Thể Loại", "Số Lượng")
-        tree.column("#0", width=0, stretch=tk.NO)  # Cột ẩn
+        tree["columns"] = ("STT", "ID", "Tên Sách", "Tác Giả", "Năm", "Số Trang")
+        tree.column("#0", width=0, stretch=tk.NO)
         tree.column("STT", anchor=tk.CENTER, width=40)
         tree.column("ID", anchor=tk.W, width=80)
         tree.column("Tên Sách", anchor=tk.W, width=300)
         tree.column("Tác Giả", anchor=tk.W, width=200)
         tree.column("Năm", anchor=tk.CENTER, width=60)
-        tree.column("Thể Loại", anchor=tk.W, width=100)
         tree.column("Số Trang", anchor=tk.CENTER, width=60)
 
         tree.heading("#0", text="", anchor=tk.W)
@@ -742,13 +757,12 @@ def search_info():
         tree.heading("Tên Sách", text="Tên Sách", anchor=tk.W)
         tree.heading("Tác Giả", text="Tác Giả", anchor=tk.W)
         tree.heading("Năm", text="Năm", anchor=tk.CENTER)
-        tree.heading("Thể Loại", text="Thể Loại", anchor=tk.W)
         tree.heading("Số Trang", text="Số Trang", anchor=tk.CENTER)
 
-        for item in results:
-            tree.insert("", tk.END, values=(item["id"], item["title"], item["author"], item["year"], ', '.join(item["genre"]), item["pages"]))
+        for idx, item in enumerate(results, start=1):
+            tree.insert("", tk.END, values=(idx, item["id"], item["title"], item["author"], item["year"], item["pages"]))
     elif search_type == "Độc Giả":
-        tree["columns"] = ("ID", "Tên", "Địa Chỉ", "SĐT", "Email")
+        tree["columns"] = ("STT", "ID", "Tên", "Địa Chỉ", "SĐT", "Email")
         tree.column("#0", width=0, stretch=tk.NO)
         tree.column("STT", anchor=tk.W, width=30)
         tree.column("ID", anchor=tk.W, width=50)
@@ -765,9 +779,10 @@ def search_info():
         tree.heading("SĐT", text="SĐT", anchor=tk.CENTER)
         tree.heading("Email", text="Email", anchor=tk.W)
 
-        for item in results:
-            tree.insert("", tk.END, values=(item["id"], item["name"], item["address"], item["phone"], item["email"]))
+        for idx, item in enumerate(results, start=1):
+            tree.insert("", tk.END, values=(idx, item["id"], item["name"], item["address"], item["phone"], item["email"]))
     elif search_type == "Mượn Trả":
+        tree["columns"] = ("STT", "ID Độc Giả", "ID Sách", "Ngày Mượn", "Ngày Trả")
         tree.column("#0", width=0, stretch=tk.NO)
         tree.column("STT", anchor=tk.W, width=10)
         tree.column("ID Độc Giả", anchor=tk.W, width=100)
@@ -782,13 +797,20 @@ def search_info():
         tree.heading("Ngày Mượn", text="Ngày Mượn", anchor=tk.CENTER)
         tree.heading("Ngày Trả", text="Ngày Trả", anchor=tk.CENTER)
 
-        for item in results:
-            tree.insert("", tk.END, values=(item["reader_id"], item["book_id"], item["borrow_date"], item["return_date"]))
+        for idx, item in enumerate(results, start=1):
+            tree.insert("", tk.END, values=(idx, item["reader_id"], item["book_id"], item["borrow_date"], item["return_date"]))
 
+    if not results:
+        messagebox.showinfo("Kết Quả", "Không tìm thấy kết quả phù hợp.")
 # Hàm xóa thông tin hiển thị
 def clear_display():
+    # Xóa tất cả các mục trong Treeview
     for item in tree.get_children():
         tree.delete(item)
+    
+    # Xóa cấu trúc cột hiện tại
+    tree["columns"] = ()
+    tree.delete(*tree.get_children())
         
 # Tạo giao diện người dùng
 root = tk.Tk()
@@ -797,8 +819,11 @@ root.geometry("80000x12000")
 root.grid_rowconfigure(1, weight=1)
 root.grid_columnconfigure(1, weight=1)
 
+logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
+root.iconbitmap(logo_path)
+
 # Khung quản lý sách
-frame_books = tk.LabelFrame(root, text="Quản Lý Sách", padx=5, pady=10)
+frame_books = tk.LabelFrame(root, text="Quản Lý Sách", padx=5, pady=10, border=2, font=("Arial", 10, "bold"))
 frame_books.grid(row=1, column=0, padx=10, pady=0, sticky="nsew")
 
 tk.Label(frame_books, text="ID Sách").grid(row=0, column=0, sticky="w", padx=5, pady=5)
@@ -817,10 +842,6 @@ tk.Label(frame_books, text="Năm Xuất Bản").grid(row=3, column=0, sticky="w"
 entry_year = tk.Entry(frame_books)
 entry_year.grid(row=3, column=1, padx=5, pady=5)
 
-tk.Label(frame_books, text="Thể Loại").grid(row=4, column=0, sticky="w", padx=5, pady=5)
-entry_genre = tk.Entry(frame_books)
-entry_genre.grid(row=4, column=1, padx=5, pady=5)
-
 tk.Label(frame_books, text="Số Trang").grid(row=5, column=0, sticky="w", padx=5, pady=5)
 entry_pages = tk.Entry(frame_books)
 entry_pages.grid(row=5, column=1, padx=5, pady=5)
@@ -831,7 +852,7 @@ tk.Button(frame_books, text="Hiển Thị Sách", command=show_books).grid(row=7
 tk.Button(frame_books, text="Chỉnh Sửa Sách", command=edit_book).grid(row=7, column=1, pady=2, padx=5)
 
 # Khung quản lý độc giả
-frame_readers = tk.LabelFrame(root, text="Quản Lý Độc Giả", padx=5, pady=10)
+frame_readers = tk.LabelFrame(root, text="Quản Lý Độc Giả", padx=5, pady=25,border=2,font=("Arial", 10, "bold"))
 frame_readers.grid(row=2, column=0, padx=10, pady=0, sticky="nsew")
 
 tk.Label(frame_readers, text="ID Độc Giả").grid(row=0, column=0, sticky="w", padx=5, pady=5)
@@ -860,7 +881,7 @@ tk.Button(frame_readers, text="Hiển Thị Độc Giả", command=show_readers)
 tk.Button(frame_readers, text="Chỉnh Sửa Độc Giả", command=edit_reader).grid(row=6, column=1, pady=2, padx=5)
 
 # Khung quản lý mượn trả
-frame_borrow = tk.LabelFrame(root, text="Quản Lý Mượn Trả", padx=5, pady=10)
+frame_borrow = tk.LabelFrame(root, text="Quản Lý Mượn Trả", padx=5, pady=20,border=2, font=("Arial", 10, "bold"))
 frame_borrow.grid(row=3, column=0, padx=10, pady=5, sticky="nsew")
 
 tk.Label(frame_borrow, text="ID Độc Giả").grid(row=0, column=0, sticky="w", padx=5, pady=5)
@@ -884,15 +905,13 @@ tk.Button(frame_borrow, text="Xóa Mượn Trả", command=delete_borrow).grid(r
 tk.Button(frame_borrow, text="Hiển Thị Mượn Trả", command=show_borrows).grid(row=5, column=0, pady=2, padx=5)
 tk.Button(frame_borrow, text="Chỉnh Sửa Mượn Trả", command=edit_borrow).grid(row=5, column=1, pady=2, padx=5)
 
-# create_login_window()
-
 # Khung hiển thị thông tin
 frame_right = tk.Frame(root)
 frame_right.grid(row=1, column=1, columnspan=20, rowspan=4, padx=10, pady=7, sticky="nsew")
 frame_right.grid_rowconfigure(0, weight=1)
 frame_right.grid_columnconfigure(0, weight=1)
 
-# Tạo thanh cuộn dọc
+# Thanh cuộn dọc
 v_scrollbar = tk.Scrollbar(frame_right, orient=tk.VERTICAL)
 v_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
@@ -903,34 +922,27 @@ tree.pack(expand=True, fill="both")
 v_scrollbar.config(command=tree.yview)
 
 # Khung tìm kiếm
-frame_search = tk.Frame(root, padx=20, pady=5)
+frame_search = tk.Frame(root, padx=20, pady=0)
 frame_search.grid(row=0, column=1, columnspan=2, padx=0, pady=0, sticky="ew")
 
-tk.Label(frame_search, text="Tìm Kiếm Theo").grid(row=0, column=0, sticky="w", padx=5, pady=5)
+tk.Label(frame_search, text="Tìm Kiếm Theo").grid(row=0, column=0, sticky="w", padx=5, pady=0)
 search_combobox = ttk.Combobox(frame_search, values=["Sách", "Độc Giả", "Mượn Trả"])
-search_combobox.grid(row=0, column=1, padx=5, pady=5)
+search_combobox.grid(row=0, column=1, padx=5, pady=0)
 
-tk.Label(frame_search, text="Từ Khóa").grid(row=0, column=2, sticky="w", padx=5, pady=5)
+tk.Label(frame_search, text="Từ Khóa").grid(row=0, column=2, sticky="w", padx=5, pady=0)
 search_entry = tk.Entry(frame_search)
-search_entry.grid(row=0, column=3, padx=5, pady=5)
+search_entry.grid(row=0, column=3, padx=5, pady=0)
 
 tk.Button(frame_search, text="Tìm Kiếm", command=search_info).grid(row=0, column=4, padx=5, pady=5)
 
 # Nút Crawl Dữ Liệu
-# crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=initialize_book_data)
-# crawl_button.grid(row=0, column=5, pady=5, padx=250, sticky="e")
-
 crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=threaded_crawl_data)
-crawl_button.grid(row=0, column=5, pady=5, padx=250, sticky="e")
+crawl_button.grid(row=0, column=6, pady=0, padx=20, sticky="e")
 crawl_button.config(state=tk.DISABLED)
 
 # Nút Hồ Sơ
 profile_button = tk.Button(root, text="Hồ Sơ", command=create_profile_window)
-profile_button.grid(row=0, column=9, padx=30, pady=10, sticky="e")
-
-# Khung hiển thị thông tin hồ sơ
-# frame_right = tk.Frame(root)
-# frame_right.grid(row=1, column=1, columnspan=2, rowspan=10, padx=10, pady=10, sticky="nsew")
+profile_button.grid(row=0, column=7, padx=30, pady=0, sticky="e")
 
 # Vô hiệu hóa tất cả nút khi chưa đăng nhập
 add_book = tk.Button(frame_books, text="Thêm Sách", command=add_book)
