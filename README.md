@@ -1,14 +1,14 @@
-# Library Management App
+# Ứng dụng Quản lý Thư Viện
 
-A library management application with user authentication, book management, and data crawling features.
+Một ứng dụng quản lý thư viện với các tính năng xác thực người dùng, quản lý sách và thu thập dữ liệu.
 
 ---
 
-## Installation
+## Cài đặt
 
-### Step 1: Clone the repository
+### Bước 1: Sao chép (clone) kho lưu trữ
 
-Clone the project repository to your local machine:
+Sao chép kho lưu trữ dự án về máy của bạn:
 
 ```sh
 git clone https://github.com/JenniferZero/Library-management-app.git
@@ -17,17 +17,17 @@ cd Library-management-app
 
 ---
 
-### Step 2: Set up a virtual environment (optional but recommended)
+### Bước 2: Thiết lập môi trường ảo (tùy chọn)
 
-Create and activate a virtual environment to isolate dependencies:
+Tạo và kích hoạt môi trường ảo để cô lập các thư viện phụ thuộc:
 
-#### On Windows:
+#### Trên Windows:
 ```sh
 python -m venv venv
 venv\Scripts\activate
 ```
 
-#### On macOS/Linux:
+#### Trên macOS/Linux:
 ```sh
 python3 -m venv venv
 source venv/bin/activate
@@ -35,15 +35,15 @@ source venv/bin/activate
 
 ---
 
-### Step 3: Install dependencies
+### Bước 3: Cài đặt các thư viện phụ thuộc
 
-Install all required dependencies from the `requirements.txt` file:
+Cài đặt tất cả các thư viện phụ thuộc từ tệp `requirements.txt`:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-If some dependencies are missing, install them manually:
+Nếu một số thư viện bị thiếu, hãy cài đặt chúng thủ công:
 
 ```sh
 pip install aiohttp beautifulsoup4
@@ -51,17 +51,17 @@ pip install aiohttp beautifulsoup4
 
 ---
 
-## Running the Application
+## Chạy ứng dụng
 
-### Step 1: Navigate to the source directory
+### Bước 1: Điều hướng đến thư mục nguồn
 
 ```sh
 cd src
 ```
 
-### Step 2: Run the application
+### Bước 2: Chạy ứng dụng
 
-Run the application using Python:
+Chạy ứng dụng bằng Python:
 
 ```sh
 python library_manager.py
@@ -69,34 +69,34 @@ python library_manager.py
 
 ---
 
-## Data Files
+## Tệp dữ liệu
 
-The application uses several JSON files to store data. These files are located in the `src/data` directory:
+Ứng dụng sử dụng một số tệp JSON để lưu trữ dữ liệu. Các tệp này nằm trong thư mục `src/data`:
 
-- `users.json`: Stores user information.
-- `books.json`: Stores book information.
-- `readers.json`: Stores reader information.
-- `borrow.json`: Stores borrowing records.
+- `users.json`: Lưu trữ thông tin người dùng.
+- `books.json`: Lưu trữ thông tin sách.
+- `readers.json`: Lưu trữ thông tin độc giả.
+- `borrow.json`: Lưu trữ thông tin mượn sách.
 
-Make sure these files are present in the `src/data` directory before running the application. If they are missing, create empty JSON files with the same names.
+Đảm bảo các tệp này có mặt trong thư mục `src/data` trước khi chạy ứng dụng. Nếu chúng bị thiếu, hãy tạo các tệp JSON trống với cùng tên.
 
 ---
 
-## Packaging the Application
+## Đóng gói ứng dụng
 
-To package the application into a standalone executable file, follow these steps:
+Để đóng gói ứng dụng thành một tệp thực thi độc lập, hãy làm theo các bước sau:
 
-### Step 1: Install PyInstaller
+### Bước 1: Cài đặt PyInstaller
 
-Install PyInstaller using pip:
+Cài đặt PyInstaller bằng pip:
 
 ```sh
 pip install pyinstaller
 ```
 
-### Step 2: Package the application
+### Bước 2: Đóng gói ứng dụng
 
-Run the following command to package the application:
+Chạy lệnh sau để đóng gói ứng dụng:
 
 ```sh
 pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm `
@@ -104,20 +104,22 @@ pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm `
 --add-data "data;data" --add-data "assets;assets" --icon "assets/open-book.ico" `
 --distpath "dist" --log-level DEBUG library_manager.py
 ```
-To repackage the app, delete the `build` folder and the old `.exe` file.
 
-### Step 3: Locate the executable
+Để đóng gói lại ứng dụng, hãy xóa thư mục `build` và tệp `.exe` cũ.
 
-After the packaging process is complete, the executable file (`LibraryManager.exe`) will be located in the `dist` directory
----
+### Bước 3: Tìm tệp thực thi
 
-## Notes
-
-- Ensure that all required data files are included in the `data` directory when running or packaging the application.
-- If you encounter any issues during packaging, refer to the PyInstaller documentation or check the terminal logs for detailed error messages.
+Sau khi quá trình đóng gói hoàn tất, tệp thực thi (`LibraryManager.exe`) sẽ nằm trong thư mục `dist`.
 
 ---
 
-## License
+## Ghi chú
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+- Đảm bảo rằng tất cả các tệp dữ liệu cần thiết được bao gồm trong thư mục `data` khi chạy hoặc đóng gói ứng dụng.
+- Nếu gặp bất kỳ vấn đề nào trong quá trình đóng gói, hãy tham khảo tài liệu của PyInstaller hoặc kiểm tra nhật ký trên terminal để xem chi tiết lỗi.
+
+---
+
+## Giấy phép
+
+Dự án này được cấp phép theo Giấy phép MIT. Xem tệp [LICENSE](LICENSE) để biết thêm chi tiết.
