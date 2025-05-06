@@ -117,9 +117,3 @@ Sau khi quá trình đóng gói hoàn tất, tệp thực thi (`LibraryManager.e
 
 - Đảm bảo rằng tất cả các tệp dữ liệu cần thiết được bao gồm trong thư mục `data` khi chạy hoặc đóng gói ứng dụng.
 - Nếu gặp bất kỳ vấn đề nào trong quá trình đóng gói, hãy tham khảo tài liệu của PyInstaller hoặc kiểm tra nhật ký trên terminal để xem chi tiết lỗi.
-
----
-
-## Giấy phép
-
-Dự án này được cấp phép theo Giấy phép MIT. Xem tệp [LICENSE](LICENSE) để biết thêm chi tiết.
