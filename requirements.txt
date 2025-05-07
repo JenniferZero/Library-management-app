@@ -1,5 +1,17 @@
-spacy==3.5.0
+# Thư viện cơ bản
+tkinter
+pillow==9.4.0
+customtkinter==5.1.2
+
+# Xử lý bất đồng bộ và crawl dữ liệu
 aiohttp==3.8.1
-beautifulsoup4==4.11.1
-jsonschema
 asyncio
+beautifulsoup4==4.11.1
+
+# Xử lý dữ liệu
+jsonschema
+spacy==3.5.0
+
+# Các gói phụ thuộc khác
+requests==2.28.1
+tkcalendar==1.6.1
