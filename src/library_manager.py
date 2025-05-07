@@ -4,12 +4,18 @@ import json
 import os
 import asyncio
 import aiohttp
+import customtkinter as ctk
 
 from PIL import Image, ImageTk
 from tkinter import ttk
 from datetime import datetime
 from tkinter import messagebox
 from bs4 import BeautifulSoup
+from customtkinter import CTkButton, CTkEntry, CTkLabel, CTkFrame, CTkImage, CTkScrollbar, CTkToplevel, CTkRadioButton, CTkCheckBox
+
+# Thiết lập theme và mode cho CustomTkinter
+ctk.set_appearance_mode("Light")  # Modes: "System", "Dark", "Light" \ Thay đổi giá trị này để thay đổi chế độ giao diện
+ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
 if __name__ == "__main__" and hasattr(asyncio, "WindowsSelectorEventLoopPolicy"):
@@ -25,14 +31,10 @@ BOOKS_FILE = os.path.join(DATA_DIR, 'books.json')
 READERS_FILE = os.path.join(DATA_DIR, 'readers.json')
 BORROW_FILE = os.path.join(DATA_DIR, 'borrow.json')
 
-# # Khởi tạo dữ liệu mặc định 
-# def initialize_default_data():
-#     if not os.path.exists(USERS_FILE):
-#         default_users = [
-#             {"username": "admin", "password": "admin123", "role": "admin"},
-#             {"username": "user", "password": "user123", "role": "user"}
-#         ]
-#         write_json(USERS_FILE, default_users)
+# Biến theo dõi trạng thái thu gọn của các khung
+is_books_collapsed = False
+is_readers_collapsed = False
+is_borrow_collapsed = False
 
 # Hàm đọc dữ liệu từ file JSON
 def read_json(file_path):
@@ -140,7 +142,7 @@ def async_crawl_books_with_progress():
         asyncio.run(crawl_and_update())
         write_json(BOOKS_FILE, books_data)
         progress_window.destroy()
-        messagebox.showinfo("Thành công", "Dữ liệu sách đã được cập nhật vào books.json")
+        messagebox.showinfo("Thành công", "Tiến trình crawl hoàn tất! Dữ liệu đã được cập nhật.")
     
     threading.Thread(target=crawl_with_progress).start()
 
@@ -154,64 +156,126 @@ def create_login_window():
     global login_window, entry_username, entry_password
     root.withdraw()  # Ẩn cửa sổ chính
     
-    login_window = tk.Toplevel()
+    login_window = CTkToplevel()
     login_window.title("Đăng Nhập")
     login_window.geometry("2000x1200")
-    login_window.configure(bg='#91DBF3')
+    login_window.after(200, lambda: login_window.iconbitmap(logo_path))
     
     logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
-    login_window.iconbitmap(logo_path)
     
-    # Thêm hình ảnh vào trang đăng nhập
+    # Tạo một frame chính để chứa toàn bộ nội dung
+    main_frame = CTkFrame(login_window, corner_radius=0, fg_color="transparent")
+    main_frame.pack(fill="both", expand=True)
+
+    # Thêm hình ảnh vào trang đăng nhập - phủ toàn màn hình
     image_path = os.path.join(os.path.dirname(__file__), "assets", "library.png")
     img = Image.open(image_path)
-    img = img.resize((2000, 1200), Image.Resampling.LANCZOS) 
-    photo = ImageTk.PhotoImage(img)
-    image_label = tk.Label(login_window, image=photo, bg='#91DBF3')
-    image_label.image = photo 
-    image_label.pack(pady=0)
+    img = img.resize((1800, 900), Image.Resampling.LANCZOS)
+    ct_img = CTkImage(light_image=img, dark_image=img, size=(1800, 900))
     
-    frame = tk.Frame(login_window, bg='#EEEEEE', padx=100, pady=20, relief=tk.RIDGE, bd=5)
-    frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+    # Tạo label chứa hình nền
+    bg_label = CTkLabel(main_frame, image=ct_img, text="")
+    bg_label.place(relx=0.5, rely=0.5, anchor="center")
     
-    tk.Label(frame, text="ĐĂNG NHẬP", font=("Arial", 20, "bold"), bg='#EEEEEE').pack(pady=10)
+    # Frame đăng nhập nổi trên hình nền 
+    frame = CTkFrame(main_frame, corner_radius=15, fg_color=("white", "#212121"), border_width=2, border_color=("gray75", "gray25"))
+    frame.place(relx=0.5, rely=0.5, anchor="center", relwidth=0.25, relheight=0.65)
     
-    tk.Label(frame, text="Tài khoản", font=("Arial", 14), bg='#EEEEEE').pack(pady=5)
-    entry_username = tk.Entry(frame, font=("Arial", 14))
-    entry_username.pack(pady=20)
+    CTkLabel(frame, text="ĐĂNG NHẬP", font=("Arial", 24, "bold")).pack(pady=(40, 20))
     
-    tk.Label(frame, text="Mật khẩu", font=("Arial", 14), bg='#EEEEEE').pack(pady=5)
-    entry_password = tk.Entry(frame, show="*", font=("Arial", 14))
-    entry_password.pack(pady=20)
+    # Form đăng nhập
+    form_frame = CTkFrame(frame, fg_color="transparent")
+    form_frame.pack(pady=10, padx=30, fill="both", expand=False)
     
-    tk.Button(frame, text="Đăng nhập", command=login, font=("Arial", 14)).pack(pady=10)
-    tk.Button(frame, text="Đăng ký", command=create_register_window, font=("Arial", 14)).pack(pady=10)
+    CTkLabel(form_frame, text="Tài khoản", font=("Arial", 14), anchor="w").pack(pady=3, anchor="w")
+    entry_username = CTkEntry(form_frame, font=("Arial", 14), width=50, height=40, placeholder_text="Nhập tên đăng nhập")
+    entry_username.pack(pady=(0, 15), fill="x")
+    
+    CTkLabel(form_frame, text="Mật khẩu", font=("Arial", 14), anchor="w").pack(pady=3, anchor="w")
+    entry_password = CTkEntry(form_frame, show="•", font=("Arial", 14), width=50, height=40, placeholder_text="Nhập mật khẩu")
+    entry_password.pack(pady=(0, 5), fill="x")
+    
+    # Biến để theo dõi trạng thái hiển thị mật khẩu
+    password_visible = False
+    
+    # Hàm chuyển đổi hiển thị mật khẩu
+    def toggle_password_visibility():
+        nonlocal password_visible
+        password_visible = not password_visible
+        entry_password.configure(show="" if password_visible else "•")
+    
+    # Checkbox hiển thị mật khẩu
+    pw_visibility_frame = CTkFrame(form_frame, fg_color="transparent")
+    pw_visibility_frame.pack(pady=5, fill="x", anchor="w")
+    
+    pw_visibility_checkbox = CTkCheckBox(pw_visibility_frame, text="Hiển thị mật khẩu", command=toggle_password_visibility)
+    pw_visibility_checkbox.pack(side="left", anchor="w")
+    
+    # Thêm chức năng nhớ đăng nhập (giả lập)
+    remember_frame = CTkFrame(form_frame, fg_color="transparent")
+    remember_frame.pack(pady=10, fill="x")
+    
+    remember_var = ctk.IntVar(value=0)
+    remember_check = ctk.CTkCheckBox(remember_frame, text="Nhớ tài khoản", variable=remember_var, onvalue=1, offvalue=0)
+    remember_check.pack(side="left", anchor="w")
+    
+    # Nút đăng nhập
+    login_button = CTkButton(form_frame, text="Đăng nhập", command=login, font=("Arial", 14), width=200, height=45, 
+                           fg_color=("#3a7ebf", "#1f538d"), hover_color=("#325882", "#14375e"))
+    login_button.pack(pady=(20, 10))
+    
+    CTkLabel(form_frame, text="Chưa có tài khoản?", font=("Arial", 12)).pack(pady=(10, 5))
+    
+    # Nút đăng ký
+    register_button = CTkButton(form_frame, text="Đăng ký", command=create_register_window, font=("Arial", 14), width=200, height=45,
+                              fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
+    register_button.pack(pady=(5, 20))
 
 # Hàm tạo cửa sổ đăng ký
 def create_register_window():
     global register_window, entry_new_username, entry_new_password
-    register_window = tk.Toplevel()
+    register_window = CTkToplevel()
     register_window.title("Đăng Ký")
-    register_window.geometry("330x400")
-    register_window.configure(bg='#91DBF3')
+    register_window.geometry("450x520")
+    register_window.after(200, lambda: register_window.iconbitmap(logo_path))
     
     logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
-    register_window.iconbitmap(logo_path)
     
-    frame = tk.Frame(register_window, bg='#EEEEEE', padx=20, pady=20, relief=tk.RIDGE, bd=5)
-    frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+    # Tạo khung chính
+    main_frame = CTkFrame(register_window)
+    main_frame.pack(pady=20, padx=40, fill="both", expand=True)
     
-    tk.Label(frame, text="Đăng ký", font=("Arial", 20, "bold"), bg='#EEEEEE').pack(pady=10)
+    CTkLabel(main_frame, text="ĐĂNG KÝ TÀI KHOẢN", font=("Arial", 20, "bold")).pack(pady=20)
     
-    tk.Label(frame, text="Tên đăng nhập mới:", font=("Arial", 14), bg='#EEEEEE').pack(pady=5)
-    entry_new_username = tk.Entry(frame, font=("Arial", 14))
-    entry_new_username.pack(pady=5)
+    # Form đăng ký
+    form_frame = CTkFrame(main_frame)
+    form_frame.pack(pady=15, padx=20, fill="both", expand=True)
     
-    tk.Label(frame, text="Mật khẩu mới:", font=("Arial", 14), bg='#EEEEEE').pack(pady=5)
-    entry_new_password = tk.Entry(frame, show="*", font=("Arial", 14))
-    entry_new_password.pack(pady=5)
+    CTkLabel(form_frame, text="Tên đăng nhập mới:", font=("Arial", 14), anchor="w").pack(padx=20, pady=1, anchor="w")
+    entry_new_username = CTkEntry(form_frame, font=("Arial", 14), width=300, height=40, 
+                                 placeholder_text="Nhập tên đăng nhập")
+    entry_new_username.pack(pady=10)
     
-    tk.Button(frame, text="Đăng ký", command=register, font=("Arial", 14)).pack(pady=20)
+    CTkLabel(form_frame, text="Mật khẩu mới:", font=("Arial", 14), anchor="w").pack(padx=20, pady=1, anchor="w")
+    entry_new_password = CTkEntry(form_frame, show="•", font=("Arial", 14), width=300, height=40,
+                                 placeholder_text="Nhập mật khẩu")
+    entry_new_password.pack(pady=10)
+    
+    # Thêm trường xác nhận mật khẩu (chỉ cho UI, không xử lý logic)
+    CTkLabel(form_frame, text="Xác nhận mật khẩu:", font=("Arial", 14), anchor="w").pack(padx=20, pady=1, anchor="w")
+    confirm_password = CTkEntry(form_frame, show="•", font=("Arial", 14), width=300, height=40,
+                               placeholder_text="Nhập lại mật khẩu")
+    confirm_password.pack(pady=10)
+    
+    # Nút đăng ký và hủy
+    button_frame = CTkFrame(form_frame, fg_color="transparent")
+    button_frame.pack(pady=20)
+    
+    CTkButton(button_frame, text="Đăng ký", command=register, font=("Arial", 14), width=120, height=40,
+             fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34")).pack(side="left", padx=10)
+    
+    CTkButton(button_frame, text="Hủy", command=register_window.destroy, font=("Arial", 14), width=120, height=40,
+             fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130")).pack(side="right", padx=10)
 
 # Hàm đăng ký tài khoản mới
 def register():
@@ -287,27 +351,27 @@ def custom_messagebox(title, message, icon="info"):
 
 # Hàm kích hoạt các tính năng của admin
 def enable_admin_features():
-    add_book.config(state=tk.NORMAL)
-    delete_book.config(state=tk.NORMAL)
-    edit_book.config(state=tk.NORMAL)
-    add_reader.config(state=tk.NORMAL)
-    delete_reader.config(state=tk.NORMAL)
-    edit_reader.config(state=tk.NORMAL)
-    delete_borrow.config(state=tk.NORMAL)
-    edit_borrow.config(state=tk.NORMAL)
-    crawl_button.config(state=tk.NORMAL)
+    add_book.configure(state="normal")
+    delete_book.configure(state="normal")
+    edit_book.configure(state="normal")
+    add_reader.configure(state="normal")
+    delete_reader.configure(state="normal")
+    edit_reader.configure(state="normal")
+    delete_borrow.configure(state="normal")
+    edit_borrow.configure(state="normal")
+    crawl_button.configure(state="normal")
 
 # Hàm vô hiệu hóa các tính năng của admin cho user thường
 def disable_admin_features():
-    add_book.config(state=tk.DISABLED)
-    delete_book.config(state=tk.DISABLED)
-    edit_book.config(state=tk.DISABLED)
-    add_reader.config(state=tk.DISABLED)
-    delete_reader.config(state=tk.DISABLED)
-    edit_reader.config(state=tk.DISABLED)
-    delete_borrow.config(state=tk.DISABLED)
-    edit_borrow.config(state=tk.DISABLED)
-    crawl_button.config(state=tk.DISABLED)
+    add_book.configure(state="disabled")
+    delete_book.configure(state="disabled")
+    edit_book.configure(state="disabled")
+    add_reader.configure(state="disabled")
+    delete_reader.configure(state="disabled")
+    edit_reader.configure(state="disabled")
+    delete_borrow.configure(state="disabled")
+    edit_borrow.configure(state="disabled")
+    crawl_button.configure(state="disabled")
 
 # Hàm kiểm tra quyền truy cập
 def parse_ids(id_input):
@@ -320,23 +384,66 @@ def parse_ids(id_input):
 # Hàm tạo cửa sổ hồ sơ người dùng
 def create_profile_window():
     global profile_window
-    profile_window = tk.Toplevel()
+    profile_window = CTkToplevel()
     profile_window.title("Hồ Sơ Người Dùng")
-    profile_window.geometry("350x380")
-    profile_window.configure(bg='#e0f7fa')
+    profile_window.geometry("400x550")
+    profile_window.after(200, lambda: profile_window.iconbitmap(logo_path))
     
     logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
-    profile_window.iconbitmap(logo_path)
     
-    frame = tk.Frame(profile_window, bg='#ffffff', padx=20, pady=20, relief=tk.RIDGE, bd=5)
-    frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+    # Tạo frame chính
+    main_frame = CTkFrame(profile_window)
+    main_frame.pack(pady=20, padx=40, fill="both", expand=True)
     
-    tk.Label(frame, text="Hồ Sơ Người Dùng", font=("Arial", 16, "bold"), bg='#ffffff').pack(pady=10)
+    CTkLabel(main_frame, text="HỒ SƠ NGƯỜI DÙNG", font=("Arial", 20, "bold")).pack(pady=20)
     
-    tk.Label(frame, text=f"Tài khoản: {current_user['username']}", font=("Arial", 14), bg='#ffffff').pack(pady=5)
-    tk.Label(frame, text=f"Quyền: {current_user['role']}", font=("Arial", 14), bg='#ffffff').pack(pady=5)
+    # Hiển thị avatar (giả lập)
+    avatar_frame = CTkFrame(main_frame, width=150, height=150, corner_radius=75)
+    avatar_frame.pack(pady=10)
+    CTkLabel(avatar_frame, text="👤", font=("Arial", 60)).place(relx=0.5, rely=0.5, anchor="center")
     
-    tk.Button(frame, text="Đăng Xuất", command=logout, font=("Arial", 14)).pack(pady=20)
+    # Thông tin người dùng
+    info_frame = CTkFrame(main_frame)
+    info_frame.pack(pady=15, padx=20, fill="both", expand=True)
+    
+    # Tạo frame cho thông tin tài khoản
+    account_frame = CTkFrame(info_frame, fg_color="transparent")
+    account_frame.pack(anchor="w", pady=5, fill="x")
+    CTkLabel(account_frame, text=f"Tài khoản:", font=("Arial", 14, "bold"), width=100).pack(side="left", padx=(0, 10))
+    CTkLabel(account_frame, text=f"{current_user['username']}", font=("Arial", 16)).pack(side="left")
+
+    # Tạo frame cho thông tin quyền
+    role_frame = CTkFrame(info_frame, fg_color="transparent")
+    role_frame.pack(anchor="w", pady=5, fill="x")
+    CTkLabel(role_frame, text=f"Quyền:", font=("Arial", 14, "bold"), width=100).pack(side="left", padx=(0, 10))
+    CTkLabel(role_frame, text=f"{current_user['role']}", font=("Arial", 16)).pack(side="left")
+    
+    # Điều chỉnh giao diện
+    appearance_frame = CTkFrame(main_frame)
+    appearance_frame.pack(pady=10, padx=20, fill="x")
+    
+    CTkLabel(appearance_frame, text="Chế độ giao diện:", font=("Arial", 14, "bold")).pack(anchor="w",padx= 10, pady=5)
+    
+    def change_appearance_mode(new_appearance_mode):
+        ctk.set_appearance_mode(new_appearance_mode)
+    
+    appearance_option = ctk.StringVar(value=ctk.get_appearance_mode())
+    light_radio = CTkRadioButton(appearance_frame, text="Sáng", variable=appearance_option, value="Light", 
+                               command=lambda: change_appearance_mode("Light"))
+    light_radio.pack(side="left", padx=20)
+    
+    dark_radio = CTkRadioButton(appearance_frame, text="Tối", variable=appearance_option, value="Dark", 
+                              command=lambda: change_appearance_mode("Dark"))
+    dark_radio.pack(side="left", padx=20)
+    
+    system_radio = CTkRadioButton(appearance_frame, text="Hệ thống", variable=appearance_option, value="System", 
+                                command=lambda: change_appearance_mode("System"))
+    system_radio.pack(side="left", padx=20)
+    
+    # Nút đăng xuất
+    CTkButton(main_frame, text="Đăng Xuất", command=logout, font=("Arial", 14), 
+             fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"),
+             width=120, height=40).pack(pady=20)
 
 # Hàm đăng xuất
 def logout():
@@ -811,11 +918,166 @@ def clear_display():
     # Xóa cấu trúc cột hiện tại
     tree["columns"] = ()
     tree.delete(*tree.get_children())
+
+# Hàm thu gọn/mở rộng khung quản lý sách
+def toggle_books_frame():
+    global is_books_collapsed
+    is_books_collapsed = not is_books_collapsed
+    
+    if is_books_collapsed:
+        # Ẩn nội dung khung sách
+        for widget in [entry_id, entry_title, entry_author, entry_year, entry_pages, button_frame]:
+            widget.grid_remove()
+        for label in frame_books.winfo_children():
+            if isinstance(label, CTkLabel) and label != books_title and label != collapse_books_btn:
+                label.grid_remove()
+        collapse_books_btn.configure(text="▼")
+        # Di chuyển khung lên trên cùng
+        frame_books.grid(row=1, column=0, padx=10, pady=5, sticky="new")
+    else:
+        # Hiển thị lại nội dung khung sách
+        CTkLabel(frame_books, text="ID Sách:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+        entry_id.grid(row=1, column=1, padx=10, pady=5)
         
+        CTkLabel(frame_books, text="Tên Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+        entry_title.grid(row=2, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_books, text="Tác Giả:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+        entry_author.grid(row=3, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_books, text="Năm Xuất Bản:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+        entry_year.grid(row=4, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_books, text="Số Trang:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
+        entry_pages.grid(row=5, column=1, padx=10, pady=5)
+        
+        button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+        collapse_books_btn.configure(text="▲")
+        
+        # Khôi phục vị trí khung
+        frame_books.grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
+    
+    # Cập nhật vị trí các khung khác
+    update_frames_position()
+
+# Hàm thu gọn/mở rộng khung quản lý độc giả
+def toggle_readers_frame():
+    global is_readers_collapsed
+    is_readers_collapsed = not is_readers_collapsed
+    
+    if is_readers_collapsed:
+        # Ẩn nội dung khung độc giả
+        for widget in [entry_reader_id, entry_name, entry_address, entry_phone, entry_email, reader_button_frame]:
+            widget.grid_remove()
+        for label in frame_readers.winfo_children():
+            if isinstance(label, CTkLabel) and label != readers_title and label != collapse_readers_btn:
+                label.grid_remove()
+        collapse_readers_btn.configure(text="▼")
+        # Di chuyển khung vào vị trí phù hợp
+        update_frames_position()
+    else:
+        # Hiển thị lại nội dung khung độc giả
+        CTkLabel(frame_readers, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+        entry_reader_id.grid(row=1, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_readers, text="Tên Độc Giả:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+        entry_name.grid(row=2, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_readers, text="Địa Chỉ:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+        entry_address.grid(row=3, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_readers, text="Số Điện Thoại:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+        entry_phone.grid(row=4, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_readers, text="Email:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
+        entry_email.grid(row=5, column=1, padx=10, pady=5)
+        
+        reader_button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+        collapse_readers_btn.configure(text="▲")
+        
+        # Cập nhật vị trí các khung
+        update_frames_position()
+
+# Hàm thu gọn/mở rộng khung quản lý mượn trả
+def toggle_borrow_frame():
+    global is_borrow_collapsed
+    is_borrow_collapsed = not is_borrow_collapsed
+    
+    if is_borrow_collapsed:
+        # Ẩn nội dung khung mượn trả
+        for widget in [entry_borrow_reader_id, entry_borrow_book_id, entry_borrow_date, entry_return_date, borrow_button_frame]:
+            widget.grid_remove()
+        for label in frame_borrow.winfo_children():
+            if isinstance(label, CTkLabel) and label != borrow_title and label != collapse_borrow_btn:
+                label.grid_remove()
+        collapse_borrow_btn.configure(text="▼")
+        # Di chuyển khung vào vị trí phù hợp
+        update_frames_position()
+    else:
+        # Hiển thị lại nội dung khung mượn trả
+        CTkLabel(frame_borrow, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+        entry_borrow_reader_id.grid(row=1, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_borrow, text="ID Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+        entry_borrow_book_id.grid(row=2, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_borrow, text="Ngày Mượn:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+        entry_borrow_date.grid(row=3, column=1, padx=10, pady=5)
+        
+        CTkLabel(frame_borrow, text="Ngày Trả:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+        entry_return_date.grid(row=4, column=1, padx=10, pady=5)
+        
+        borrow_button_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+        collapse_borrow_btn.configure(text="▲")
+        
+        # Cập nhật vị trí các khung
+        update_frames_position()
+
+# Hàm cập nhật vị trí các khung
+def update_frames_position():
+    # Xác định vị trí row cho từng khung
+    row_books = 1
+    row_readers = 2
+    row_borrow = 3
+    
+    # Nếu khung sách thu gọn, đưa nó lên trên cùng
+    if is_books_collapsed:
+        frame_books.grid(row=row_books, column=0, padx=10, pady=5, sticky="new")
+    else:
+        frame_books.grid(row=row_books, column=0, padx=10, pady=5, sticky="nsew")
+    
+    # Nếu khung độc giả thu gọn
+    if is_readers_collapsed:
+        if is_books_collapsed:
+            frame_readers.grid(row=row_books + 1, column=0, padx=10, pady=5, sticky="new")
+        else:
+            frame_readers.grid(row=row_readers, column=0, padx=10, pady=5, sticky="new")
+    else:
+        if is_books_collapsed:
+            frame_readers.grid(row=row_books + 1, column=0, padx=10, pady=5, sticky="nsew")
+        else:
+            frame_readers.grid(row=row_readers, column=0, padx=10, pady=5, sticky="nsew")
+    
+    # Nếu khung mượn trả thu gọn
+    if is_borrow_collapsed:
+        if is_books_collapsed and is_readers_collapsed:
+            frame_borrow.grid(row=row_books + 2, column=0, padx=10, pady=5, sticky="new")
+        elif is_books_collapsed or is_readers_collapsed:
+            frame_borrow.grid(row=row_readers + 1, column=0, padx=10, pady=5, sticky="new")
+        else:
+            frame_borrow.grid(row=row_borrow, column=0, padx=10, pady=5, sticky="new")
+    else:
+        if is_books_collapsed and is_readers_collapsed:
+            frame_borrow.grid(row=row_books + 2, column=0, padx=10, pady=5, sticky="nsew")
+        elif is_books_collapsed or is_readers_collapsed:
+            frame_borrow.grid(row=row_readers + 1, column=0, padx=10, pady=5, sticky="nsew")
+        else:
+            frame_borrow.grid(row=row_borrow, column=0, padx=10, pady=5, sticky="nsew")
+
 # Tạo giao diện người dùng
-root = tk.Tk()
+root = ctk.CTk()  # Thay thế tk.Tk() bằng ctk.CTk()
 root.title("Quản Lý Thư Viện")
-root.geometry("80000x12000")
+root.geometry("2000x1200")  # Kích thước hợp lý hơn
 root.grid_rowconfigure(1, weight=1)
 root.grid_columnconfigure(1, weight=1)
 
@@ -823,163 +1085,248 @@ logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
 root.iconbitmap(logo_path)
 
 # Khung quản lý sách
-frame_books = tk.LabelFrame(root, text="Quản Lý Sách", padx=5, pady=10, border=2, font=("Arial", 10, "bold"))
-frame_books.grid(row=1, column=0, padx=10, pady=0, sticky="nsew")
+frame_books = CTkFrame(root)
+frame_books.grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
 
-tk.Label(frame_books, text="ID Sách").grid(row=0, column=0, sticky="w", padx=5, pady=5)
-entry_id = tk.Entry(frame_books)
-entry_id.grid(row=0, column=1, padx=5, pady=5)
+# Tiêu đề section với nút thu gọn
+books_title_frame = CTkFrame(frame_books, fg_color="transparent")
+books_title_frame.grid(row=0, column=0, columnspan=3, pady=5, padx=5, sticky="ew")
+books_title_frame.grid_columnconfigure(0, weight=1)
 
-tk.Label(frame_books, text="Tên Sách").grid(row=1, column=0, sticky="w", padx=5, pady=5)
-entry_title = tk.Entry(frame_books)
-entry_title.grid(row=1, column=1, padx=5, pady=5)
+books_title = CTkLabel(books_title_frame, text="QUẢN LÝ SÁCH", font=("Arial", 16, "bold"))
+books_title.grid(row=0, column=0, pady=5, padx=10, sticky="w")
 
-tk.Label(frame_books, text="Tác Giả").grid(row=2, column=0, sticky="w", padx=5, pady=5)
-entry_author = tk.Entry(frame_books)
-entry_author.grid(row=2, column=1, padx=5, pady=5)
+# Nút thu gọn/mở rộng
+collapse_books_btn = CTkButton(books_title_frame, text="▲", command=toggle_books_frame, width=30, height=30)
+collapse_books_btn.grid(row=0, column=1, padx=5, pady=5, sticky="e")
 
-tk.Label(frame_books, text="Năm Xuất Bản").grid(row=3, column=0, sticky="w", padx=5, pady=5)
-entry_year = tk.Entry(frame_books)
-entry_year.grid(row=3, column=1, padx=5, pady=5)
+# Form nhập thông tin sách
+CTkLabel(frame_books, text="ID Sách:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+entry_id = CTkEntry(frame_books, placeholder_text="Nhập ID sách", width=200)
+entry_id.grid(row=1, column=1, padx=10, pady=5)
 
-tk.Label(frame_books, text="Số Trang").grid(row=5, column=0, sticky="w", padx=5, pady=5)
-entry_pages = tk.Entry(frame_books)
-entry_pages.grid(row=5, column=1, padx=5, pady=5)
+CTkLabel(frame_books, text="Tên Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+entry_title = CTkEntry(frame_books, placeholder_text="Nhập tên sách", width=200)
+entry_title.grid(row=2, column=1, padx=10, pady=5)
 
-tk.Button(frame_books, text="Thêm Sách", command=add_book).grid(row=6, column=0, pady=2, padx=5)
-tk.Button(frame_books, text="Xóa Sách", command=delete_book).grid(row=6, column=1, pady=2, padx=5)
-tk.Button(frame_books, text="Hiển Thị Sách", command=show_books).grid(row=7, column=0, pady=2, padx=5)
-tk.Button(frame_books, text="Chỉnh Sửa Sách", command=edit_book).grid(row=7, column=1, pady=2, padx=5)
+CTkLabel(frame_books, text="Tác Giả:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+entry_author = CTkEntry(frame_books, placeholder_text="Nhập tên tác giả", width=200)
+entry_author.grid(row=3, column=1, padx=10, pady=5)
+
+CTkLabel(frame_books, text="Năm Xuất Bản:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+entry_year = CTkEntry(frame_books, placeholder_text="Nhập năm xuất bản", width=200)
+entry_year.grid(row=4, column=1, padx=10, pady=5)
+
+CTkLabel(frame_books, text="Số Trang:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
+entry_pages = CTkEntry(frame_books, placeholder_text="Nhập số trang", width=200)
+entry_pages.grid(row=5, column=1, padx=10, pady=5)
+
+# Nút chức năng
+button_frame = CTkFrame(frame_books)
+button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+
+add_book = CTkButton(button_frame, text="Thêm Sách", command=add_book, width=100, 
+                    fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
+add_book.grid(row=0, column=0, pady=5, padx=5)
+
+delete_book = CTkButton(button_frame, text="Xóa Sách", command=delete_book, width=100,
+                       fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
+delete_book.grid(row=0, column=1, pady=5, padx=5)
+
+show_books_btn = CTkButton(button_frame, text="Hiển Thị Sách", command=show_books, width=100)
+show_books_btn.grid(row=1, column=0, pady=5, padx=5)
+
+edit_book = CTkButton(button_frame, text="Chỉnh Sửa Sách", command=edit_book, width=100,
+                      fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
+edit_book.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung quản lý độc giả
-frame_readers = tk.LabelFrame(root, text="Quản Lý Độc Giả", padx=5, pady=25,border=2,font=("Arial", 10, "bold"))
-frame_readers.grid(row=2, column=0, padx=10, pady=0, sticky="nsew")
+frame_readers = CTkFrame(root)
+frame_readers.grid(row=2, column=0, padx=10, pady=5, sticky="nsew")
 
-tk.Label(frame_readers, text="ID Độc Giả").grid(row=0, column=0, sticky="w", padx=5, pady=5)
-entry_reader_id = tk.Entry(frame_readers)
-entry_reader_id.grid(row=0, column=1, padx=5, pady=5)
+# Tiêu đề section với nút thu gọn
+readers_title_frame = CTkFrame(frame_readers, fg_color="transparent")
+readers_title_frame.grid(row=0, column=0, columnspan=3, pady=5, padx=5, sticky="ew")
+readers_title_frame.grid_columnconfigure(0, weight=1)
 
-tk.Label(frame_readers, text="Tên Độc Giả").grid(row=1, column=0, sticky="w", padx=5, pady=5)
-entry_name = tk.Entry(frame_readers)
-entry_name.grid(row=1, column=1, padx=5, pady=5)
+readers_title = CTkLabel(readers_title_frame, text="QUẢN LÝ ĐỘC GIẢ", font=("Arial", 16, "bold"))
+readers_title.grid(row=0, column=0, pady=5, padx=10, sticky="w")
 
-tk.Label(frame_readers, text="Địa Chỉ").grid(row=2, column=0, sticky="w", padx=5, pady=5)
-entry_address = tk.Entry(frame_readers)
-entry_address.grid(row=2, column=1, padx=5, pady=5)
+# Nút thu gọn/mở rộng
+collapse_readers_btn = CTkButton(readers_title_frame, text="▲", command=toggle_readers_frame, width=30, height=30)
+collapse_readers_btn.grid(row=0, column=1, padx=5, pady=5, sticky="e")
 
-tk.Label(frame_readers, text="Số Điện Thoại").grid(row=3, column=0, sticky="w", padx=5, pady=5)
-entry_phone = tk.Entry(frame_readers)
-entry_phone.grid(row=3, column=1, padx=5, pady=5)
+# Form nhập thông tin độc giả
+CTkLabel(frame_readers, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+entry_reader_id = CTkEntry(frame_readers, placeholder_text="Nhập ID độc giả", width=200)
+entry_reader_id.grid(row=1, column=1, padx=10, pady=5)
 
-tk.Label(frame_readers, text="Email").grid(row=4, column=0, sticky="w", padx=5, pady=5)
-entry_email = tk.Entry(frame_readers)
-entry_email.grid(row=4, column=1, padx=5, pady=5)
+CTkLabel(frame_readers, text="Tên Độc Giả:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+entry_name = CTkEntry(frame_readers, placeholder_text="Nhập tên độc giả", width=200)
+entry_name.grid(row=2, column=1, padx=10, pady=5)
 
-tk.Button(frame_readers, text="Thêm Độc Giả", command=add_reader).grid(row=5, column=0, pady=2, padx=5)
-tk.Button(frame_readers, text="Xóa Độc Giả", command=delete_reader).grid(row=5, column=1, pady=2, padx=5)
-tk.Button(frame_readers, text="Hiển Thị Độc Giả", command=show_readers).grid(row=6, column=0, pady=2, padx=5)
-tk.Button(frame_readers, text="Chỉnh Sửa Độc Giả", command=edit_reader).grid(row=6, column=1, pady=2, padx=5)
+CTkLabel(frame_readers, text="Địa Chỉ:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+entry_address = CTkEntry(frame_readers, placeholder_text="Nhập địa chỉ", width=200)
+entry_address.grid(row=3, column=1, padx=10, pady=5)
+
+CTkLabel(frame_readers, text="Số Điện Thoại:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+entry_phone = CTkEntry(frame_readers, placeholder_text="Nhập số điện thoại", width=200)
+entry_phone.grid(row=4, column=1, padx=10, pady=5)
+
+CTkLabel(frame_readers, text="Email:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
+entry_email = CTkEntry(frame_readers, placeholder_text="Nhập email", width=200)
+entry_email.grid(row=5, column=1, padx=10, pady=5)
+
+# Nút chức năng
+reader_button_frame = CTkFrame(frame_readers)
+reader_button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+
+add_reader = CTkButton(reader_button_frame, text="Thêm Độc Giả", command=add_reader, width=100,
+                     fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
+add_reader.grid(row=0, column=0, pady=5, padx=5)
+
+delete_reader = CTkButton(reader_button_frame, text="Xóa Độc Giả", command=delete_reader, width=100,
+                        fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
+delete_reader.grid(row=0, column=1, pady=5, padx=5)
+
+show_readers_btn = CTkButton(reader_button_frame, text="Hiển Thị Độc Giả", command=show_readers, width=100)
+show_readers_btn.grid(row=1, column=0, pady=5, padx=5)
+
+edit_reader = CTkButton(reader_button_frame, text="Chỉnh Sửa Độc Giả", command=edit_reader, width=100,
+                      fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
+edit_reader.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung quản lý mượn trả
-frame_borrow = tk.LabelFrame(root, text="Quản Lý Mượn Trả", padx=5, pady=20,border=2, font=("Arial", 10, "bold"))
+frame_borrow = CTkFrame(root)
 frame_borrow.grid(row=3, column=0, padx=10, pady=5, sticky="nsew")
 
-tk.Label(frame_borrow, text="ID Độc Giả").grid(row=0, column=0, sticky="w", padx=5, pady=5)
-entry_borrow_reader_id = tk.Entry(frame_borrow)
-entry_borrow_reader_id.grid(row=0, column=1, padx=5, pady=5)
+# Tiêu đề section với nút thu gọn
+borrow_title_frame = CTkFrame(frame_borrow, fg_color="transparent")
+borrow_title_frame.grid(row=0, column=0, columnspan=3, pady=5, padx=5, sticky="ew")
+borrow_title_frame.grid_columnconfigure(0, weight=1)
 
-tk.Label(frame_borrow, text="ID Sách").grid(row=1, column=0, sticky="w", padx=5, pady=5)
-entry_borrow_book_id = tk.Entry(frame_borrow)
-entry_borrow_book_id.grid(row=1, column=1, padx=5, pady=5)
+borrow_title = CTkLabel(borrow_title_frame, text="QUẢN LÝ MƯỢN TRẢ", font=("Arial", 16, "bold"))
+borrow_title.grid(row=0, column=0, pady=5, padx=10, sticky="w")
 
-tk.Label(frame_borrow, text="Ngày Mượn").grid(row=2, column=0, sticky="w", padx=5, pady=5)
-entry_borrow_date = tk.Entry(frame_borrow)
-entry_borrow_date.grid(row=2, column=1, padx=5, pady=5)
+# Nút thu gọn/mở rộng
+collapse_borrow_btn = CTkButton(borrow_title_frame, text="▲", command=toggle_borrow_frame, width=30, height=30)
+collapse_borrow_btn.grid(row=0, column=1, padx=5, pady=5, sticky="e")
 
-tk.Label(frame_borrow, text="Ngày Trả").grid(row=3, column=0, sticky="w", padx=5, pady=5)
-entry_return_date = tk.Entry(frame_borrow)
-entry_return_date.grid(row=3, column=1, padx=5, pady=5)
+# Form nhập thông tin mượn trả
+CTkLabel(frame_borrow, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
+entry_borrow_reader_id = CTkEntry(frame_borrow, placeholder_text="Nhập ID độc giả", width=200)
+entry_borrow_reader_id.grid(row=1, column=1, padx=10, pady=5)
 
-tk.Button(frame_borrow, text="Mượn Sách", command=borrow_book).grid(row=4, column=0, pady=2, padx=5)
-tk.Button(frame_borrow, text="Xóa Mượn Trả", command=delete_borrow).grid(row=4, column=1, pady=2, padx=5)
-tk.Button(frame_borrow, text="Hiển Thị Mượn Trả", command=show_borrows).grid(row=5, column=0, pady=2, padx=5)
-tk.Button(frame_borrow, text="Chỉnh Sửa Mượn Trả", command=edit_borrow).grid(row=5, column=1, pady=2, padx=5)
+CTkLabel(frame_borrow, text="ID Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
+entry_borrow_book_id = CTkEntry(frame_borrow, placeholder_text="Nhập ID sách", width=200)
+entry_borrow_book_id.grid(row=2, column=1, padx=10, pady=5)
+
+CTkLabel(frame_borrow, text="Ngày Mượn:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
+entry_borrow_date = CTkEntry(frame_borrow, placeholder_text="YYYY-MM-DD", width=200)
+entry_borrow_date.grid(row=3, column=1, padx=10, pady=5)
+
+CTkLabel(frame_borrow, text="Ngày Trả:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
+entry_return_date = CTkEntry(frame_borrow, placeholder_text="YYYY-MM-DD", width=200)
+entry_return_date.grid(row=4, column=1, padx=10, pady=5)
+
+# Nút chức năng
+borrow_button_frame = CTkFrame(frame_borrow)
+borrow_button_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
+
+borrow_book_btn = CTkButton(borrow_button_frame, text="Mượn Sách", command=borrow_book, width=100,
+                           fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
+borrow_book_btn.grid(row=0, column=0, pady=5, padx=5)
+
+delete_borrow = CTkButton(borrow_button_frame, text="Xóa Mượn Trả", command=delete_borrow, width=100,
+                         fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
+delete_borrow.grid(row=0, column=1, pady=5, padx=5)
+
+show_borrows_btn = CTkButton(borrow_button_frame, text="Hiển Thị Mượn Trả", command=show_borrows, width=100)
+show_borrows_btn.grid(row=1, column=0, pady=5, padx=5)
+
+edit_borrow = CTkButton(borrow_button_frame, text="Chỉnh Sửa Mượn Trả", command=edit_borrow, width=100,
+                       fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
+edit_borrow.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung hiển thị thông tin
-frame_right = tk.Frame(root)
+frame_right = CTkFrame(root)
 frame_right.grid(row=1, column=1, columnspan=20, rowspan=4, padx=10, pady=7, sticky="nsew")
 frame_right.grid_rowconfigure(0, weight=1)
 frame_right.grid_columnconfigure(0, weight=1)
 
-# Thanh cuộn dọc
-v_scrollbar = tk.Scrollbar(frame_right, orient=tk.VERTICAL)
-v_scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+# Tạo frame chứa tiêu đề hiển thị
+title_frame = CTkFrame(frame_right, fg_color="transparent")
+title_frame.pack(fill="x", pady=(1, 0))
+data_title = CTkLabel(title_frame, text="DỮ LIỆU HIỂN THỊ", font=("Arial", 14, "bold"))
+data_title.pack()
 
-tree = ttk.Treeview(frame_right, yscrollcommand=v_scrollbar.set)
+# Tạo frame chứa treeview
+tree_frame = CTkFrame(frame_right)
+tree_frame.pack(fill="both", expand=True, padx=10, pady=10)
+
+# Thanh cuộn dọc với CustomTkinter
+v_scrollbar = CTkScrollbar(tree_frame, orientation="vertical")
+v_scrollbar.pack(side="right", fill="y")
+
+# Giữ nguyên treeview vì CustomTkinter không có widget tương đương
+tree = ttk.Treeview(tree_frame, yscrollcommand=v_scrollbar.set)
 tree.pack(expand=True, fill="both")
 
+style = ttk.Style()
+style.configure("Treeview", font=("Arial", 13), rowheight=30)  # Thay đổi kích thước font và chiều cao hàng
+style.configure("Treeview.Heading", font=("Arial", 13, "bold")) 
+
 # Liên kết thanh cuộn với Treeview
-v_scrollbar.config(command=tree.yview)
+v_scrollbar.configure(command=tree.yview)
 
 # Khung tìm kiếm
-frame_search = tk.Frame(root, padx=20, pady=0)
-frame_search.grid(row=0, column=1, columnspan=2, padx=0, pady=0, sticky="ew")
+frame_search = CTkFrame(root)
+frame_search.grid(row=0, column=1, columnspan=2, padx=10, pady=10, sticky="ew")
 
-tk.Label(frame_search, text="Tìm Kiếm Theo").grid(row=0, column=0, sticky="w", padx=5, pady=0)
-search_combobox = ttk.Combobox(frame_search, values=["Sách", "Độc Giả", "Mượn Trả"])
-search_combobox.grid(row=0, column=1, padx=5, pady=0)
+# Tiêu đề
+search_title = CTkLabel(frame_search, text="🔍", font=("Arial", 20, "bold"))
+search_title.grid(row=0, column=0, columnspan=1, pady=5, padx=10, sticky="w")
 
-tk.Label(frame_search, text="Từ Khóa").grid(row=0, column=2, sticky="w", padx=5, pady=0)
-search_entry = tk.Entry(frame_search)
-search_entry.grid(row=0, column=3, padx=5, pady=0)
+CTkLabel(frame_search, text="Loại:", font=("Arial", 14)).grid(row=0, column=3, sticky="w", padx=2, pady=5)
+search_options = ["Sách", "Độc Giả", "Mượn Trả"]
+search_combobox = ctk.CTkOptionMenu(frame_search, values=search_options)
+search_combobox.grid(row=0, column=4, padx=10, pady=5)
+search_combobox.set("Chọn loại")
 
-tk.Button(frame_search, text="Tìm Kiếm", command=search_info).grid(row=0, column=4, padx=5, pady=5)
+CTkLabel(frame_search, text="Từ khóa:", font=("Arial", 14)).grid(row=0, column=5, sticky="w", padx=2, pady=5)
+search_entry = CTkEntry(frame_search, placeholder_text="Nhập từ khóa tìm kiếm", width=200)
+search_entry.grid(row=0, column=7, padx=10, pady=5)
+
+search_button = CTkButton(frame_search, text="Tìm Kiếm", command=search_info, width=100)
+search_button.grid(row=0, column=8, padx=10, pady=5)
 
 # Nút Crawl Dữ Liệu
-crawl_button = tk.Button(frame_search, text="Crawl Dữ Liệu", command=threaded_crawl_data)
-crawl_button.grid(row=0, column=6, pady=0, padx=20, sticky="e")
-crawl_button.config(state=tk.DISABLED)
+crawl_button = CTkButton(frame_search, text="Crawl Dữ Liệu ⬇", command=threaded_crawl_data, 
+                         width=120, fg_color=("#17a2b8", "#138496"), hover_color=("#138496", "#117a8b"))
+crawl_button.grid(row=0, column=9, pady=5, padx=10, sticky="e")
 
 # Nút Hồ Sơ
-profile_button = tk.Button(root, text="Hồ Sơ", command=create_profile_window)
-profile_button.grid(row=0, column=7, padx=30, pady=0, sticky="e")
+profile_button = CTkButton(frame_search, text="Hồ Sơ   👤", command=create_profile_window, 
+                          width=100, fg_color=("#6c757d", "#5a6268"), hover_color=("#5a6268", "#4e555b"))
+profile_button.grid(row=0, column=13, padx=250, pady=5, sticky="e")
 
-# Vô hiệu hóa tất cả nút khi chưa đăng nhập
-add_book = tk.Button(frame_books, text="Thêm Sách", command=add_book)
-add_book.grid(row=6, column=0, pady=2, padx=5)
-add_book.config(state=tk.DISABLED)
-
-delete_book = tk.Button(frame_books, text="Xóa Sách", command=delete_book)
-delete_book.grid(row=6, column=1, pady=2, padx=5)
-delete_book.config(state=tk.DISABLED)
-
-edit_book = tk.Button(frame_books, text="Chỉnh Sửa Sách", command=edit_book)
-edit_book.grid(row=7, column=1, pady=2, padx=5)
-edit_book.config(state=tk.DISABLED)
-
-add_reader = tk.Button(frame_readers, text="Thêm Độc Giả", command=add_reader)
-add_reader.grid(row=5, column=0, pady=2, padx=5)
-add_reader.config(state=tk.DISABLED)
-
-delete_reader = tk.Button(frame_readers, text="Xóa Độc Giả", command=delete_reader)
-delete_reader.grid(row=5, column=1, pady=2, padx=5)
-delete_reader.config(state=tk.DISABLED)
-
-edit_reader = tk.Button(frame_readers, text="Chỉnh Sửa Độc Giả", command=edit_reader)
-edit_reader.grid(row=6, column=1, pady=2, padx=5)
-edit_reader.config(state=tk.DISABLED)
-
-delete_borrow = tk.Button(frame_borrow, text="Xóa Mượn Trả", command=delete_borrow)
-delete_borrow.grid(row=4, column=1, pady=2, padx=5)
-delete_borrow.config(state=tk.DISABLED)
-
-edit_borrow = tk.Button(frame_borrow, text="Chỉnh Sửa Mượn Trả", command=edit_borrow)
-edit_borrow.grid(row=5, column=1, pady=2, padx=5)
-edit_borrow.config(state=tk.DISABLED)
-
-crawl_button.config(state=tk.DISABLED)
+# Cấu hình disable state cho các nút
+add_book.configure(state="disabled")
+delete_book.configure(state="disabled")
+edit_book.configure(state="disabled")
+add_reader.configure(state="disabled")
+delete_reader.configure(state="disabled")
+edit_reader.configure(state="disabled")
+delete_borrow.configure(state="disabled")
+edit_borrow.configure(state="disabled")
+crawl_button.configure(state="disabled")
 
 def __main__():
+    # Khởi tạo các biến theo dõi trạng thái thu gọn
+    global is_books_collapsed, is_readers_collapsed, is_borrow_collapsed
+    is_books_collapsed = False
+    is_readers_collapsed = False
+    is_borrow_collapsed = False
     
     create_login_window()
     root.mainloop()
