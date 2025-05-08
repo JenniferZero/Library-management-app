@@ -1,0 +1,44 @@
+[
+    {
+        "title": "Pride and Prejudice",
+        "cover_edition_key": "OL47044678M",
+        "main_subjects": [
+            "History",
+            "Juvenile fiction",
+            "Fiction"
+        ]
+    },
+    {
+        "title": "Alice's Adventures in Wonderland",
+        "cover_edition_key": "OL31754751M",
+        "main_subjects": [
+            "History"
+        ]
+    },
+    {
+        "title": "Adventures of Huckleberry Finn",
+        "cover_edition_key": "OL7062714M",
+        "main_subjects": [
+            "Juvenile fiction",
+            "Fiction"
+        ]
+    },
+    {
+        "title": "Frankenstein or The Modern Prometheus",
+        "cover_edition_key": "OL35649409M",
+        "main_subjects": [
+            "Fiction",
+            "History",
+            "Juvenile fiction"
+        ]
+    },
+    {
+        "title": "The Wonderful Wizard of Oz",
+        "cover_edition_key": "OL8155451M",
+        "main_subjects": [
+            "Fiction",
+            "History",
+            "Juvenile fiction"
+        ]
+    }
+]
