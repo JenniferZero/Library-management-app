@@ -46,7 +46,7 @@ pip install -r requirements.txt
 Nếu một số thư viện bị thiếu, hãy cài đặt chúng thủ công:
 
 ```sh
-pip install aiohttp beautifulsoup4
+pip install aiohttp beautifulsoup4 customtkinter
 ```
 
 ---
