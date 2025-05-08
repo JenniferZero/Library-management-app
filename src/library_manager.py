@@ -105,51 +105,141 @@ async def crawl_books(book_urls, max_concurrent_requests=3):
         results = await asyncio.gather(*tasks, return_exceptions=True)
         return [result for result in results if result is not None and not isinstance(result, Exception)]
 
-# Hàm crawl data bất đồng bộ được chạy trong một thread riêng
 def async_crawl_books_with_progress():
     book_urls_file = os.path.join(DATA_DIR, 'book_urls.txt')
     book_urls = read_urls_from_file(book_urls_file)
     
-    # Hiển thị thanh tiến trình
-    progress_window = tk.Toplevel()
-    progress_window.title("Đang Crawl Dữ Liệu")
-    progress_window.geometry("400x100")
+    if not book_urls:
+        messagebox.showerror("Lỗi", "Không tìm thấy danh sách URL hoặc danh sách trống.")
+        return
     
-    logo_path = os.path.join(os.path.dirname(__file__), "assets", "open-book.ico")
-    progress_window.iconbitmap(logo_path)
+    # Tạo frame cho thanh tiến trình trong khung dữ liệu hiển thị
+    progress_frame = CTkFrame(frame_right)
+    progress_frame.pack(side="bottom", fill="x", padx=10, pady=10)
     
-    tk.Label(progress_window, text="Đang crawl dữ liệu, vui lòng chờ...").pack(pady=10)
-    progress_bar = ttk.Progressbar(progress_window, orient=tk.HORIZONTAL, length=300, mode='determinate')
-    progress_bar.pack(pady=10)
+    # Tạo frame chứa tiêu đề và thông tin tiến trình
+    title_info_frame = CTkFrame(progress_frame, fg_color="transparent")
+    title_info_frame.pack(fill="x", pady=(5, 10))
+    
+    # Thêm thông tin chi tiết về tiến trình cùng hàng với tiêu đề
+    detail_label = CTkLabel(title_info_frame, text="Đang crawl dữ liệu sách, vui lòng chờ... 0/" + str(len(book_urls)) + " sách", 
+                           font=("Arial", 12))
+    detail_label.pack(side="left", padx=(5, 0), fill="x", expand=True, anchor="center")
+    
+    # Tạo thanh tiến trình trong khung dữ liệu hiển thị
+    progress_bar = ttk.Progressbar(progress_frame, orient=tk.HORIZONTAL, length=300, mode='determinate')
+    progress_bar.pack(padx=50,pady=(0, 10), fill="x")
+    
+    # Biến để theo dõi trạng thái hủy và task đang chạy
+    cancel_requested = False
+    current_task = None
+    
+    # Nút hủy crawl
+    cancel_button = CTkButton(progress_frame, text="Hủy", width=100, height=30,
+                            fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
+    cancel_button.pack(pady=0)
+    
+    def clean_up_resources():
+        """Hàm dọn dẹp tài nguyên sau khi kết thúc hoặc hủy crawl"""
+        # Xóa frame tiến trình sau khi hoàn tất hoặc hủy
+        progress_frame.destroy()
     
     def crawl_with_progress():
+        nonlocal cancel_requested, current_task
         total_urls = len(book_urls)
         progress_bar["maximum"] = total_urls
         
         async def crawl_and_update():
+            nonlocal cancel_requested, current_task
             connector = aiohttp.TCPConnector(limit_per_host=3)
-            async with aiohttp.ClientSession(connector=connector) as session:
-                for i, url in enumerate(book_urls, start=1):
-                    result = await crawl_data(session, url)
-                    if result:
-                        books_data.append(result)
+            books_data = []
+            
+            try:
+                async with aiohttp.ClientSession(connector=connector) as session:
+                    for i, url in enumerate(book_urls, start=1):
+                        # Kiểm tra nếu đã yêu cầu hủy
+                        if cancel_requested:
+                            break
+                        
+                        # Tạo task để có thể hủy giữa chừng
+                        current_task = asyncio.create_task(crawl_data(session, url))
+                        try:
+                            # Đặt timeout cho mỗi yêu cầu để tránh treo
+                            result = await asyncio.wait_for(current_task, timeout=10)
+                            if result:
+                                books_data.append(result)
+                        except asyncio.TimeoutError:
+                            # Xử lý timeout
+                            pass
+                        except asyncio.CancelledError:
+                            # Xử lý khi task bị hủy
+                            break
+                        finally:
+                            current_task = None
+                        
+                        # Kiểm tra lại sau khi hoàn thành mỗi request
+                        if cancel_requested:
+                            break
+                        
+                        # Cập nhật progress_bar và label trong luồng chính
+                        root.after(0, lambda i=i: progress_bar.config(value=i))
+                        root.after(0, lambda i=i: detail_label.configure(text=f"Đang crawl dữ liệu sách, vui lòng chờ... {i}/{total_urls} sách"))
+                        root.update_idletasks()
                     
-                    # Cập nhật progress_bar trong luồng chính
-                    progress_window.after(0, progress_bar.config, {"value": i})
-                    progress_window.update_idletasks()
+                    # Chỉ lưu kết quả và hiển thị thông báo nếu không hủy
+                    if not cancel_requested and books_data:
+                        # Lưu kết quả
+                        write_json(BOOKS_FILE, books_data)
+                        
+                        # Hiển thị thông báo hoàn thành
+                        root.after(0, lambda: detail_label.configure(text=f"Crawl dữ liệu hoàn thành! Đã crawl {len(books_data)}/{total_urls} sách"))
+                        root.after(2000, clean_up_resources)  # Xóa frame tiến trình sau 2 giây
+                        root.after(0, lambda: messagebox.showinfo("Thành công", f"Đã crawl {len(books_data)} sách thành công!"))
+                        
+                        # Tự động hiển thị danh sách sách đã crawl
+                        root.after(2500, show_books)
+                    elif cancel_requested:
+                        # Thông báo đã hủy và dọn dẹp
+                        root.after(0, lambda: detail_label.configure(text="Đã hủy quá trình crawl!"))
+                        root.after(1000, clean_up_resources)
+                        if books_data:  # Nếu đã crawl được một số data trước khi hủy
+                            root.after(0, lambda: messagebox.showinfo("Đã hủy", f"Quá trình crawl đã bị hủy. Đã thu thập được {len(books_data)}/{total_urls} sách."))
+                            # Vẫn lưu dữ liệu đã crawl được
+                            write_json(BOOKS_FILE, books_data)
+            except Exception as e:
+                if not cancel_requested:  # Chỉ hiển thị thông báo lỗi nếu không phải do hủy
+                    root.after(0, lambda: messagebox.showerror("Lỗi", f"Lỗi khi crawl dữ liệu: {e}"))
+                root.after(0, clean_up_resources)
         
-        books_data = []
-        asyncio.run(crawl_and_update())
-        write_json(BOOKS_FILE, books_data)
-        progress_window.destroy()
-        messagebox.showinfo("Thành công", "Tiến trình crawl hoàn tất! Dữ liệu đã được cập nhật.")
+        # Tạo và chạy event loop mới trong thread hiện tại
+        try:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+            loop.run_until_complete(crawl_and_update())
+        except Exception as e:
+            if not cancel_requested:
+                root.after(0, lambda: messagebox.showerror("Lỗi", f"Lỗi khi chạy event loop: {e}"))
+        finally:
+            if loop and loop.is_running():
+                loop.close()
     
-    threading.Thread(target=crawl_with_progress).start()
+    # Hàm hủy quá trình crawl
+    def cancel_crawl():
+        nonlocal cancel_requested, current_task
+        cancel_requested = True
+        cancel_button.configure(state="disabled", text="Đang hủy...")
+        detail_label.configure(text="Đang hủy quá trình crawl...")
+        
+        # Hủy task hiện tại nếu có
+        if current_task and not current_task.done():
+            current_task.cancel()
+    
+    # Gán hàm hủy cho nút cancel
+    cancel_button.configure(command=cancel_crawl)
+    
+    # Chạy crawl trong thread riêng để không block giao diện
+    threading.Thread(target=crawl_with_progress, daemon=True).start()
 
-# Cập nhật hàm khởi chạy crawl data trong thread riêng
-def threaded_crawl_data():
-    t = threading.Thread(target=async_crawl_books_with_progress)
-    t.start()
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
@@ -400,7 +490,7 @@ def create_profile_window():
     # Hiển thị avatar (giả lập)
     avatar_frame = CTkFrame(main_frame, width=150, height=150, corner_radius=75)
     avatar_frame.pack(pady=10)
-    CTkLabel(avatar_frame, text="👤", font=("Arial", 60)).place(relx=0.5, rely=0.5, anchor="center")
+    CTkLabel(avatar_frame, text="👤", font=("Arial", 70)).place(relx=0.5, rely=0.5, anchor="center")
     
     # Thông tin người dùng
     info_frame = CTkFrame(main_frame)
@@ -815,8 +905,17 @@ def show_borrows():
     tree.heading("Ngày Trả", text="Ngày Trả", anchor=tk.CENTER)
 
     for idx, borrow in enumerate(borrows, start=1):
-        tree.insert("", tk.END, values=(idx, borrow["reader_id"], borrow["book_id"], 
-                                         borrow["borrow_date"], borrow["return_date"]))
+        # Thêm dấu | giữa các ID sách
+        book_ids = borrow["book_id"]
+        if isinstance(book_ids, list):
+            # Nếu book_id là một list, chuyển đổi thành chuỗi với dấu phân cách |
+            formatted_book_ids = " | ".join(book_ids)
+        else:
+            # Nếu không phải list, giả định là chuỗi và thêm dấu | giữa các ID
+            formatted_book_ids = str(book_ids).replace(" ", " | ")
+        
+        tree.insert("", tk.END, values=(idx, borrow["reader_id"], formatted_book_ids, 
+                                        borrow["borrow_date"], borrow["return_date"]))
 
 # Hàm tìm kiếm thông tin
 def search_info():
@@ -905,7 +1004,17 @@ def search_info():
         tree.heading("Ngày Trả", text="Ngày Trả", anchor=tk.CENTER)
 
         for idx, item in enumerate(results, start=1):
-            tree.insert("", tk.END, values=(idx, item["reader_id"], item["book_id"], item["borrow_date"], item["return_date"]))
+            # Thêm dấu | giữa các ID sách
+            book_ids = item["book_id"]
+            if isinstance(book_ids, list):
+                # Nếu book_id là một list, chuyển đổi thành chuỗi với dấu phân cách |
+                formatted_book_ids = " | ".join(book_ids)
+            else:
+                # Nếu không phải list, giả định là chuỗi và thêm dấu | giữa các ID
+                formatted_book_ids = str(book_ids).replace(" ", " | ")
+            
+            tree.insert("", tk.END, values=(idx, item["reader_id"], formatted_book_ids, 
+                                          item["borrow_date"], item["return_date"]))
 
     if not results:
         messagebox.showinfo("Kết Quả", "Không tìm thấy kết quả phù hợp.")
@@ -920,118 +1029,135 @@ def clear_display():
     tree.delete(*tree.get_children())
 
 # Hàm thu gọn/mở rộng khung quản lý sách
+# Hàm thu gọn/mở rộng khung quản lý sách
 def toggle_books_frame():
-    global is_books_collapsed
+    global is_books_collapsed, entry_id, entry_title, entry_author, entry_year, entry_pages
     is_books_collapsed = not is_books_collapsed
+    
+    # Tìm tất cả các label trong frame
+    labels = [widget for widget in frame_books.winfo_children() if isinstance(widget, CTkLabel) and widget != books_title]
+    label_texts = ["ID Sách:", "Tên Sách:", "Tác Giả:", "Năm Xuất Bản:", "Số Trang:"]
     
     if is_books_collapsed:
         # Ẩn nội dung khung sách
         for widget in [entry_id, entry_title, entry_author, entry_year, entry_pages, button_frame]:
             widget.grid_remove()
-        for label in frame_books.winfo_children():
-            if isinstance(label, CTkLabel) and label != books_title and label != collapse_books_btn:
-                label.grid_remove()
+        for label in labels:
+            label.grid_remove()
         collapse_books_btn.configure(text="▼")
-        # Di chuyển khung lên trên cùng
-        frame_books.grid(row=1, column=0, padx=10, pady=5, sticky="new")
     else:
         # Hiển thị lại nội dung khung sách
-        CTkLabel(frame_books, text="ID Sách:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
-        entry_id.grid(row=1, column=1, padx=10, pady=5)
+        # Tạo lại các label nếu chúng bị mất
+        fields = [entry_id, entry_title, entry_author, entry_year, entry_pages]
         
-        CTkLabel(frame_books, text="Tên Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
-        entry_title.grid(row=2, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_books, text="Tác Giả:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
-        entry_author.grid(row=3, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_books, text="Năm Xuất Bản:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
-        entry_year.grid(row=4, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_books, text="Số Trang:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
-        entry_pages.grid(row=5, column=1, padx=10, pady=5)
+        for i, (field, text) in enumerate(zip(fields, label_texts), 1):
+            # Kiểm tra nếu label không tồn tại, tạo mới
+            label_found = False
+            for label in labels:
+                if label.cget("text") == text:
+                    label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+                    label_found = True
+                    break
+            
+            # Nếu không tìm thấy label, tạo mới
+            if not label_found:
+                new_label = CTkLabel(frame_books, text=text, font=("Arial", 12))
+                new_label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+            
+            # Hiển thị field nhập liệu
+            field.grid(row=i, column=1, padx=10, pady=5)
         
         button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
         collapse_books_btn.configure(text="▲")
-        
-        # Khôi phục vị trí khung
-        frame_books.grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
     
     # Cập nhật vị trí các khung khác
     update_frames_position()
 
 # Hàm thu gọn/mở rộng khung quản lý độc giả
 def toggle_readers_frame():
-    global is_readers_collapsed
+    global is_readers_collapsed, entry_reader_id, entry_name, entry_address, entry_phone, entry_email
     is_readers_collapsed = not is_readers_collapsed
+    
+    # Tìm tất cả các label trong frame
+    labels = [widget for widget in frame_readers.winfo_children() if isinstance(widget, CTkLabel) and widget != readers_title]
+    label_texts = ["ID Độc Giả:", "Tên Độc Giả:", "Địa Chỉ:", "Số Điện Thoại:", "Email:"]
     
     if is_readers_collapsed:
         # Ẩn nội dung khung độc giả
         for widget in [entry_reader_id, entry_name, entry_address, entry_phone, entry_email, reader_button_frame]:
             widget.grid_remove()
-        for label in frame_readers.winfo_children():
-            if isinstance(label, CTkLabel) and label != readers_title and label != collapse_readers_btn:
-                label.grid_remove()
+        for label in labels:
+            label.grid_remove()
         collapse_readers_btn.configure(text="▼")
-        # Di chuyển khung vào vị trí phù hợp
-        update_frames_position()
     else:
         # Hiển thị lại nội dung khung độc giả
-        CTkLabel(frame_readers, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
-        entry_reader_id.grid(row=1, column=1, padx=10, pady=5)
+        fields = [entry_reader_id, entry_name, entry_address, entry_phone, entry_email]
         
-        CTkLabel(frame_readers, text="Tên Độc Giả:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
-        entry_name.grid(row=2, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_readers, text="Địa Chỉ:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
-        entry_address.grid(row=3, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_readers, text="Số Điện Thoại:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
-        entry_phone.grid(row=4, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_readers, text="Email:", font=("Arial", 12)).grid(row=5, column=0, sticky="w", padx=10, pady=5)
-        entry_email.grid(row=5, column=1, padx=10, pady=5)
+        for i, (field, text) in enumerate(zip(fields, label_texts), 1):
+            # Kiểm tra nếu label không tồn tại, tạo mới
+            label_found = False
+            for label in labels:
+                if label.cget("text") == text:
+                    label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+                    label_found = True
+                    break
+            
+            # Nếu không tìm thấy label, tạo mới
+            if not label_found:
+                new_label = CTkLabel(frame_readers, text=text, font=("Arial", 12))
+                new_label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+            
+            # Hiển thị field nhập liệu
+            field.grid(row=i, column=1, padx=10, pady=5)
         
         reader_button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
         collapse_readers_btn.configure(text="▲")
-        
-        # Cập nhật vị trí các khung
-        update_frames_position()
+    
+    # Cập nhật vị trí các khung
+    update_frames_position()
 
 # Hàm thu gọn/mở rộng khung quản lý mượn trả
 def toggle_borrow_frame():
-    global is_borrow_collapsed
+    global is_borrow_collapsed, entry_borrow_reader_id, entry_borrow_book_id, entry_borrow_date, entry_return_date
     is_borrow_collapsed = not is_borrow_collapsed
+    
+    # Tìm tất cả các label trong frame
+    labels = [widget for widget in frame_borrow.winfo_children() if isinstance(widget, CTkLabel) and widget != borrow_title]
+    label_texts = ["ID Độc Giả:", "ID Sách:", "Ngày Mượn:", "Ngày Trả:"]
     
     if is_borrow_collapsed:
         # Ẩn nội dung khung mượn trả
         for widget in [entry_borrow_reader_id, entry_borrow_book_id, entry_borrow_date, entry_return_date, borrow_button_frame]:
             widget.grid_remove()
-        for label in frame_borrow.winfo_children():
-            if isinstance(label, CTkLabel) and label != borrow_title and label != collapse_borrow_btn:
-                label.grid_remove()
+        for label in labels:
+            label.grid_remove()
         collapse_borrow_btn.configure(text="▼")
-        # Di chuyển khung vào vị trí phù hợp
-        update_frames_position()
     else:
         # Hiển thị lại nội dung khung mượn trả
-        CTkLabel(frame_borrow, text="ID Độc Giả:", font=("Arial", 12)).grid(row=1, column=0, sticky="w", padx=10, pady=5)
-        entry_borrow_reader_id.grid(row=1, column=1, padx=10, pady=5)
+        fields = [entry_borrow_reader_id, entry_borrow_book_id, entry_borrow_date, entry_return_date]
         
-        CTkLabel(frame_borrow, text="ID Sách:", font=("Arial", 12)).grid(row=2, column=0, sticky="w", padx=10, pady=5)
-        entry_borrow_book_id.grid(row=2, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_borrow, text="Ngày Mượn:", font=("Arial", 12)).grid(row=3, column=0, sticky="w", padx=10, pady=5)
-        entry_borrow_date.grid(row=3, column=1, padx=10, pady=5)
-        
-        CTkLabel(frame_borrow, text="Ngày Trả:", font=("Arial", 12)).grid(row=4, column=0, sticky="w", padx=10, pady=5)
-        entry_return_date.grid(row=4, column=1, padx=10, pady=5)
+        for i, (field, text) in enumerate(zip(fields, label_texts), 1):
+            # Kiểm tra nếu label không tồn tại, tạo mới
+            label_found = False
+            for label in labels:
+                if label.cget("text") == text:
+                    label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+                    label_found = True
+                    break
+            
+            # Nếu không tìm thấy label, tạo mới
+            if not label_found:
+                new_label = CTkLabel(frame_borrow, text=text, font=("Arial", 12))
+                new_label.grid(row=i, column=0, sticky="w", padx=10, pady=5)
+            
+            # Hiển thị field nhập liệu
+            field.grid(row=i, column=1, padx=10, pady=5)
         
         borrow_button_frame.grid(row=5, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
         collapse_borrow_btn.configure(text="▲")
-        
-        # Cập nhật vị trí các khung
-        update_frames_position()
+    
+    # Cập nhật vị trí các khung
+    update_frames_position()
 
 # Hàm cập nhật vị trí các khung
 def update_frames_position():
@@ -1301,7 +1427,7 @@ search_button = CTkButton(frame_search, text="Tìm Kiếm", command=search_info,
 search_button.grid(row=0, column=8, padx=10, pady=5)
 
 # Nút Crawl Dữ Liệu
-crawl_button = CTkButton(frame_search, text="Crawl Dữ Liệu ⬇", command=threaded_crawl_data, 
+crawl_button = CTkButton(frame_search, text="Crawl Dữ Liệu ⬇", command=async_crawl_books_with_progress, 
                          width=120, fg_color=("#17a2b8", "#138496"), hover_color=("#138496", "#117a8b"))
 crawl_button.grid(row=0, column=9, pady=5, padx=10, sticky="e")
 
