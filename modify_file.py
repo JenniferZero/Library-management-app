@@ -28,7 +28,7 @@ def assign_main_subjects(books, top_subjects):
         del book["subjects"]
     return books
 
-def save_to_file(data, filename="data.json"):
+def save_to_file(data, filename="src/data/data.json"):
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
