@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 from customtkinter import CTkButton, CTkEntry, CTkLabel, CTkFrame, CTkImage, CTkScrollbar, CTkToplevel, CTkRadioButton, CTkCheckBox
 
 # Thiết lập theme và mode cho CustomTkinter
-ctk.set_appearance_mode("Light")  # Modes: "System", "Dark", "Light" \ Thay đổi giá trị này để thay đổi chế độ giao diện
+ctk.set_appearance_mode("Light")  # Modes: "System", "Dark", "Light" \ Thay đổi chế độ giao diện
 ctk.set_default_color_theme("blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
@@ -30,6 +30,7 @@ USERS_FILE = os.path.join(DATA_DIR, 'users.json')
 BOOKS_FILE = os.path.join(DATA_DIR, 'books.json')
 READERS_FILE = os.path.join(DATA_DIR, 'readers.json')
 BORROW_FILE = os.path.join(DATA_DIR, 'borrow.json')
+REMEMBER_LOGIN_FILE = os.path.join(DATA_DIR, 'login.json')
 
 # Biến theo dõi trạng thái thu gọn của các khung
 is_books_collapsed = False
@@ -61,6 +62,19 @@ def write_json(file_path, data):
 
     with open(file_path, "w", encoding="utf-8") as file:
         json.dump(data, file, indent=4, ensure_ascii=False)
+
+
+# Hàm lưu thông tin đăng nhập đã nhớ
+def save_remembered_login(username, password):
+    data = {"username": username, "password": password}
+    write_json(REMEMBER_LOGIN_FILE, [data])
+
+# Hàm lấy thông tin đăng nhập đã lưu
+def get_remembered_login():
+    remembered = read_json(REMEMBER_LOGIN_FILE)
+    if remembered and len(remembered) > 0:
+        return remembered[0]  # Trả về thông tin đăng nhập đầu tiên
+    return None
 
 
 # Hàm đọc danh sách URL từ file
@@ -243,7 +257,7 @@ def async_crawl_books_with_progress():
 
 # Hàm tạo cửa sổ đăng nhập
 def create_login_window():
-    global login_window, entry_username, entry_password
+    global login_window, entry_username, entry_password, remember_var
     root.withdraw()  # Ẩn cửa sổ chính
     
     login_window = CTkToplevel()
@@ -301,7 +315,7 @@ def create_login_window():
     pw_visibility_checkbox = CTkCheckBox(pw_visibility_frame, text="Hiển thị mật khẩu", command=toggle_password_visibility)
     pw_visibility_checkbox.pack(side="left", anchor="w")
     
-    # Thêm chức năng nhớ đăng nhập (giả lập)
+    # Thêm chức năng nhớ đăng nhập
     remember_frame = CTkFrame(form_frame, fg_color="transparent")
     remember_frame.pack(pady=10, fill="x")
     
@@ -320,6 +334,13 @@ def create_login_window():
     register_button = CTkButton(form_frame, text="Đăng ký", command=create_register_window, font=("Arial", 14), width=200, height=45,
                               fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
     register_button.pack(pady=(5, 20))
+    
+    # Kiểm tra và điền thông tin đăng nhập đã nhớ (nếu có)
+    remembered_login = get_remembered_login()
+    if remembered_login:
+        entry_username.insert(0, remembered_login["username"])
+        entry_password.insert(0, remembered_login["password"])
+        remember_var.set(1)  # Chọn checkbox "Nhớ tài khoản"
 
 # Hàm tạo cửa sổ đăng ký
 def create_register_window():
@@ -398,6 +419,12 @@ def login():
         if user["username"] == username and user["password"] == password:
             global current_user
             current_user = user
+            
+            # Kiểm tra nếu người dùng chọn nhớ tài khoản
+            if remember_var.get() == 1:
+                # Lưu thông tin đăng nhập
+                save_remembered_login(username, password)
+            
             messagebox.showinfo("Thành công", f"Đăng nhập thành công với quyền {user['role']}.")
             login_window.destroy()
             root.deiconify()
