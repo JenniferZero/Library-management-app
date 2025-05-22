@@ -32,6 +32,9 @@ READERS_FILE = os.path.join(DATA_DIR, 'readers.json')
 BORROW_FILE = os.path.join(DATA_DIR, 'borrow.json')
 REMEMBER_LOGIN_FILE = os.path.join(DATA_DIR, 'login.json')
 
+# Biến theo dõi người dùng hiện tại
+current_user = None
+
 # Biến theo dõi trạng thái thu gọn của các khung
 is_books_collapsed = False
 is_readers_collapsed = False
@@ -92,8 +95,11 @@ async def crawl_data(session, url):
             html = await response.text()
             soup = BeautifulSoup(html, 'html.parser')
             
-            title = soup.find('h1').text.strip() if soup.find('h1') else "-"
-            author = soup.find('a', {'itemprop': 'author'}).text.strip() if soup.find('a', {'itemprop': 'author'}) else "-"
+            h1_element = soup.find('h1')
+            title = h1_element.text.strip() if h1_element else "-"
+            
+            author_element = soup.find('a', {'itemprop': 'author'})
+            author = author_element.text.strip() if author_element else "-"
             publish_date = soup.find('span', {'itemprop': 'datePublished'})
             year = publish_date.text.strip() if publish_date else "-"
             
@@ -468,26 +474,26 @@ def custom_messagebox(title, message, icon="info"):
 
 # Hàm kích hoạt các tính năng của admin
 def enable_admin_features():
-    add_book.configure(state="normal")
-    delete_book.configure(state="normal")
-    edit_book.configure(state="normal")
-    add_reader.configure(state="normal")
-    delete_reader.configure(state="normal")
-    edit_reader.configure(state="normal")
-    delete_borrow.configure(state="normal")
-    edit_borrow.configure(state="normal")
+    add_book_btn.configure(state="normal")
+    delete_book_btn.configure(state="normal")
+    edit_book_btn.configure(state="normal")
+    add_reader_btn.configure(state="normal")
+    delete_reader_btn.configure(state="normal")
+    edit_reader_btn.configure(state="normal")
+    delete_borrow_btn.configure(state="normal")
+    edit_borrow_btn.configure(state="normal")
     crawl_button.configure(state="normal")
 
 # Hàm vô hiệu hóa các tính năng của admin cho user thường
 def disable_admin_features():
-    add_book.configure(state="disabled")
-    delete_book.configure(state="disabled")
-    edit_book.configure(state="disabled")
-    add_reader.configure(state="disabled")
-    delete_reader.configure(state="disabled")
-    edit_reader.configure(state="disabled")
-    delete_borrow.configure(state="disabled")
-    edit_borrow.configure(state="disabled")
+    add_book_btn.configure(state="disabled")
+    delete_book_btn.configure(state="disabled")
+    edit_book_btn.configure(state="disabled")
+    add_reader_btn.configure(state="disabled")
+    delete_reader_btn.configure(state="disabled")
+    edit_reader_btn.configure(state="disabled")
+    delete_borrow_btn.configure(state="disabled")
+    edit_borrow_btn.configure(state="disabled")
     crawl_button.configure(state="disabled")
 
 # Hàm kiểm tra quyền truy cập
@@ -522,18 +528,23 @@ def create_profile_window():
     # Thông tin người dùng
     info_frame = CTkFrame(main_frame)
     info_frame.pack(pady=15, padx=20, fill="both", expand=True)
-    
-    # Tạo frame cho thông tin tài khoản
+      # Tạo frame cho thông tin tài khoản
     account_frame = CTkFrame(info_frame, fg_color="transparent")
     account_frame.pack(anchor="w", pady=5, fill="x")
     CTkLabel(account_frame, text=f"Tài khoản:", font=("Arial", 14, "bold"), width=100).pack(side="left", padx=(0, 10))
-    CTkLabel(account_frame, text=f"{current_user['username']}", font=("Arial", 16)).pack(side="left")
+    
+    # Hiển thị tên người dùng an toàn nếu current_user không phải None
+    username_text = current_user["username"] if current_user and "username" in current_user else "N/A"
+    CTkLabel(account_frame, text=username_text, font=("Arial", 16)).pack(side="left")
 
     # Tạo frame cho thông tin quyền
     role_frame = CTkFrame(info_frame, fg_color="transparent")
     role_frame.pack(anchor="w", pady=5, fill="x")
     CTkLabel(role_frame, text=f"Quyền:", font=("Arial", 14, "bold"), width=100).pack(side="left", padx=(0, 10))
-    CTkLabel(role_frame, text=f"{current_user['role']}", font=("Arial", 16)).pack(side="left")
+    
+    # Hiển thị quyền người dùng an toàn nếu current_user không phải None
+    role_text = current_user["role"] if current_user and "role" in current_user else "N/A"
+    CTkLabel(role_frame, text=role_text, font=("Arial", 16)).pack(side="left")
     
     # Điều chỉnh giao diện
     appearance_frame = CTkFrame(main_frame)
@@ -814,7 +825,7 @@ def edit_reader():
     if not reader_id or not name or not address or not phone or not email:
         messagebox.showerror("Lỗi", "Vui lòng nhập đầy đủ thông tin độc giả.")
         return
-
+        
     readers = read_json(READERS_FILE)
     for reader in readers:
         if reader["id"] == reader_id:
@@ -833,22 +844,36 @@ def edit_reader():
     
 # Hàm chỉnh sửa thông tin mượn sách
 def edit_borrow():
-    reader_id = entry_borrow_reader_id.get()
-    book_id = entry_borrow_book_id.get()
-    borrow_date = entry_borrow_date.get()
-    return_date = entry_return_date.get()
+    reader_id = entry_borrow_reader_id.get().strip()
+    book_id = entry_borrow_book_id.get().strip()
+    borrow_date = entry_borrow_date.get().strip()
+    return_date = entry_return_date.get().strip()
 
     if not reader_id or not book_id or not borrow_date or not return_date:
         messagebox.showerror("Lỗi", "Vui lòng nhập đầy đủ thông tin mượn trả.")
         return
+        
+    # Kiểm tra định dạng ngày
+    if not validate_date(borrow_date):
+        messagebox.showerror("Lỗi", "Ngày mượn không đúng định dạng YYYY-MM-DD.")
+        return
+
+    if not validate_date(return_date):
+        messagebox.showerror("Lỗi", "Ngày trả không đúng định dạng YYYY-MM-DD.")
+        return
 
     borrows = read_json(BORROW_FILE)
+    found = False
+    
     for borrow in borrows:
-        if borrow["reader_id"] == int(reader_id) and borrow["book_id"] == int(book_id):
+        # Kiểm tra ID độc giả và ID sách có khớp không
+        if str(borrow["reader_id"]) == reader_id and str(borrow["book_id"]) == book_id:
             borrow["borrow_date"] = borrow_date
             borrow["return_date"] = return_date
+            found = True
             break
-    else:
+            
+    if not found:
         messagebox.showerror("Lỗi", "Không tìm thấy thông tin mượn trả với ID đã nhập.")
         return
 
@@ -1278,20 +1303,20 @@ entry_pages.grid(row=5, column=1, padx=10, pady=5)
 button_frame = CTkFrame(frame_books)
 button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
 
-add_book = CTkButton(button_frame, text="Thêm Sách", command=add_book, width=100, 
+add_book_btn = CTkButton(button_frame, text="Thêm Sách", command=add_book, width=100, 
                     fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
-add_book.grid(row=0, column=0, pady=5, padx=5)
+add_book_btn.grid(row=0, column=0, pady=5, padx=5)
 
-delete_book = CTkButton(button_frame, text="Xóa Sách", command=delete_book, width=100,
+delete_book_btn = CTkButton(button_frame, text="Xóa Sách", command=delete_book, width=100,
                        fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
-delete_book.grid(row=0, column=1, pady=5, padx=5)
+delete_book_btn.grid(row=0, column=1, pady=5, padx=5)
 
 show_books_btn = CTkButton(button_frame, text="Hiển Thị Sách", command=show_books, width=100)
 show_books_btn.grid(row=1, column=0, pady=5, padx=5)
 
-edit_book = CTkButton(button_frame, text="Chỉnh Sửa Sách", command=edit_book, width=100,
+edit_book_btn = CTkButton(button_frame, text="Chỉnh Sửa Sách", command=edit_book, width=100,
                       fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
-edit_book.grid(row=1, column=1, pady=5, padx=5)
+edit_book_btn.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung quản lý độc giả
 frame_readers = CTkFrame(root)
@@ -1334,20 +1359,20 @@ entry_email.grid(row=5, column=1, padx=10, pady=5)
 reader_button_frame = CTkFrame(frame_readers)
 reader_button_frame.grid(row=6, column=0, columnspan=2, pady=10, padx=10, sticky="nsew")
 
-add_reader = CTkButton(reader_button_frame, text="Thêm Độc Giả", command=add_reader, width=100,
+add_reader_btn = CTkButton(reader_button_frame, text="Thêm Độc Giả", command=add_reader, width=100,
                      fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
-add_reader.grid(row=0, column=0, pady=5, padx=5)
+add_reader_btn.grid(row=0, column=0, pady=5, padx=5)
 
-delete_reader = CTkButton(reader_button_frame, text="Xóa Độc Giả", command=delete_reader, width=100,
+delete_reader_btn = CTkButton(reader_button_frame, text="Xóa Độc Giả", command=delete_reader, width=100,
                         fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
-delete_reader.grid(row=0, column=1, pady=5, padx=5)
+delete_reader_btn.grid(row=0, column=1, pady=5, padx=5)
 
 show_readers_btn = CTkButton(reader_button_frame, text="Hiển Thị Độc Giả", command=show_readers, width=100)
 show_readers_btn.grid(row=1, column=0, pady=5, padx=5)
 
-edit_reader = CTkButton(reader_button_frame, text="Chỉnh Sửa Độc Giả", command=edit_reader, width=100,
+edit_reader_btn = CTkButton(reader_button_frame, text="Chỉnh Sửa Độc Giả", command=edit_reader, width=100,
                       fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
-edit_reader.grid(row=1, column=1, pady=5, padx=5)
+edit_reader_btn.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung quản lý mượn trả
 frame_borrow = CTkFrame(root)
@@ -1390,16 +1415,16 @@ borrow_book_btn = CTkButton(borrow_button_frame, text="Mượn Sách", command=b
                            fg_color=("#28a745", "#218838"), hover_color=("#218838", "#1e7e34"))
 borrow_book_btn.grid(row=0, column=0, pady=5, padx=5)
 
-delete_borrow = CTkButton(borrow_button_frame, text="Xóa Mượn Trả", command=delete_borrow, width=100,
+delete_borrow_btn = CTkButton(borrow_button_frame, text="Xóa Mượn Trả", command=delete_borrow, width=100,
                          fg_color=("#dc3545", "#c82333"), hover_color=("#c82333", "#bd2130"))
-delete_borrow.grid(row=0, column=1, pady=5, padx=5)
+delete_borrow_btn.grid(row=0, column=1, pady=5, padx=5)
 
 show_borrows_btn = CTkButton(borrow_button_frame, text="Hiển Thị Mượn Trả", command=show_borrows, width=100)
 show_borrows_btn.grid(row=1, column=0, pady=5, padx=5)
 
-edit_borrow = CTkButton(borrow_button_frame, text="Chỉnh Sửa Mượn Trả", command=edit_borrow, width=100,
+edit_borrow_btn = CTkButton(borrow_button_frame, text="Chỉnh Sửa Mượn Trả", command=edit_borrow, width=100,
                        fg_color=("#fd7e14", "#e8710a"), hover_color=("#e8710a", "#d56906"))
-edit_borrow.grid(row=1, column=1, pady=5, padx=5)
+edit_borrow_btn.grid(row=1, column=1, pady=5, padx=5)
 
 # Khung hiển thị thông tin
 frame_right = CTkFrame(root)
@@ -1464,14 +1489,14 @@ profile_button = CTkButton(frame_search, text="Hồ Sơ   👤", command=create_
 profile_button.grid(row=0, column=13, padx=250, pady=5, sticky="e")
 
 # Cấu hình disable state cho các nút
-add_book.configure(state="disabled")
-delete_book.configure(state="disabled")
-edit_book.configure(state="disabled")
-add_reader.configure(state="disabled")
-delete_reader.configure(state="disabled")
-edit_reader.configure(state="disabled")
-delete_borrow.configure(state="disabled")
-edit_borrow.configure(state="disabled")
+add_book_btn.configure(state="disabled")
+delete_book_btn.configure(state="disabled")
+edit_book_btn.configure(state="disabled")
+add_reader_btn.configure(state="disabled")
+delete_reader_btn.configure(state="disabled")
+edit_reader_btn.configure(state="disabled")
+delete_borrow_btn.configure(state="disabled")
+edit_borrow_btn.configure(state="disabled")
 crawl_button.configure(state="disabled")
 
 def __main__():

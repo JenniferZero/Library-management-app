@@ -11,3 +11,4 @@ __version__ = get_model_meta(model_path)['version']
 
 def load(**overrides):
     return load_model_from_init_py(str(model_path), **overrides)
+
