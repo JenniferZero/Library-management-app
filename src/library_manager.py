@@ -496,13 +496,22 @@ def disable_admin_features():
     edit_borrow_btn.configure(state="disabled")
     crawl_button.configure(state="disabled")
 
-# Hàm kiểm tra quyền truy cập
-def parse_ids(id_input):
-    id_input = id_input.strip()
-    try:
-        return [x.strip() for x in id_input.split(',')]
-    except ValueError:
-        return None
+    
+def parse_ids(book_id_input):
+    """
+    Hàm phân tích chuỗi đầu vào chứa nhiều ID sách và trả về danh sách các ID
+    ID sách có thể được phân tách bởi dấu phẩy, dấu chấm phẩy, dấu | hoặc khoảng trắng
+    """
+    if not book_id_input:
+        return []
+    
+    # Thay thế các dấu phân cách bằng dấu phẩy để chuẩn hóa
+    book_id_input = book_id_input.replace(";", ",").replace("|", ",")
+    
+    # Tách chuỗi thành danh sách các ID và loại bỏ khoảng trắng thừa
+    book_ids = [bid.strip() for bid in book_id_input.split(",") if bid.strip()]
+    
+    return book_ids
 
 # Hàm tạo cửa sổ hồ sơ người dùng
 def create_profile_window():
@@ -813,6 +822,7 @@ def edit_book():
     write_json(BOOKS_FILE, books)
     messagebox.showinfo("Thành công", "Chỉnh sửa thông tin sách thành công.")
     clear_entries()
+    show_books()
 
 # Hàm chỉnh sửa thông tin độc giả
 def edit_reader():
@@ -841,6 +851,7 @@ def edit_reader():
     write_json(READERS_FILE, readers)
     messagebox.showinfo("Thành công", "Chỉnh sửa thông tin độc giả thành công.")
     clear_entries()
+    show_readers()
     
 # Hàm chỉnh sửa thông tin mượn sách
 def edit_borrow():
@@ -862,12 +873,19 @@ def edit_borrow():
         messagebox.showerror("Lỗi", "Ngày trả không đúng định dạng YYYY-MM-DD.")
         return
 
+    # Phân tích các ID sách từ chuỗi đầu vào
+    book_ids = parse_ids(book_id)
+    if not book_ids:
+        messagebox.showerror("Lỗi", "Danh sách ID sách không hợp lệ.")
+        return
+
     borrows = read_json(BORROW_FILE)
     found = False
     
     for borrow in borrows:
-        # Kiểm tra ID độc giả và ID sách có khớp không
-        if str(borrow["reader_id"]) == reader_id and str(borrow["book_id"]) == book_id:
+        # Kiểm tra ID độc giả để cập nhật
+        if str(borrow["reader_id"]) == reader_id:
+            borrow["book_id"] = book_ids  
             borrow["borrow_date"] = borrow_date
             borrow["return_date"] = return_date
             found = True
@@ -880,7 +898,8 @@ def edit_borrow():
     write_json(BORROW_FILE, borrows)
     messagebox.showinfo("Thành công", "Chỉnh sửa thông tin mượn trả thành công.")
     clear_entries()
-
+    show_borrows()
+    
 # Hàm hiển thị thông tin sách
 def show_books():
     books = read_json(BOOKS_FILE)
