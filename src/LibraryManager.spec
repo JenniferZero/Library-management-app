@@ -37,4 +37,3 @@ exe = EXE(
     entitlements_file=None,
     icon=['assets\\open-book.ico'],
 )
-
