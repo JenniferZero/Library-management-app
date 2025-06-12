@@ -1,119 +1,101 @@
-# Ứng dụng Quản lý Thư Viện
+# Library Management App
 
-Một ứng dụng quản lý thư viện với các tính năng xác thực người dùng, quản lý sách và thu thập dữ liệu.
+A modern library management application with user authentication, book and reader management, and the ability to crawl and update book data automatically.
 
----
 
-## Cài đặt
+## Features
 
-### Bước 1: Sao chép (clone) kho lưu trữ
+- **User Authentication**: Secure login for different user roles.
+- **Book Management**: Add, update, delete, and search for books in your library.
+- **Reader Management**: Manage reader information and borrowing activities.
+- **Borrowing System**: Track which readers have borrowed which books and due dates.
+- **Data Crawling**: Automatically fetch and update book data from external sources using asynchronous crawling and progress tracking.
+- **Persistent Storage**: Uses JSON files to store all relevant data for users, books, readers, and borrow records.
 
-Sao chép kho lưu trữ dự án về máy của bạn:
+## How It Works
+
+1. **Authentication**: Users log in to the system to access library features.
+2. **Book/Reader Management**: Admins can add, edit, or remove books and readers. Readers can search for available books.
+3. **Borrow and Return**: The app tracks which books are borrowed, by whom, and manages return dates.
+4. **Data Crawling**: The app can fetch book information from external sources and update the local database, providing a progress bar and allowing task cancellation.
+5. **Data Storage**: All data is saved in JSON files under `src/data/`.
+
+
+## Getting Started
+
+### 1. Clone the Repository
 
 ```sh
 git clone https://github.com/JenniferZero/Library-management-app.git
 cd Library-management-app
 ```
 
----
+### 2. Set Up a Virtual Environment (Optional)
 
-### Bước 2: Thiết lập môi trường ảo (tùy chọn)
-
-Tạo và kích hoạt môi trường ảo để cô lập các thư viện phụ thuộc:
-
-#### Trên Windows:
+#### On Windows:
 ```sh
 python -m venv venv
 venv\Scripts\activate
 ```
 
-#### Trên macOS/Linux:
+#### On macOS/Linux:
 ```sh
 python3 -m venv venv
 source venv/bin/activate
 ```
 
----
-
-### Bước 3: Cài đặt các thư viện phụ thuộc
-
-Cài đặt tất cả các thư viện phụ thuộc từ tệp `requirements.txt`:
+### 3. Install Dependencies
 
 ```sh
 pip install -r requirements.txt
 ```
-
-Nếu một số thư viện bị thiếu, hãy cài đặt chúng thủ công:
-
+_or, if using `setup.py`:_
 ```sh
-pip install aiohttp beautifulsoup4 customtkinter
+pip install .
 ```
 
----
 
-## Chạy ứng dụng
+## Running the Application
 
-### Bước 1: Điều hướng đến thư mục nguồn
+1. **Navigate to the source directory:**
 
-```sh
-cd src
-```
+    ```sh
+    cd src
+    ```
 
-### Bước 2: Chạy ứng dụng
+2. **Run the application:**
 
-Chạy ứng dụng bằng Python:
+    ```sh
+    python library_manager.py
+    ```
 
-```sh
-python library_manager.py
-```
+## Data Files
 
----
+The app uses several JSON files in the `src/data/` directory:
 
-## Tệp dữ liệu
+- `users.json`: Stores user information.
+- `books.json`: Stores book details.
+- `readers.json`: Stores reader information.
+- `borrow.json`: Stores borrowing records.
 
-Ứng dụng sử dụng một số tệp JSON để lưu trữ dữ liệu. Các tệp này nằm trong thư mục `src/data`:
+Make sure these files exist before running the app. If missing, create empty JSON files with those names.
 
-- `users.json`: Lưu trữ thông tin người dùng.
-- `books.json`: Lưu trữ thông tin sách.
-- `readers.json`: Lưu trữ thông tin độc giả.
-- `borrow.json`: Lưu trữ thông tin mượn sách.
 
-Đảm bảo các tệp này có mặt trong thư mục `src/data` trước khi chạy ứng dụng. Nếu chúng bị thiếu, hãy tạo các tệp JSON trống với cùng tên.
+## Packaging
 
----
-
-## Đóng gói ứng dụng
-
-Để đóng gói ứng dụng thành một tệp thực thi độc lập, hãy làm theo các bước sau:
-
-### Bước 1: Cài đặt PyInstaller
-
-Cài đặt PyInstaller bằng pip:
+To package the application:
 
 ```sh
-pip install pyinstaller
+python setup.py sdist bdist_wheel
 ```
 
-### Bước 2: Đóng gói ứng dụng
+## Notes
 
-Chạy lệnh sau để đóng gói ứng dụng:
+- The application requires Python 3.6 or newer.
+- Main dependencies: `aiohttp`, `spacy`, `beautifulsoup4`, `jsonschema`.
+- For any issues or contributions, please open an issue or pull request on GitHub.
 
-```sh
-pyinstaller --name LibraryManager --onefile --noconsole --clean --noconfirm `
---hidden-import=aiohttp --hidden-import=bs4 --hidden-import=tkinter `
---add-data "data;data" --add-data "assets;assets" --icon "assets/open-book.ico" `
---distpath "dist" --log-level DEBUG library_manager.py
-```
 
-Để đóng gói lại ứng dụng, hãy xóa thư mục `build` và tệp `.exe` cũ.
-
-### Bước 3: Tìm tệp thực thi
-
-Sau khi quá trình đóng gói hoàn tất, tệp thực thi (`LibraryManager.exe`) sẽ nằm trong thư mục `dist`.
-
----
-
-## Ghi chú
-
-- Đảm bảo rằng tất cả các tệp dữ liệu cần thiết được bao gồm trong thư mục `data` khi chạy hoặc đóng gói ứng dụng.
-- Nếu gặp bất kỳ vấn đề nào trong quá trình đóng gói, hãy tham khảo tài liệu của PyInstaller hoặc kiểm tra nhật ký trên terminal để xem chi tiết lỗi.
+## Members
+- `Nguyen Huu Thang`
+- `Nguyen Ngoc Son`
